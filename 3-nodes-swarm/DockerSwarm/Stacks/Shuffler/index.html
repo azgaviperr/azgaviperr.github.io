@@ -589,16 +589,12 @@ networks:
     driver: overlay
 </code></pre></div></p>
 <h2 id="setup-data-locations_1">Setup data locations<a class="headerlink" href="#setup-data-locations_1" title="Permanent link">#</a></h2>
-<p>One issue you gonna have with swarm is that it's not creating folder for declared volume on it's own so you will have to create it by yourself.</p>
-<div class="highlight"><pre><span></span><code># mkdir -p /mnt/docker_data/administration/portainer_data
+<p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
+<div class="highlight"><pre><span></span><code># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
 </code></pre></div>
-<p>If like me you are using the same base directory for docker data, you can run this on the compose file to automatically build the folder.</p>
-<p><div class="highlight"><pre><span></span><code>grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/administration/portainer-agent-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
-</code></pre></div>
-This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
 <h1 id="deploy-shuffle-stack">Deploy Shuffle stack<a class="headerlink" href="#deploy-shuffle-stack" title="Permanent link">#</a></h1>
 <p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
-<p>Log into your new instance at any nodes on port 3443. You'll be prompted to set your admin user/password on first login. Start at "Home", and click on "Primary" to manage your swarm (you can manage multiple swarms via one Portainer instance using the agent</p>
+<p>Log into your new instance at any nodes on port https://node:3443.</p>
 <h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
 <p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are intented from different shuffle-database container at the same time on the same value which will lead to databse corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
 <p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
