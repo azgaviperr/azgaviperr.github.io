@@ -1,0 +1,935 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/GlusterFS/GlusterFS/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+    
+    
+      
+        <title>Installing GlusterFS Server - Azgaviperr Write-up</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f955dcd.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-glusterfs-server" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Azgaviperr Write-up" class="md-header__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+      
+  <img src="../../../images/azgaviperr.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Azgaviperr Write-up
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Installing GlusterFS Server
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        3 nodes swarm
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Azgaviperr Write-up" class="md-nav__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+      
+  <img src="../../../images/azgaviperr.png" alt="logo">
+
+    </a>
+    Azgaviperr Write-up
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        3 nodes swarm
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="3 nodes swarm" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          3 nodes swarm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Data Persistance
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data Persistance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Persistance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Installing GlusterFS Server
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Installing GlusterFS Server
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-gluster-repository" class="md-nav__link">
+    Adding Gluster Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-glusterfs-server_1" class="md-nav__link">
+    Installing GlusterFS Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-bit-of-simplification-for-management" class="md-nav__link">
+    A bit of simplification for management.
+  </a>
+  
+    <nav class="md-nav" aria-label="A bit of simplification for management.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-ssh-key" class="md-nav__link">
+    Generate ssh-key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-ssh-key-to-all-nodes" class="md-nav__link">
+    Push ssh-key to all nodes
+  </a>
+  
+    <nav class="md-nav" aria-label="Push ssh-key to all nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stop-firewall" class="md-nav__link">
+    Stop firewall
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-glusterfs" class="md-nav__link">
+    Configure GlusterFS
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure GlusterFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-private-key-for-each-node" class="md-nav__link">
+    generate a private key for each node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-signed-certificate-for-each-node" class="md-nav__link">
+    generate a signed certificate for each node
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-and-start-service" class="md-nav__link">
+    Enable and start service
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable and start service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peer-nodes" class="md-nav__link">
+    Peer nodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-glusterfs-volumes" class="md-nav__link">
+    Create GlusterFS Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compose-and-env-volumes" class="md-nav__link">
+    Compose and env Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-data-volumes" class="md-nav__link">
+    Docker Data Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot-no-glusterfs-mount-on-startup" class="md-nav__link">
+    Troubleshoot no GlusterFS mount on startup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_3">
+        Docker Swarm
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Docker Swarm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DockerSwarm/Installation/" class="md-nav__link">
+        Docker swarm
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+      
+      <label class="md-nav__link" for="__nav_2_3_2">
+        Stacks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stacks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Stacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DockerSwarm/Stacks/Portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DockerSwarm/Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#adding-gluster-repository" class="md-nav__link">
+    Adding Gluster Repository
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-glusterfs-server_1" class="md-nav__link">
+    Installing GlusterFS Server
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-bit-of-simplification-for-management" class="md-nav__link">
+    A bit of simplification for management.
+  </a>
+  
+    <nav class="md-nav" aria-label="A bit of simplification for management.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-ssh-key" class="md-nav__link">
+    Generate ssh-key
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-ssh-key-to-all-nodes" class="md-nav__link">
+    Push ssh-key to all nodes
+  </a>
+  
+    <nav class="md-nav" aria-label="Push ssh-key to all nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stop-firewall" class="md-nav__link">
+    Stop firewall
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-glusterfs" class="md-nav__link">
+    Configure GlusterFS
+  </a>
+  
+    <nav class="md-nav" aria-label="Configure GlusterFS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-private-key-for-each-node" class="md-nav__link">
+    generate a private key for each node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generate-a-signed-certificate-for-each-node" class="md-nav__link">
+    generate a signed certificate for each node
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enable-and-start-service" class="md-nav__link">
+    Enable and start service
+  </a>
+  
+    <nav class="md-nav" aria-label="Enable and start service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peer-nodes" class="md-nav__link">
+    Peer nodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-glusterfs-volumes" class="md-nav__link">
+    Create GlusterFS Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compose-and-env-volumes" class="md-nav__link">
+    Compose and env Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-data-volumes" class="md-nav__link">
+    Docker Data Volumes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshoot-no-glusterfs-mount-on-startup" class="md-nav__link">
+    Troubleshoot no GlusterFS mount on startup
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="installing-glusterfs-server">Installing GlusterFS Server<a class="headerlink" href="#installing-glusterfs-server" title="Permanent link">#</a></h1>
+<p><img alt="GlusterFS" src="../../../images/Gluster.png" /></p>
+<h2 id="adding-gluster-repository">Adding Gluster Repository<a class="headerlink" href="#adding-gluster-repository" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code># dnf install centos-release-gluster`
+</code></pre></div>
+<h2 id="installing-glusterfs-server_1">Installing GlusterFS Server<a class="headerlink" href="#installing-glusterfs-server_1" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code># dnf install glusterfs-server
+</code></pre></div>
+<h2 id="a-bit-of-simplification-for-management">A bit of simplification for management.<a class="headerlink" href="#a-bit-of-simplification-for-management" title="Permanent link">#</a></h2>
+<h3 id="generate-ssh-key">Generate ssh-key<a class="headerlink" href="#generate-ssh-key" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code># ssh-keygen -t ed25519
+</code></pre></div>
+<h2 id="push-ssh-key-to-all-nodes">Push ssh-key to all nodes<a class="headerlink" href="#push-ssh-key-to-all-nodes" title="Permanent link">#</a></h2>
+<p><div class="highlight"><pre><span></span><code># ssh-copy-id root@swarm2
+# ssh-copy-id root@swarm3
+</code></pre></div>
+This should be done on all nodes.</p>
+<h3 id="stop-firewall">Stop firewall<a class="headerlink" href="#stop-firewall" title="Permanent link">#</a></h3>
+<p>I highly doesn't recommend to stop the firewall but I don't want also that you will get frustrated because of it.
+So go look how to stop firewalld on CentOS using your favorite search engine.</p>
+<h2 id="configure-glusterfs">Configure GlusterFS<a class="headerlink" href="#configure-glusterfs" title="Permanent link">#</a></h2>
+<h3 id="generate-a-private-key-for-each-node">generate a private key for each node<a class="headerlink" href="#generate-a-private-key-for-each-node" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code># openssl genrsa -out /etc/ssl/glusterfs.key 4096`
+</code></pre></div>
+<h3 id="generate-a-signed-certificate-for-each-node">generate a signed certificate for each node<a class="headerlink" href="#generate-a-signed-certificate-for-each-node" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code># openssl req -new -x509 -key /etc/ssl/glusterfs.key -subj &quot;/CN=`hostname -f`&quot; -out /etc/ssl/glusterfs.pem
+</code></pre></div>
+<p>hostname -f : for full fqdn (swarm1.lab.local)
+hostname -s : for short version (swarm1)</p>
+<p>This is important to understand what are you going to use on all the nodes as it's going to be used  to identify the allowed host to mount Gluster's volume.</p>
+<h2 id="enable-and-start-service">Enable and start service<a class="headerlink" href="#enable-and-start-service" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code># systemctl enable glusterd --now
+</code></pre></div>
+<h3 id="peer-nodes">Peer nodes<a class="headerlink" href="#peer-nodes" title="Permanent link">#</a></h3>
+<p>From swarm1 run :</p>
+<div class="highlight"><pre><span></span><code># gluster peer probe swarm2
+# gluster peer probe swarm3
+</code></pre></div>
+<p>Verify peers:</p>
+<div class="highlight"><pre><span></span><code># gluster peer status
+Number of Peers: 2
+Hostname: swarm2
+Uuid: 1085c1ff-6b79-4021-b6d4-93db50b8709a
+State: Peer in Cluster (Connected)
+
+Hostname: swarm3
+Uuid: 68525dfd-e91c-4563-9e16-76131025dc68
+State: Peer in Cluster (Connected)
+</code></pre></div>
+<h2 id="create-glusterfs-volumes">Create GlusterFS Volumes<a class="headerlink" href="#create-glusterfs-volumes" title="Permanent link">#</a></h2>
+<p>We are going to create two separate volumes.
+One for the different compose files and on for the env volumes.
+We could have made only one GlusterFS volume for both but I like to separate elements.</p>
+<p>One thing you have to keep in mind, GlusterFS use bricks in between nodes that are folder. Do not write directly in it but on a mount of it.</p>
+<h2 id="compose-and-env-volumes">Compose and env Volumes<a class="headerlink" href="#compose-and-env-volumes" title="Permanent link">#</a></h2>
+<p>We gonna start by creating the brick
+<div class="highlight"><pre><span></span><code># mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+# ssh root@swarm2 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+# ssh root@swarm3 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+</code></pre></div>
+Create a volume from it.</p>
+<p><div class="highlight"><pre><span></span><code># gluster volume create vol_configuration replica 3 transport tcp swarm{1..3}:/var/glusterfs/no-direct-write-here/vol_configuration/brick1 force
+
+volume create: vol_configuration: success: please start the volume to access data
+</code></pre></div>
+Let's activate tcp encryption.
+<div class="highlight"><pre><span></span><code># gluster volume set vol_configuration client.ssl on
+volume set: success
+
+# gluster volume set vol_configuration server.ssl on
+volume set: success
+</code></pre></div>
+Time to allow our nodes to mount the volume as client and brick data as server.
+<div class="highlight"><pre><span></span><code># gluster volume set vol_configuration auth.ssl-allow swarm1.lab.local,swarm2.lab.local,swarm3.lab.local
+volume set: success
+</code></pre></div>
+And now we start it.
+<div class="highlight"><pre><span></span><code># gluster volume start vol_configuration
+volume start: vol_configuration: success
+</code></pre></div>
+Now we need to create a mount point for it.
+<div class="highlight"><pre><span></span><code># mkdir  /mnt/configuration_data/
+# ssh root@swarm2 mkdir  /mnt/configuration_data/
+# ssh root@swarm3 mkdir  /mnt/configuration_data/
+</code></pre></div>
+And now we mount it.
+<div class="highlight"><pre><span></span><code># mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+# ssh root@swarm2 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+# ssh root@swarm3 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+</code></pre></div>
+We check this is working as it should:
+<div class="highlight"><pre><span></span><code># touch /mnt/configuration_data/youpi
+# ssh root@swarm2 ls /mnt/configuration_data
+# ssh root@swarm3 ls /mnt/configuration_data
+youpi
+</code></pre></div></p>
+<p>And that ssl is activated
+<div class="highlight"><pre><span></span><code>grep ssl /var/log/glusterfs/mnt-configuration_data.log
+</code></pre></div>
+We want to have it mounted on startup so we add this to /etc/fstab of each node:
+<div class="highlight"><pre><span></span><code>echo &quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults       0 0&quot; &gt;&gt; /etc/fstab
+</code></pre></div></p>
+<h2 id="docker-data-volumes">Docker Data Volumes<a class="headerlink" href="#docker-data-volumes" title="Permanent link">#</a></h2>
+<p>Same as above but with the brick made here : <code>/var/glusterfs/no-direct-write-here/vol_docker/brick1</code>
+And mountpoint: <code>/mnt/docker_data/</code></p>
+<h2 id="troubleshoot-no-glusterfs-mount-on-startup">Troubleshoot no GlusterFS mount on startup<a class="headerlink" href="#troubleshoot-no-glusterfs-mount-on-startup" title="Permanent link">#</a></h2>
+<p>I encoutered issue for the glusterFS volume to be mounted as startup as when the fstab is read by the system, glusterd is not yet running. The solution is to translate it in systemd-mount unit.
+<div class="highlight"><pre><span></span><code># mkdir  /etc/systemd/system/glusterfs.mount.d/
+# ssh root@swarm2 mkdir  /etc/systemd/system/configuration_data.mount.d/
+# ssh root@swarm3 mkdir  /etc/systemd/system/configuration_data.mount.d/
+</code></pre></div></p>
+<p>Official Documentation : https://docs.gluster.org/en/latest/</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Architecture
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../../DockerSwarm/Installation/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Docker swarm
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
