@@ -1,0 +1,7 @@
+Title: Home
+nav:
+  - "Architecture": index.md
+  - "Data Persistance": GlusterFS
+  - "Docker Swarm": DockerSwarm
+  - Resources: resources
+  - Thanks: Sponsors_and_Highlights

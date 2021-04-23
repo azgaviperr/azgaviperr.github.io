@@ -1,0 +1,6 @@
+Title: 3 Node Swarm
+nav:
+  - "Architecture": index.md
+  - "Data Persistance": GlusterFS
+  - "Docker Swarm": DockerSwarm
+  - Resources: resources
