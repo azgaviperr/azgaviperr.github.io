@@ -153,18 +153,6 @@
         
   
   
-
-
-  <li class="md-tabs__item">
-    <a href="../../.." class="md-tabs__link">
-      Home
-    </a>
-  </li>
-
-      
-        
-  
-  
     
   
 
@@ -174,10 +162,22 @@
   
     <li class="md-tabs__item">
       <a href="../../" class="md-tabs__link md-tabs__link--active">
-        3 nodes swarm
+        Swarming
       </a>
     </li>
   
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../Thanks" class="md-tabs__link">
+      Thanks
+    </a>
+  </li>
 
       
     </ul>
@@ -216,21 +216,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
-        Home
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -238,16 +223,16 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
       
-      <label class="md-nav__link" for="__nav_2">
-        3 nodes swarm
+      <label class="md-nav__link" for="__nav_1">
+        Swarming
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="3 nodes swarm" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" aria-label="Swarming" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
           <span class="md-nav__icon md-icon"></span>
-          3 nodes swarm
+          Swarming
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -273,14 +258,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
       
-      <label class="md-nav__link" for="__nav_2_2">
+      <label class="md-nav__link" for="__nav_1_2">
         Data Persistance
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Data Persistance" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_2">
+        <label class="md-nav__title" for="__nav_1_2">
           <span class="md-nav__icon md-icon"></span>
           Data Persistance
         </label>
@@ -316,14 +301,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" checked>
       
-      <label class="md-nav__link" for="__nav_2_3">
+      <label class="md-nav__link" for="__nav_1_3">
         Docker Swarm
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_3">
+        <label class="md-nav__title" for="__nav_1_3">
           <span class="md-nav__icon md-icon"></span>
           Docker Swarm
         </label>
@@ -382,14 +367,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_2" type="checkbox" id="__nav_1_3_2" >
       
-      <label class="md-nav__link" for="__nav_2_3_2">
+      <label class="md-nav__link" for="__nav_1_3_2">
         Stacks
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Stacks" data-md-level="3">
-        <label class="md-nav__title" for="__nav_2_3_2">
+        <label class="md-nav__title" for="__nav_1_3_2">
           <span class="md-nav__icon md-icon"></span>
           Stacks
         </label>
@@ -443,8 +428,35 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Sponsors_and_Highlights" class="md-nav__link">
+        Thanks
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Thanks" class="md-nav__link">
+        Thanks
+      </a>
     </li>
   
 
@@ -502,12 +514,22 @@
 <div class="highlight"><pre><span></span><code># curl -L &quot;https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
 # chmod +x /usr/local/bin/docker-compose
 </code></pre></div>
+<h2 id="optimizing-hosts-for-para-virtualization">Optimizing Hosts for para-virtualization<a class="headerlink" href="#optimizing-hosts-for-para-virtualization" title="Permanent link">#</a></h2>
+<p>Now that Swarm is ready, there are some system requirements that need to be met before really enjoying Swarm.</p>
+<p>Indeed, it is necessary to disable the SWAP memory, increase the maximum number of open file descriptors, increase the number of mmap or increase the number of connections that can be requested.</p>
+<p>To do this, edit the /etc/sysctl.conf file and add the following lines:</p>
+<div class="highlight"><pre><span></span><code># echo &gt;&gt; /etc/sysctl.conf
+vm.swappiness=1           # 1: minimum amount of swapping without disabling it entirely
+net.core.somaxconn=65535  # Increase number of incoming connections This is the max a system can handle for concurrent connection. Not recommended for directly exposed server
+vm.max_map_count=262144   # This is to avoid out of memory exceptions on stuff like elasticsearch and index tech
+fs.file-max=518144        # Up the default limit  of concurrent open files, this issue happen more than expected on huge container environment
+</code></pre></div>
 <h2 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code># systemctl enable docker --Now
 </code></pre></div>
 <h2 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h2>
 <p>From swarm1:
-<div class="highlight"><pre><span></span><code># docker swarm init
+<div class="highlight"><pre><span></span><code># docker swarm init --advertise-addr 10.0.0.51
 Swarm initialized: current node (ksdjlqsldjqsd2516685485) is now a manager.
 To add a worker to this swarm, run the following command:
 

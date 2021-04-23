@@ -21,82 +21,69 @@
   }
 </style>
 </head>
-<body><div id="readme" class="container"><article class="markdown-body entry-content"><h1 id="installing-glusterfs-server">Installing GlusterFS Server</h1>
-<p><img src="../../images/Gluster.png" alt="GlusterFS"></p>
-<h2 id="adding-gluster-repository">Adding Gluster Repository</h2>
-<pre><code># dnf install centos-release-gluster`</code></pre><h2 id="installing-glusterfs-server">Installing GlusterFS Server</h2>
-<pre><code># dnf install glusterfs-server</code></pre><h2 id="a-bit-of-simplification-for-management-">A bit of simplification for management.</h2>
-<h3 id="generate-ssh-key">Generate ssh-key</h3>
-<pre><code># ssh-keygen -t ed25519</code></pre><h2 id="push-ssh-key-to-all-nodes">Push ssh-key to all nodes</h2>
-<pre><code># ssh-copy-id root@swarm2
-# ssh-copy-id root@swarm3</code></pre><p>This should be done on all nodes.</p>
-<h3 id="stop-firewall">Stop firewall</h3>
-<p>For now we will stop the firewall so it&apos;s not going to interfere in this configuration. But I higly recommend to look on the documentation to know what port should be open.</p>
-<p>I will not give the command in here to do so, RTFM.</p>
-<h2 id="configure-glusterfs">Configure GlusterFS</h2>
-<h3 id="generate-a-private-key-for-each-node">generate a private key for each node</h3>
-<pre><code># openssl genrsa -out /etc/ssl/glusterfs.key 4096`</code></pre><h3 id="generate-a-signed-certificate-for-each-node">generate a signed certificate for each node</h3>
-<pre><code># openssl req -new -x509 -key /etc/ssl/glusterfs.key -subj &quot;/CN=`hostname -f`&quot; -out /etc/ssl/glusterfs.pem</code></pre><p>hostname -f : for full fqdn (swarm1.lab.local)
-hostname -s : for short version (swarm1)</p>
-<p>This is important to understand what are you going to use on all the nodes as it&apos;s going to be used  to identify the allowed host to mount Gluster&apos;s volume.</p>
-<h2 id="enable-and-start-service">Enable and start service</h2>
-<pre><code># systemctl enable glusterd --now</code></pre><h3 id="peer-nodes">Peer nodes</h3>
-<p>From swarm1 run :</p>
-<pre><code># gluster peer probe swarm2
-# gluster peer probe swarm3</code></pre><p>Verify peers:</p>
-<pre><code># gluster peer status
-Number of Peers: 2
-Hostname: swarm2
-Uuid: 1085c1ff-6b79-4021-b6d4-93db50b8709a
-State: Peer in Cluster (Connected)
+<body><div id="readme" class="container"><article class="markdown-body entry-content"><p>#Portainer
+<img src="https://raw.githubusercontent.com/portainer/portainer/develop/app/assets/images/logo_alt.png" alt="Portainer">
+Portainer is a lightweight management UI which allows you to easily manage your different Docker environments (Docker hosts or Swarm clusters). Portainer is meant to be as simple to deploy as it is to use. It consists of a single container that can run on any Docker engine (can be deployed as Linux container or a Windows native container, supports other platforms too). Portainer allows you to manage all your Docker resources (containers, images, volumes, networks and more!) It is compatible with the standalone Docker engine and with Docker Swarm mode.</p>
+<h1 id="preparaton">Preparaton</h1>
+<h2 id="setup-docker-swarm">Setup Docker Swarm</h2>
+<p>Deploying Portainer and the Portainer Agent to manage a Swarm cluster is easy! You can directly deploy Portainer as a service in your Docker cluster. Note that this method will automatically deploy a single instance of the Portainer Server, and deploy the Portainer Agent as a global service on every node in your cluster.</p>
+<pre><code># mkdir -p /mnt/configuration_data/compose_files/administration
+# curl -L https://downloads.portainer.io/portainer-agent-stack.yml -o mnt/configuration_data/compose_files/administration/portainer-agent-stack.yml</code></pre><h2 id="customisation">Customisation</h2>
+<p>By default portainer stack is using a normal docker volume. So if the node where the container will run fail, then we lost the data.
+To counter this we are going to use a local file shared accross nodes by GlusterFS.</p>
+<p>Edit portainer-agent-stack.yml</p>
+<p>Change:
+ <code>portainer_data:/data</code> for  <code>/mnt/docker_data/administration/portainer_data:/data</code></p>
+<p>Remove:</p>
+<pre><code>volumes:
+  portainer_data:</code></pre><p>The file should look like this (I added some notes as comment):</p>
+<pre><code>version: &apos;3.2&apos;
 
-Hostname: swarm3
-Uuid: 68525dfd-e91c-4563-9e16-76131025dc68
-State: Peer in Cluster (Connected)
-</code></pre><h2 id="create-glusterfs-volumes">Create GlusterFS Volumes</h2>
-<p>We are going to create two separated volumes.
-One for the different compose files and on for the env volumes.
-We could have made only one GlusterFS volume for both but I like to separate elements.</p>
-<p>One thing you have to keep in mind, GlusterFS use bricks in between nodes that are folder. Do not write directly in it but on a mount of it.</p>
-<h2 id="compose-and-env-volumes">Compose and env Volumes</h2>
-<p>We gonna start by creating the brick</p>
-<pre><code># mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
-# ssh root@swarm2 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
-# ssh root@swarm3 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1</code></pre><p>Create a volume from it.</p>
-<pre><code># gluster volume create vol_configuration replica 3 transport tcp swarm{1..3}:/var/glusterfs/no-direct-write-here/vol_configuration/brick1 force
+services:
+  agent:
+    image: portainer/agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - agent_network
+    deploy:
+      mode: global # Will be deploy on all nodes manager or worker accross the swarm.
+      placement:
+        constraints: [node.platform.os == linux] # Will only run on Linux OS.
 
-volume create: vol_configuration: success: please start the volume to access data</code></pre><p>Let&apos;s activate tcp encryption.</p>
-<pre><code># gluster volume set vol_configuration client.ssl on
-volume set: success
+  portainer:
+    image: portainer/portainer-ce
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    ports:
+      - &quot;9000:9000&quot;
+      - &quot;8000:8000&quot;
+    volumes:
+      - /mnt/docker_data/administration/portainer_data:/data
+    networks:
+      - agent_network
+    deploy:
+      mode: replicated
+      replicas: 1 # Only one container of this type gonna run at a time.
+      placement:
+        constraints: [node.role == manager] # Will only be deployed on a manager node.
 
-# gluster volume set vol_configuration server.ssl on
-volume set: success</code></pre><p>Time to allow our nodes to mount the volume as client and brick data as server.</p>
-<pre><code># gluster volume set vol_configuration auth.ssl-allow swarm1.lab.local,swarm2.lab.local,swarm3.lab.local
-volume set: success</code></pre><p>And now we start it.</p>
-<pre><code># gluster volume start vol_configuration
-volume start: vol_configuration: success</code></pre><p>Now we need to create a mount point for it.</p>
-<pre><code># mkdir  /mnt/configuration_data/
-# ssh root@swarm2 mkdir  /mnt/configuration_data/
-# ssh root@swarm3 mkdir  /mnt/configuration_data/</code></pre><p>And now we mount it.</p>
-<pre><code># mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
-# ssh root@swarm2 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
-# ssh root@swarm3 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data</code></pre><p>We check this is working as it should:</p>
-<pre><code># touch /mnt/configuration_data/youpi
-# ssh root@swarm2 ls /mnt/configuration_data
-# ssh root@swarm3 ls /mnt/configuration_data
-youpi</code></pre><p>And that ssl is activated</p>
-<pre><code>grep ssl /var/log/glusterfs/mnt-configuration_data.log</code></pre><p>We want to have it mounted on startup so we add this to /etc/fstab of each node:</p>
-<pre><code>echo &quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults,_netdev,noauto,x-systemd.automount,x-systemd.requires=gulsterd.service,x-systemd.after=gulsterd.service 0 0</code></pre><p>All the x-systemd option are here to make sure the volume is mounted after glusterFS service is running. For more information read it here <a href="https://www.freedesktop.org/software/systemd/man/systemd.mount.html">https://www.freedesktop.org/software/systemd/man/systemd.mount.html</a> .</p>
-<h2 id="docker-data-volumes">Docker Data Volumes</h2>
-<p>Same as above but with the brick made here : <code>/var/glusterfs/no-direct-write-here/vol_docker/brick1</code>
-And mountpoint: <code>/mnt/docker_data/</code></p>
-<h2 id="funny-stuff">Funny stuff</h2>
-<p>Imagine you got your brick (/var/glusterfs/no-direct-write-here/vol_configuration/brick1) and swarm1 on a dedicated hard drive and this hard drive died for some reason.
-You still could use the hosts to run containers, just mount the volume from an other node  <code>mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data</code></p>
-<p>You could have also use two bricks or more instead of one to create the GlusterFS volume quite like you will have done it with Raid1. But this is to be read on the Official documentation of the project.</p>
-<h2 id="troubleshoot-no-glusterfs-mount-on-startup">Troubleshoot no GlusterFS mount on startup</h2>
-<p>I encountered issue for the glusterFS saying a fresh peer couldn&apos;t be added because it had existing volumes. This was due to the fact I forgot to recreate the gluster.ca file to add it&apos;s public certificate.</p>
-<p>Official Documentation : <a href="https://docs.gluster.org/en/latest/">https://docs.gluster.org/en/latest/</a></p>
+networks:
+  agent_network:
+    driver: overlay
+    attachable: true
+</code></pre><h2 id="setup-data-locations">Setup data locations</h2>
+<p>One issue you gonna have with swarm is that it&apos;s not creating folder for declared volume on it&apos;s own so you will have to create it by yourself.</p>
+<pre><code># mkdir -p /mnt/docker_data/administration/portainer_data</code></pre><p>If like me you are using the same base directory for docker data, you can run this on the compose file to automatically build the folder.</p>
+<pre><code>grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/administration/portainer-agent-stack.yml | awk -F &quot;- &quot; &apos;{print $2&apos;} | awk -F &quot;:&quot; &apos;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&apos;</code></pre><p>This could be made as a command but I like to run first and echo instead of the &quot;mkdir -p&quot; to be sure I didn&apos;t made a mistake.</p>
+<h1 id="deploy-portainer-stack">Deploy Portainer stack</h1>
+<p>Deploy the Portainer stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; portainer</code></p>
+<p>Log into your new instance at any nodes on port 9000. You&apos;ll be prompted to set your admin user/password on first login. Start at &quot;Home&quot;, and click on &quot;Primary&quot; to manage your swarm (you can manage multiple swarms via one Portainer instance using the agent</p>
+<p>###Todo</p>
+<ul>
+<li>Add image</li>
+<li>Add Some basic usage</li>
+</ul>
 </article></div><div style="background-color: #b4b2b2;width: 50px;height:50px;line-height: 50px;text-align: center;position: fixed;bottom: 10px;right: 10px;padding-top:5px;" onclick="document.documentElement.scrollTop = document.body.scrollTop =0;">
   <svg t="1533629773982" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1035" xlink="http://www.w3.org/1999/xlink" width="40" height="40"><defs><style type="text/css">@font-face { font-family: uc-nexus-iconfont; src: url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff") format("woff"), url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf") format("truetype"); }
   </style></defs><path d="M536.255427 195.182354c-7.804756-7.804756-17.966187-11.615549-28.311813-11.615549-9.43693 0-18.874883 3.449565-26.496467 10.163477-2.360767 1.452071-4.356214 3.267417-6.352685 5.262864L218.47792 455.611735c-15.607466 15.60542-15.607466 40.834011 0 56.43943 15.607466 15.607466 41.558511 15.607466 57.167001 0l193.46013-192.733583 0 600.526219c0 22.1423 17.787108 39.927361 39.927361 39.927361 22.140253 0 39.927361-17.785062 39.927361-39.927361L548.959773 319.317583 737.15704 508.422522c15.607466 15.607466 40.469714 15.607466 56.078203 0 15.607466-15.607466 15.425318-40.834011-0.182149-56.441477L536.255427 195.182354 536.255427 195.182354z" p-id="1036" fill="#333"/><path d="M101.784174 143.097092l816.674071 0c22.140253 0 39.925315-17.785062 39.925315-39.927361 0-22.140253-17.784038-39.925315-39.925315-39.925315L101.784174 63.244416c-22.140253 0-39.927361 17.785062-39.927361 39.925315C61.856813 125.31203 79.643921 143.097092 101.784174 143.097092L101.784174 143.097092z" p-id="1037" fill="#333"/></svg>

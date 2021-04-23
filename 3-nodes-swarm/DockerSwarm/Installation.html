@@ -29,11 +29,22 @@
 <pre><code># dnf install -y yum-utils
 # yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
 # dnf install docker-ce docker-ce-cli containerd.io</code></pre><h2 id="installing-docker-compose">Installing docker-compose</h2>
-<pre><code># curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-# chmod +x /usr/local/bin/docker-compose</code></pre><h2 id="let-s-start-the-whale">Let's start the whale</h2>
-<pre><code># systemctl enable docker --Now</code></pre><h2 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it</h2>
+<pre><code># curl -L &quot;https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
+</code></pre><h2 id="optimizing-hosts-for-para-virtualization">Optimizing Hosts for para-virtualization</h2>
+<p>Now that Swarm is ready, there are some system requirements that need to be met before really enjoying Swarm.</p>
+<p>Indeed, it is necessary to disable the SWAP memory, increase the maximum number of open file descriptors, increase the number of mmap or increase the number of connections that can be requested.</p>
+<p>To do this, edit the /etc/sysctl.conf file and add the following lines:</p>
+<pre><code># echo &gt;&gt; /etc/sysctl.conf
+vm.swappiness=1           # 1: minimum amount of swapping without disabling it entirely
+net.core.somaxconn=65535  # Increase number of incoming connections This is the max a system can handle for concurrent connection. Not recommended for directly exposed server
+vm.max_map_count=262144   # This is to avoid out of memory exceptions on stuff like elasticsearch and index tech
+fs.file-max=518144        # Up the default limit  of concurrent open files, this issue happen more than expected on huge container environment
+</code></pre><h2 id="let-s-start-the-whale">Let&apos;s start the whale</h2>
+<pre><code># systemctl enable docker --Now
+</code></pre><h2 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it</h2>
 <p>From swarm1:</p>
-<pre><code># docker swarm init
+<pre><code># docker swarm init --advertise-addr 10.0.0.51
 Swarm initialized: current node (ksdjlqsldjqsd2516685485) is now a manager.
 To add a worker to this swarm, run the following command:
 
@@ -41,7 +52,7 @@ To add a worker to this swarm, run the following command:
      join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-814yer1z55vmyk2mwdhvjbob1 \
      10.0.0.51:2377
 
-To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.</code></pre><p>We are going to add the two other nodes as manager:</p>
+To add a manager to this swarm, run &apos;docker swarm join-token manager&apos; and follow the instructions.</code></pre><p>We are going to add the two other nodes as manager:</p>
 <pre><code>docker swarm join-token manager
 To add a manager to this swarm, run the following command:
 
@@ -54,7 +65,7 @@ kg6w6ucpb2jf8v8xqai23pv3a     swarm2.lab.local   Ready     Active         Reacha
 lam7mgs5wus40iaydvp8u3ss7     swarm3.lab.local   Ready     Active         Reachable        20.10.6</code></pre><p>You are now ready to swarm.</p>
 <p>Official Documentation : <a href="https://docs.docker.com/engine/swarm/">https://docs.docker.com/engine/swarm/</a></p>
 </article></div><div style="background-color: #b4b2b2;width: 50px;height:50px;line-height: 50px;text-align: center;position: fixed;bottom: 10px;right: 10px;padding-top:5px;" onclick="document.documentElement.scrollTop = document.body.scrollTop =0;">
-  <svg t="1533629773982" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1035" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40"><defs><style type="text/css">@font-face { font-family: uc-nexus-iconfont; src: url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff") format("woff"), url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf") format("truetype"); }
-  </style></defs><path d="M536.255427 195.182354c-7.804756-7.804756-17.966187-11.615549-28.311813-11.615549-9.43693 0-18.874883 3.449565-26.496467 10.163477-2.360767 1.452071-4.356214 3.267417-6.352685 5.262864L218.47792 455.611735c-15.607466 15.60542-15.607466 40.834011 0 56.43943 15.607466 15.607466 41.558511 15.607466 57.167001 0l193.46013-192.733583 0 600.526219c0 22.1423 17.787108 39.927361 39.927361 39.927361 22.140253 0 39.927361-17.785062 39.927361-39.927361L548.959773 319.317583 737.15704 508.422522c15.607466 15.607466 40.469714 15.607466 56.078203 0 15.607466-15.607466 15.425318-40.834011-0.182149-56.441477L536.255427 195.182354 536.255427 195.182354z" p-id="1036" fill="#333"></path><path d="M101.784174 143.097092l816.674071 0c22.140253 0 39.925315-17.785062 39.925315-39.927361 0-22.140253-17.784038-39.925315-39.925315-39.925315L101.784174 63.244416c-22.140253 0-39.927361 17.785062-39.927361 39.925315C61.856813 125.31203 79.643921 143.097092 101.784174 143.097092L101.784174 143.097092z" p-id="1037" fill="#333"></path></svg>
+  <svg t="1533629773982" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1035" xlink="http://www.w3.org/1999/xlink" width="40" height="40"><defs><style type="text/css">@font-face { font-family: uc-nexus-iconfont; src: url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.woff") format("woff"), url("chrome-extension://pogijhnlcfmcppgimcaccdkmbedjkmhi/res/font_9qmmi8b8jsxxbt9.ttf") format("truetype"); }
+  </style></defs><path d="M536.255427 195.182354c-7.804756-7.804756-17.966187-11.615549-28.311813-11.615549-9.43693 0-18.874883 3.449565-26.496467 10.163477-2.360767 1.452071-4.356214 3.267417-6.352685 5.262864L218.47792 455.611735c-15.607466 15.60542-15.607466 40.834011 0 56.43943 15.607466 15.607466 41.558511 15.607466 57.167001 0l193.46013-192.733583 0 600.526219c0 22.1423 17.787108 39.927361 39.927361 39.927361 22.140253 0 39.927361-17.785062 39.927361-39.927361L548.959773 319.317583 737.15704 508.422522c15.607466 15.607466 40.469714 15.607466 56.078203 0 15.607466-15.607466 15.425318-40.834011-0.182149-56.441477L536.255427 195.182354 536.255427 195.182354z" p-id="1036" fill="#333"/><path d="M101.784174 143.097092l816.674071 0c22.140253 0 39.925315-17.785062 39.925315-39.927361 0-22.140253-17.784038-39.925315-39.925315-39.925315L101.784174 63.244416c-22.140253 0-39.927361 17.785062-39.927361 39.925315C61.856813 125.31203 79.643921 143.097092 101.784174 143.097092L101.784174 143.097092z" p-id="1037" fill="#333"/></svg>
 </div>
 </body></html>
