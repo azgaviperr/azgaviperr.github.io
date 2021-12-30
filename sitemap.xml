@@ -16,16 +16,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Stacks/Portainer/</loc>
-         <lastmod>2021-12-30</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/</loc>
-         <lastmod>2021-12-30</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://azgaviperr.github.io/docs/3-nodes-swarm/Firewalling/Firewalling/</loc>
          <lastmod>2021-12-30</lastmod>
          <changefreq>daily</changefreq>
