@@ -609,104 +609,175 @@ Or there : <a href="https://shuffler.io/">Official Website</a></p>
 <div class="highlight"><pre><span></span><code># mkdir -p /mnt/configuration_data/compose_files/SOAR
 </code></pre></div>
 <h2 id="customisation">Customisation<a class="headerlink" href="#customisation" title="Permanent link">#</a></h2>
-<p>At the time of this writing I may be the only one shufflying around with swarm :p
+<p>At the time of this writing I may be the one of the few shufflying around with swarm :p
 So there is not yet a stack ready compose file.</p>
+<p>The swarm mode is still in heavy development but this is fun :) . </p>
+<p>There is an hidden service shuffle-worker that is created by orborus and there is not yet advanced setup for it. </p>
 <p>Let's create one <code>/mnt/configuration_data/compose_files/SOAR/shuffle.stack.yml</code></p>
-<div class="highlight"><pre><span></span><code>version: &#39;3.3&#39;
+<div class="highlight"><pre><span></span><code>version: &#39;3.8&#39;
 services:
   backend:
-    image: ghcr.io/frikky/shuffle-backend:0.8.74
+    image: ghcr.io/frikky/shuffle-backend:nightly
     environment:
+      BACKEND_HOSTNAME: backend
+      BACKEND_PORT: &#39;5001&#39;
       DATASTORE_EMULATOR_HOST: shuffle-database:8000
+      DB_LOCATION: ./shuffle-database
+      ENVIRONMENT_NAME: Shuffle
+      FRONTEND_PORT: &#39;3001&#39;
+      FRONTEND_PORT_HTTPS: &#39;3443&#39;
       HTTPS_PROXY: &#39;&#39;
       HTTP_PROXY: &#39;&#39;
       ORG_ID: Shuffle
+      OUTER_HOSTNAME: backend
       SHUFFLE_APP_DOWNLOAD_LOCATION: https://github.com/frikky/shuffle-apps
       SHUFFLE_APP_FORCE_UPDATE: &#39;false&#39;
       SHUFFLE_APP_HOTLOAD_FOLDER: /shuffle-apps
-      SHUFFLE_DEFAULT_APIKEY: zaCELgL.0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx
-      SHUFFLE_DEFAULT_PASSWORD: Fr1kky1sN0t@D0g
-      SHUFFLE_DEFAULT_USERNAME: admin
+      SHUFFLE_APP_HOTLOAD_LOCATION: ./shuffle-apps
+      SHUFFLE_BASE_IMAGE_NAME: frikky
+      SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
+      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: &#39;-0.9.30&#39;
+      SHUFFLE_CONTAINER_AUTO_CLEANUP: &#39;true&#39;
+      SHUFFLE_DEFAULT_APIKEY: &#39;&#39;
+      #SHUFFLE_DEFAULT_PASSWORD: Fr1kky1sN0t@D0g
+      #SHUFFLE_DEFAULT_USERNAME: admin
       SHUFFLE_DOWNLOAD_AUTH_BRANCH: &#39;&#39;
+      SHUFFLE_DOWNLOAD_AUTH_PASSWORD: &#39;&#39;
+      SHUFFLE_DOWNLOAD_AUTH_USERNAME: &#39;&#39;
+      SHUFFLE_DOWNLOAD_WORKFLOW_BRANCH: &#39;&#39;
+      SHUFFLE_DOWNLOAD_WORKFLOW_LOCATION: &#39;&#39;
+      SHUFFLE_DOWNLOAD_WORKFLOW_PASSWORD: &#39;&#39;
+      SHUFFLE_DOWNLOAD_WORKFLOW_USERNAME: &#39;&#39;
+      SHUFFLE_ELASTIC: &#39;true&#39;
       SHUFFLE_FILE_LOCATION: /shuffle-files
-    ports:
-     - 5001:5001
+      SHUFFLE_OPENSEARCH_APIKEY: &#39;&#39;
+      SHUFFLE_OPENSEARCH_CERTIFICATE_FILE: &#39;&#39;
+      SHUFFLE_OPENSEARCH_CLOUDID: &#39;&#39;
+      SHUFFLE_OPENSEARCH_PROXY: &#39;&#39;
+      SHUFFLE_OPENSEARCH_SKIPSSL_VERIFY: &#39;true&#39;
+      SHUFFLE_OPENSEARCH_URL: http://opensearch:9200
+      SHUFFLE_PASS_APP_PROXY: &#39;FALSE&#39;
+      SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
+      #SHUFFLE_ENCRYPTION_MODIFIER:
+    #ports:
+    # - 5001:5001
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-apps:/shuffle-apps
-     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-files:/shuffle-files
+     - /mnt/docker_data/Shuffle/shuffle-apps:/shuffle-apps
+     - /docker_data/Shuffle/shuffle-files:/shuffle-files
     networks:
-     - shuffle
+     - shuffle_prod
+    depends_on:
+     - opensearch 
     logging:
       driver: json-file
-    deploy:
-      replicas: 3
-  database:
-    image: frikky/shuffle:database
-    ports:
-     - 30002:8000
-    volumes:
-     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-database:/etc/shuffle
-    networks:
-     - shuffle
-    logging:
-      driver: json-file
-    deploy:
-      replicas: 1
+    deploy: 
+      update_config:
+        order: start-first    
   frontend:
-    image: ghcr.io/frikky/shuffle-frontend:0.8.74
+    image: ghcr.io/frikky/shuffle-frontend:nightly
+    healthcheck:
+      test: curl -fs http://localhost:80 || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 3    
     environment:
-      BACKEND_HOSTNAME: shuffle-backend
+      BACKEND_HOSTNAME: backend
     ports:
      - 3001:80
      - 3443:443
     networks:
-     - shuffle
+     - shuffle_prod
     logging:
       driver: json-file
-    deploy:
-      replicas: 3
-  orborus:
-    image: ghcr.io/frikky/shuffle-orborus:0.8.73
+    depends_on:
+      - backend
+    deploy: 
+      update_config:
+        order: start-first           
+
+  opensearch:
+    image: opensearchproject/opensearch:1.2.3
+    healthcheck:
+      test: curl -fs http://localhost:9200/_cat/health || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 45s    
     environment:
-      BASE_URL: http://shuffle-backend:5001
-      CLEANUP: &#39;false&#39;
+      OPENSEARCH_JAVA_OPTS: -Xms8192m -Xmx8192m
+      bootstrap.memory_lock: &#39;false&#39;
+      cluster.initial_master_nodes: opensearch
+      node.store.allow_mmap: &#39;false&#39;
+      cluster.name: shuffle-cluster
+      cluster.routing.allocation.disk.threshold_enabled: &#39;false&#39;
+      discovery.seed_hosts: opensearch
+      node.name: opensearch
+      plugins.security.disabled: &#39;true&#39;
+    #ports:
+    # - 9200:9200
+    volumes:
+     - /mnt/docker_data/Shuffle/shuffle-database:/usr/share/opensearch/data
+     - /mnt/docker_data/Shuffle/shuffle-backup/opensearch:/mnt/backup
+    networks:
+     - shuffle_prod
+    logging:
+      driver: json-file
+
+  orborus:
+    image: ghcr.io/frikky/shuffle-orborus:nightly
+    environment:
+      #SHUFFLE_APP_SDK_VERSION: 0.8.97
+      SHUFFLE_WORKER_VERSION: nightly     
+      BASE_URL: http://backend:5001
+      #BASE_URL: http://phoenix.cogital-it.com:5001
+      CLEANUP: &#39;true&#39;
       DOCKER_API_VERSION: &#39;1.40&#39;
       ENVIRONMENT_NAME: Shuffle
       HTTPS_PROXY: &#39;&#39;
       HTTP_PROXY: &#39;&#39;
       ORG_ID: Shuffle
-      SHUFFLE_APP_SDK_VERSION: 0.8.77
       SHUFFLE_BASE_IMAGE_NAME: frikky
       SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
-      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.60
-      SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;600&#39;
-      SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
-      SHUFFLE_WORKER_VERSION: 0.8.73
+      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.80
+      #SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY: &#39;50&#39;
+      #SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;800&#39;
+      SHUFFLE_PASS_APP_PROXY: &#39;FALSE&#39;
+      SHUFFLE_PASS_WORKER_PROXY: &#39;FALSE&#39;
+      SHUFFLE_SCALE_REPLICAS: 5
+      SHUFFLE_SWARM_CONFIG: run
+      SHUFFLE_SWARM_NETWORK_NAME: shuffle_prod
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
     networks:
-     - shuffle
+     - shuffle_prod
+    depends_on:
+      - backend     
     logging:
       driver: json-file
     deploy:
-      replicas: 3
+      update_config:
+        order: start-first  
+
 networks:
-  shuffle:
+  shuffle_prod:
     driver: overlay
+    external: true    
 </code></pre></div>
 <h2 id="setup-data-locations_1">Setup data locations<a class="headerlink" href="#setup-data-locations_1" title="Permanent link">#</a></h2>
 <p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
-<div class="highlight"><pre><span></span><code># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
+<div class="highlight"><pre><span></span><code><span class="c1"># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;</span>
+</code></pre></div>
+<p>Don't forget to change the elasticsearch data folder permission. </p>
+<div class="highlight"><pre><span></span><code>chown -R <span class="m">1000</span>:1000 /mnt/docker_data/Shuffle/shuffle-database
 </code></pre></div>
 <h1 id="deploy-shuffle-stack">Deploy Shuffle stack<a class="headerlink" href="#deploy-shuffle-stack" title="Permanent link">#</a></h1>
 <p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
 <p>Log into your new instance at any nodes on port https://node:3443.</p>
 <h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
-<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are intented from different shuffle-database container at the same time on the same value which will lead to databse corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
-<p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
-This all Replica and Clustering of Shuffle is not yet production ready as it is not yet properly implemented.</p>
-<p>I recommend using only one database and one Orborus for now.</p>
+<div class="highlight"><pre><span></span><code>  SHUFFLE_SCALE_REPLICAS: 5 # Set the number of workers per swarm nodes
+  SHUFFLE_SWARM_CONFIG: run # Set the swarm mode
+</code></pre></div>
                 
               
               
