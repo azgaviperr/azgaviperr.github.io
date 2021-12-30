@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
     
     
       
@@ -175,6 +175,22 @@
     <li class="md-tabs__item">
       <a href="../../../" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Stacks/Portainer/" class="md-tabs__link">
+        Stacks
       </a>
     </li>
   
@@ -437,9 +453,116 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      <label class="md-nav__link" for="__nav_2_4">
+        Firewalling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Firewalling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Firewalling/Firewalling/" class="md-nav__link">
+        Firewalling
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks" class="md-nav__link">
+        Stacks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../../resources" class="md-nav__link">
         Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Stacks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Stacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks/Portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
       </a>
     </li>
   
@@ -504,7 +627,7 @@ Or there : <a href="https://shuffler.io/">Official Website</a></p>
 <h2 id="customisation">Customisation<a class="headerlink" href="#customisation" title="Permanent link">#</a></h2>
 <p>At the time of this writing I may be the only one shufflying around with swarm :p
 So there is not yet a stack ready compose file.</p>
-<p>Let's create one <code>/mnt/configuration_data/compose_files/SOAR/shuffle.stack.yml</code>
+<p>Let's create one <code>/mnt/configuration_data/compose_files/SOAR/shuffle.stack.yml</code></p>
 <div class="highlight"><pre><span></span><code>version: &#39;3.3&#39;
 services:
   backend:
@@ -587,7 +710,7 @@ services:
 networks:
   shuffle:
     driver: overlay
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="setup-data-locations_1">Setup data locations<a class="headerlink" href="#setup-data-locations_1" title="Permanent link">#</a></h2>
 <p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
 <div class="highlight"><pre><span></span><code># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
@@ -632,6 +755,20 @@ This all Replica and Clustering of Shuffle is not yet production ready as it is 
           </div>
         </a>
       
+      
+        <a href="../../../Firewalling/Firewalling/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Firewalling
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

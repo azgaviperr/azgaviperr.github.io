@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Installation/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
     
     
       
@@ -175,6 +175,22 @@
     <li class="md-tabs__item">
       <a href="../../" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Stacks/Portainer/" class="md-tabs__link">
+        Stacks
       </a>
     </li>
   
@@ -435,9 +451,116 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      <label class="md-nav__link" for="__nav_2_4">
+        Firewalling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Firewalling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Firewalling/Firewalling/" class="md-nav__link">
+        Firewalling
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Stacks" class="md-nav__link">
+        Stacks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../resources" class="md-nav__link">
         Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Stacks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Stacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Stacks/Portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
       </a>
     </li>
   
@@ -488,51 +611,64 @@
                 
                 
                 <h1 id="docker-swarm">Docker swarm<a class="headerlink" href="#docker-swarm" title="Permanent link">#</a></h1>
-<p><img alt="Docker Swarm" src="../../../images/docker-swarm-containers.png" /></p>
+<p><img src="../../images/docker-swarm-containers.png" title="" alt="Docker Swarm" data-align="left"></p>
 <h1 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h1>
 <h2 id="remove-runc">Remove runc<a class="headerlink" href="#remove-runc" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code># dnf remove runc
+<div class="highlight"><pre><span></span><code><span class="c1"># dnf remove runc</span>
 </code></pre></div>
 <h2 id="adding-docker-repo">Adding docker repo<a class="headerlink" href="#adding-docker-repo" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code># dnf install -y yum-utils
-# yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
-# dnf install docker-ce docker-ce-cli containerd.io
+<div class="highlight"><pre><span></span><code><span class="c1"># dnf install -y yum-utils</span>
+<span class="c1"># dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span>
+<span class="c1"># dnf install docker-ce docker-ce-cli containerd.io</span>
 </code></pre></div>
 <h2 id="installing-docker-compose">Installing docker-compose<a class="headerlink" href="#installing-docker-compose" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code># curl -L &quot;https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
-# chmod +x /usr/local/bin/docker-compose
+<div class="highlight"><pre><span></span><code>dnf install python3-pip
+pip3 install --upgrade pip
+pip3 install setuptools-rust
+pip3 install docker-compose
 </code></pre></div>
 <h2 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code># systemctl enable docker --Now
+<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> docker --now
 </code></pre></div>
 <h2 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h2>
-<p>From swarm1:
-<div class="highlight"><pre><span></span><code># docker swarm init
-Swarm initialized: current node (ksdjlqsldjqsd2516685485) is now a manager.
+<p>From swarm1:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># docker swarm init</span>
+Swarm initialized: current node <span class="o">(</span>ksdjlqsldjqsd2516685485<span class="o">)</span> is now a manager.
 To add a worker to this swarm, run the following command:
 
-    docker swarm \
-     join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-814yer1z55vmyk2mwdhvjbob1 \
-     10.0.0.51:2377
+    docker swarm <span class="se">\</span>
+     join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-814yer1z55vmyk2mwdhvjbob1 <span class="se">\</span>
+     <span class="m">10</span>.0.0.51:2377
 
-To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.
+To add a manager to this swarm, run <span class="s1">&#39;docker swarm join-token manager&#39;</span> and follow the instructions.
 </code></pre></div>
-We are going to add the two other nodes as manager:
+<p>We are going to add the two other nodes as manager:</p>
 <div class="highlight"><pre><span></span><code>docker swarm join-token manager
 To add a manager to this swarm, run the following command:
 
-    docker swarm join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-2k0vay9aub5eheikw7qi9v82o 10.0.0.51:2377
+    docker swarm join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-2k0vay9aub5eheikw7qi9v82o <span class="m">10</span>.0.0.51:2377
 </code></pre></div>
-Run the command provided on your other nodes to join them to the swarm as managers.
-After addition of a node, the output of docker node ls (on either host) should reflect all the nodes:
-<div class="highlight"><pre><span></span><code># docker node ls
+<p>Run the command provided on your other nodes to join them to the swarm as managers.
+After addition of a node, the output of docker node ls (on either host) should reflect all the nodes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># docker node ls</span>
 ID                            HOSTNAME           STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
-p424u0yvmu0vvc8nsnspv83zw *   swarm1.lab.local   Ready     Active         Leader           20.10.6
-kg6w6ucpb2jf8v8xqai23pv3a     swarm2.lab.local   Ready     Active         Reachable        20.10.6
-lam7mgs5wus40iaydvp8u3ss7     swarm3.lab.local   Ready     Active         Reachable        20.10.6
-</code></pre></div></p>
+p424u0yvmu0vvc8nsnspv83zw *   swarm1.lab.local   Ready     Active         Leader           <span class="m">20</span>.10.6
+kg6w6ucpb2jf8v8xqai23pv3a     swarm2.lab.local   Ready     Active         Reachable        <span class="m">20</span>.10.6
+lam7mgs5wus40iaydvp8u3ss7     swarm3.lab.local   Ready     Active         Reachable        <span class="m">20</span>.10.6
+</code></pre></div>
 <p>You are now ready to swarm.</p>
 <p>Official Documentation : https://docs.docker.com/engine/swarm/</p>
+<h2 id="little-network-tweak">Little Network tweak<a class="headerlink" href="#little-network-tweak" title="Permanent link">#</a></h2>
+<p>In some heavy network swarm, service can show some timeout connections.</p>
+<p>To fix this on CentOS this little trick will do:</p>
+<div class="highlight"><pre><span></span><code>ethtool -K ens192 tx-checksum-ip-generic off
+cat &gt; /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic <span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">ethtool -K ens192 tx-checksum-ip-generic off</span>
+<span class="s">EOF</span>
+
+chmod +x /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic
+</code></pre></div>
+<p>Note: ens192 is your network adaptater so change it accordingly. </p>
                 
               
               

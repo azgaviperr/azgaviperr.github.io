@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Stacks/Portainer/">
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
     
     
       
@@ -175,6 +175,22 @@
     <li class="md-tabs__item">
       <a href="../../../" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Stacks/Portainer/" class="md-tabs__link">
+        Stacks
       </a>
     </li>
   
@@ -437,9 +453,116 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      <label class="md-nav__link" for="__nav_2_4">
+        Firewalling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Firewalling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Firewalling/Firewalling/" class="md-nav__link">
+        Firewalling
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks" class="md-nav__link">
+        Stacks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../../resources" class="md-nav__link">
         Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Stacks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Stacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks/Portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
       </a>
     </li>
   
@@ -504,11 +627,11 @@ To counter this we are going to use a local file shared accross nodes by Gluster
 <p>Edit portainer-agent-stack.yml</p>
 <p>Change:
  <code>portainer_data:/data</code> for  <code>/mnt/docker_data/administration/portainer_data:/data</code></p>
-<p>Remove:
+<p>Remove:</p>
 <div class="highlight"><pre><span></span><code>volumes:
   portainer_data:
-</code></pre></div></p>
-<p>The file should look like this (I added some notes as comment):
+</code></pre></div>
+<p>The file should look like this (I added some notes as comment):</p>
 <div class="highlight"><pre><span></span><code>version: &#39;3.2&#39;
 
 services:
@@ -544,15 +667,15 @@ networks:
   agent_network:
     driver: overlay
     attachable: true
-</code></pre></div></p>
+</code></pre></div>
 <h2 id="setup-data-locations">Setup data locations<a class="headerlink" href="#setup-data-locations" title="Permanent link">#</a></h2>
 <p>One issue you gonna have with swarm is that it's not creating folder for declared volume on it's own so you will have to create it by yourself.</p>
 <div class="highlight"><pre><span></span><code># mkdir -p /mnt/docker_data/administration/portainer_data
 </code></pre></div>
 <p>If like me you are using the same base directory for docker data, you can run this on the compose file to automatically build the folder.</p>
-<p><div class="highlight"><pre><span></span><code>grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/administration/portainer-agent-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
+<div class="highlight"><pre><span></span><code>grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/administration/portainer-agent-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
 </code></pre></div>
-This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
+<p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
 <h1 id="deploy-portainer-stack">Deploy Portainer stack<a class="headerlink" href="#deploy-portainer-stack" title="Permanent link">#</a></h1>
 <p>Deploy the Portainer stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; portainer</code></p>
 <p>Log into your new instance at any nodes on port 9000. You'll be prompted to set your admin user/password on first login. Start at "Home", and click on "Primary" to manage your swarm (you can manage multiple swarms via one Portainer instance using the agent</p>

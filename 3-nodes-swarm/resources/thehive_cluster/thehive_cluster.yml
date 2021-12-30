@@ -1,0 +1,187 @@
+version: "3.8"
+services:
+  scylladb1:
+    hostname: scylladb1
+    image: scylladb/scylla
+    deploy:
+      endpoint_mode: dnsrr
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - "/mnt/mnt_docker/SIRP/thehive_cluster/scylla/data1/:/var/lib/scylla"
+  scylladb2:
+    hostname: scylladb2
+    image: scylladb/scylla
+    deploy:
+      endpoint_mode: dnsrr
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - "/mnt/mnt_docker/SIRP/thehive_cluster/scylla/data2/:/var/lib/scylla"
+  scylladb3:
+    hostname: scylladb3
+    image: scylladb/scylla
+    deploy:
+      endpoint_mode: dnsrr
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - "/mnt/mnt_docker/SIRP/thehive_cluster/scylla/data3/:/var/lib/scylla"
+
+  elastic-data-1:
+    hostname: elastic-data1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    environment:
+      - discovery.zen.ping.unicast.hosts=["elastic-data-1","elastic-data-2","elastic-data-3"]
+      - discovery.zen.ping_timeout=5s
+      - discovery.zen.commit_timeout=5s
+      - discovery.zen.minimum_master_nodes=2
+      - discovery.seed_hosts=["elastic-data-1","elastic-data-2","elastic-data-3"]
+      - node.master=true
+      - node.data=true
+      - cluster.remote.connect=false
+      - cluster.name="thehive-cluster"
+      - network.host=0.0.0.0
+      - script.allowed_types=inline
+      - thread_pool.search.queue_size=100000
+      - thread_pool.write.queue_size=10000
+      - gateway.recover_after_nodes=2
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/esindex1:/usr/share/elasticsearch/data
+    deploy:
+      endpoint_mode: dnsrr
+      mode: 'replicated'
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  elastic-data-2:
+    hostname: elastic-data-2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    environment:
+      - discovery.zen.ping.unicast.hosts=["elastic-data-1","elastic-data-2","elastic-data-3"]
+      - discovery.zen.ping_timeout=5s
+      - discovery.zen.commit_timeout=5s
+      - discovery.zen.minimum_master_nodes=2
+      - discovery.seed_hosts=["elastic-data-1","elastic-data-2","elastic-data-3"]
+      - node.master=true
+      - node.data=true
+      - cluster.remote.connect=false
+      - cluster.name="thehive-cluster"
+      - network.host=0.0.0.0
+      - script.allowed_types=inline
+      - thread_pool.search.queue_size=100000
+      - thread_pool.write.queue_size=10000
+      - gateway.recover_after_nodes=2
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/esindex1/:/usr/share/elasticsearch/data
+    deploy:
+      endpoint_mode: dnsrr
+      mode: 'replicated'
+      replicas: 1
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  elastic-data-3:
+    hostname: elastic-data-3
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    environment:
+      - discovery.zen.ping.unicast.hosts=["elastic-data-1","elastic-data-2","elastic-data-3"]
+      - discovery.zen.ping_timeout=5s
+      - discovery.zen.commit_timeout=5s
+      - discovery.zen.minimum_master_nodes=2
+      - node.master=true
+      - node.data=true
+      - cluster.remote.connect=false
+      - cluster.name=thehivecluster
+      - network.host=0.0.0.0
+      - script.allowed_types=inline
+      - thread_pool.search.queue_size=100000
+      - thread_pool.write.queue_size=10000
+      - gateway.recover_after_nodes=2
+      - xpack.security.enabled=false
+      - bootstrap.memory_lock=true
+    networks:
+      - thehive_cluster_net
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/esindex3/:/usr/share/elasticsearch/data
+    deploy:
+      endpoint_mode: dnsrr
+      mode: 'replicated'
+      replicas: 1
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  thehive1:
+    hostname: thehive1
+    image: "thehiveproject/thehive4:latest"
+    restart: unless-stopped
+    networks:
+      - thehive_cluster_net
+    deploy:
+      endpoint_mode: dnsrr
+    ports:
+      - "0.0.0.0:9001:9000"
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive1/application.conf:/etc/thehive/application.conf
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive1/lucene:/opt/thp/thehive/index
+      - /mnt/mnt_docker/SIRP/thehive_cluster/shared_data/:/opt/thp/thehive/data
+
+    command: "--no-config --no-config-secret"
+
+  thehive2:
+    hostname: thehive2
+    image: "thehiveproject/thehive4:latest"
+    restart: unless-stopped
+    networks:
+      - thehive_cluster_net
+    deploy:
+      endpoint_mode: dnsrr
+    ports:
+      - "0.0.0.0:9002:9000"
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive2/application.conf:/etc/thehive/application.conf
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive2/lucene:/opt/thp/thehive/index
+      - /mnt/mnt_docker/SIRP/thehive_cluster/shared_data/:/opt/thp/thehive/data
+    command: "--no-config --no-config-secret"
+
+  thehive3:
+    hostname: thehive3
+    image: "thehiveproject/thehive4:latest"
+    restart: unless-stopped
+    networks:
+      - thehive_cluster_net
+    ports:
+      - "0.0.0.0:9003:9000"
+    deploy:
+      endpoint_mode: dnsrr
+    volumes:
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive3/application.conf:/etc/thehive/application.conf
+      - /mnt/mnt_docker/SIRP/thehive_cluster/thehive3/lucene:/opt/thp/thehive/index
+      - /mnt/mnt_docker/SIRP/thehive_cluster/shared_data/:/opt/thp/thehive/data
+    command: "--no-config --no-config-secret"
+
+networks:
+  thehive_cluster_net:
+    driver: overlay
+    attachable: true

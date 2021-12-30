@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/">
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
     
     
       
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-the-zerg-way" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -175,6 +175,22 @@
     <li class="md-tabs__item">
       <a href="./" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Stacks/Portainer/" class="md-tabs__link">
+        Stacks
       </a>
     </li>
   
@@ -287,13 +303,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
       
     </ul>
   
@@ -440,9 +449,116 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      <label class="md-nav__link" for="__nav_2_4">
+        Firewalling
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Firewalling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Firewalling/Firewalling/" class="md-nav__link">
+        Firewalling
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Stacks" class="md-nav__link">
+        Stacks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../resources" class="md-nav__link">
         Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Stacks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Stacks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Stacks/Portainer/" class="md-nav__link">
+        Portainer
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
       </a>
     </li>
   
@@ -479,13 +595,6 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -499,10 +608,11 @@
               
                 
                 
-                <h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
+                <h1 id="_1"><img src="https://raw.githubusercontent.com/docker-library/docs/471fa6e4cb58062ccbf91afc111980f9c7004981/swarm/logo.png" title="" alt="Swarm - Official Image | Docker Hub" data-align="center"><a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
 <p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
 <p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS.</p>
-<p>Nodes gonna be called: swarm1, swarm2, swarm3
+<p>Nodes gonna be called: swarm1, swarm2, swarm3</p>
 <div class="highlight"><pre><span></span><code>+----------------------+          |          +----------------------+
 | [Node #1] |10.0.0.51 |          |          | [Node #1] |10.0.0.52 |
 |   swarm1.lab.local   +----------+----------+   swarm2.lab.local   |
@@ -516,7 +626,7 @@
 |   swarm3.lab.local   +----------+
 |                      |
 +----------------------+
-</code></pre></div></p>
+</code></pre></div>
 <p>Why Swarm ?</p>
 <p>Swarm is an orchestration tool directly provided into docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
 <ul>
@@ -526,7 +636,7 @@
 <li>Automated (requires minimal care and feeding)</li>
 </ul>
 <p>Why GlusterFS ?</p>
-<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts , you need to provide shared storage to every docker node. This also means you shouldn't use docker volume declaration in you docker files.</p>
+<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts of services, you need to provide a shared storage to every docker nodes. This also means you shouldn't use docker volume declaration in you docker files.</p>
 <h2 id="installing-the-host-component">Installing the host component<a class="headerlink" href="#installing-the-host-component" title="Permanent link">#</a></h2>
 <p>Installation is based on a fresh Centos Stream minimal server and should be executed on all nodes.</p>
                 
