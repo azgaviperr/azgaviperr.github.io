@@ -12,11 +12,11 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Installation/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
-        <title>Docker swarm - Azgaviperr Write-up</title>
+        <title>Installation - Azgaviperr Write-up</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-swarm" class="md-skip">
+        <a href="#docker-the-zerg-way" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Docker swarm
+              Installation
             
           </span>
         </div>
@@ -175,22 +175,6 @@
     <li class="md-tabs__item">
       <a href="../../" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../Stacks/Portainer/" class="md-tabs__link">
-        Stacks
       </a>
     </li>
   
@@ -360,12 +344,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Docker swarm
+          Installation
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Docker swarm
+        Installation
       </a>
       
         
@@ -390,32 +374,24 @@
   
 
           
-        </ul>
-      </nav>
-    </li>
-  
-
-          
             
   
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
       
-      <label class="md-nav__link" for="__nav_2_4">
-        Firewalling
+      <label class="md-nav__link" for="__nav_2_3_2">
+        Stacks
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_4">
+      <nav class="md-nav" aria-label="Stacks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Firewalling
+          Stacks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -424,9 +400,27 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Firewalling/Firewalling/" class="md-nav__link">
-        Firewalling
+      <a href="../Stacks/Portainer/" class="md-nav__link">
+        Portainer
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -444,60 +438,6 @@
     <li class="md-nav__item">
       <a href="../../../resources" class="md-nav__link">
         Resources
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      <label class="md-nav__link" for="__nav_3">
-        Stacks
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Stacks
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Stacks/Portainer/" class="md-nav__link">
-        Portainer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Stacks/Shuffler/" class="md-nav__link">
-        Shuffle
       </a>
     </li>
   
@@ -547,27 +487,58 @@
               
                 
                 
-                <h1 id="docker-swarm">Docker swarm<a class="headerlink" href="#docker-swarm" title="Permanent link">#</a></h1>
-<p><img src="../../images/docker-swarm-containers.png" title="" alt="Docker Swarm" data-align="left"></p>
-<h1 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h1>
-<h2 id="remove-runc">Remove runc<a class="headerlink" href="#remove-runc" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># dnf remove runc</span>
+                <p><img alt="docker-swarm-containers.png" class="align-center" src="/dockerswarm/docker-swarm-containers.png" /></p>
+<h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
+<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
+<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS.</p>
+<p>Nodes gonna be called: swarm1, swarm2, swarm3</p>
+<div class="highlight"><pre><span></span><code>PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSI0MDFweCIgaGVpZ2h0PSIxNDFweCIgdmlld0JveD0iLTAuNSAtMC41IDQwMSAxNDEiIGNvbnRlbnQ9IiZsdDtteGZpbGUgaG9zdD0mcXVvdDtlbWJlZC5kaWFncmFtcy5uZXQmcXVvdDsgbW9kaWZpZWQ9JnF1b3Q7MjAyMi0wNy0xOFQxNzoyMjo1NS4wMDNaJnF1b3Q7IGFnZW50PSZxdW90OzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTAzLjAuMC4wIFNhZmFyaS81MzcuMzYmcXVvdDsgdmVyc2lvbj0mcXVvdDsyMC4xLjEmcXVvdDsgZXRhZz0mcXVvdDtVTHRHOUZUMkQ4bFZPbHV3LWg1eCZxdW90OyB0eXBlPSZxdW90O2VtYmVkJnF1b3Q7Jmd0OyZsdDtkaWFncmFtIGlkPSZxdW90OzVVb29wMHBpejE4aUNaZ05sNS1jJnF1b3Q7IG5hbWU9JnF1b3Q7UGFnZS0xJnF1b3Q7Jmd0OzdaZE5iK01nRUlaL0RkZklHTnZOSHR1a3UzdlpWYVVjZG51a1p0Wkd3c1lpSkhiNjZ4ZHE4QWRPcEVnOXBKVXFSekx6TXNQSFBDTndFTmxVM1E5Rm0vS1haQ0JRSExFT2tTMktZNXpFTWJLL2lKMTZaUjFsdlZBb3pwelRLT3o0S3pneGN1cUJNOWpQSExXVVF2Tm1MdWF5cmlIWE00MHFKZHU1Mno4cDVyTTJ0SUNGc011cFdLcC9PTk9sMjBWOE4rby9nUmVsbnhsbjMvcWVpbnBudDVOOVNabHNKeEo1UkdTanBOUjlxK28ySUd6eWZGNzZ1TzhYZW9lRkthajFOUUVPeEpHS2c5c2Jpak5oUWg4WVA1cG1ZWnZtVGF2R05PcVh2WDJoOU9HM1lZcnMyQVNqZE90anpEenpzSEFrSEszc2srS3JJL1l0VlJWZUNmcXlFdElRdUJUNGxreDk4b1NVUE5RTTdDWWowOTJXWE1PdW9ibnRiVTFOR3EzVWxUQVdIcUtQb0RSMEYvT0lCenFtckVGV29OWEp1UGdBRDlSVmRKdzR1eDNyWS9BcEo3V1JPWTI2a2l5R29VZHFwdUhBbllkSTNnMHgvb0pvb1dVM2hKaThHeUw1Z21qekdOMFFZbm9HWXBBUHFObTl2WUtNVmNzYTV2dWZKd3M2cnYvYTlpcDExdk9rWjl0TmpaTXordm1BTFM2d0lIOW1UZktnY3BoY0E4dVVUbEtXbnNtWTF4UUlxdmx4UHVPNU5Mb1puaVEzYXhuUHppUWdSZ0lTL1VwZDFQUXlDd1lpd1NHTVE2U2FxZ0wwWXFBM3FzTzJyd0tkZlZMUTVKYWd5VG9BSFgxODBIZWZGSFJ5VTlDcHVWc2l2UGFQdjl6Q0kvbmpjRGZtK05IZHU0OS9YY2pqZnc9PSZsdDsvZGlhZ3JhbSZndDsmbHQ7L214ZmlsZSZndDsiPjxkZWZzLz48Zz48cmVjdCB4PSIwIiB5PSI4MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2MCIgZmlsbD0icmdiKDI1NSwgMjU1LCAyNTUpIiBzdHJva2U9InJnYigwLCAwLCAwKSIgcG9pbnRlci1ldmVudHM9ImFsbCIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0wLjUgLTAuNSkiPjxzd2l0Y2g+PGZvcmVpZ25PYmplY3QgcG9pbnRlci1ldmVudHM9Im5vbmUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJlcXVpcmVkRmVhdHVyZXM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1NWRzExL2ZlYXR1cmUjRXh0ZW5zaWJpbGl0eSIgc3R5bGU9Im92ZXJmbG93OiB2aXNpYmxlOyB0ZXh0LWFsaWduOiBsZWZ0OyI+PGRpdiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbCIgc3R5bGU9ImRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiB1bnNhZmUgY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IHVuc2FmZSBjZW50ZXI7IHdpZHRoOiAxMThweDsgaGVpZ2h0OiAxcHg7IHBhZGRpbmctdG9wOiAxMTBweDsgbWFyZ2luLWxlZnQ6IDFweDsiPjxkaXYgZGF0YS1kcmF3aW8tY29sb3JzPSJjb2xvcjogcmdiKDAsIDAsIDApOyAiIHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94OyBmb250LXNpemU6IDBweDsgdGV4dC1hbGlnbjogY2VudGVyOyI+PGRpdiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyBmb250LXNpemU6IDEycHg7IGZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGxpbmUtaGVpZ2h0OiAxLjI7IHBvaW50ZXItZXZlbnRzOiBhbGw7IHdoaXRlLXNwYWNlOiBub3JtYWw7IG92ZXJmbG93LXdyYXA6IG5vcm1hbDsiPjxkaXY+wqBbTm9kZSAjMV08L2Rpdj48ZGl2PjEwLjAuMC41MTwvZGl2PjxkaXY+c3dhcm0xLmxhYi5sb2NhbDwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZm9yZWlnbk9iamVjdD48dGV4dCB4PSI2MCIgeT0iMTE0IiBmaWxsPSJyZ2IoMCwgMCwgMCkiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EiIGZvbnQtc2l6ZT0iMTJweCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+W05vZGUgIzFdLi4uPC90ZXh0Pjwvc3dpdGNoPjwvZz48cmVjdCB4PSIxNDAiIHk9IjgwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjYwIiBmaWxsPSJyZ2IoMjU1LCAyNTUsIDI1NSkiIHN0cm9rZT0icmdiKDAsIDAsIDApIiBwb2ludGVyLWV2ZW50cz0iYWxsIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTAuNSAtMC41KSI+PHN3aXRjaD48Zm9yZWlnbk9iamVjdCBwb2ludGVyLWV2ZW50cz0ibm9uZSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVxdWlyZWRGZWF0dXJlcz0iaHR0cDovL3d3dy53My5vcmcvVFIvU1ZHMTEvZmVhdHVyZSNFeHRlbnNpYmlsaXR5IiBzdHlsZT0ib3ZlcmZsb3c6IHZpc2libGU7IHRleHQtYWxpZ246IGxlZnQ7Ij48ZGl2IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sIiBzdHlsZT0iZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IHVuc2FmZSBjZW50ZXI7IGp1c3RpZnktY29udGVudDogdW5zYWZlIGNlbnRlcjsgd2lkdGg6IDExOHB4OyBoZWlnaHQ6IDFweDsgcGFkZGluZy10b3A6IDExMHB4OyBtYXJnaW4tbGVmdDogMTQxcHg7Ij48ZGl2IGRhdGEtZHJhd2lvLWNvbG9ycz0iY29sb3I6IHJnYigwLCAwLCAwKTsgIiBzdHlsZT0iYm94LXNpemluZzogYm9yZGVyLWJveDsgZm9udC1zaXplOiAwcHg7IHRleHQtYWxpZ246IGNlbnRlcjsiPjxkaXYgc3R5bGU9ImRpc3BsYXk6IGlubGluZS1ibG9jazsgZm9udC1zaXplOiAxMnB4OyBmb250LWZhbWlseTogSGVsdmV0aWNhOyBjb2xvcjogcmdiKDAsIDAsIDApOyBsaW5lLWhlaWdodDogMS4yOyBwb2ludGVyLWV2ZW50czogYWxsOyB3aGl0ZS1zcGFjZTogbm9ybWFsOyBvdmVyZmxvdy13cmFwOiBub3JtYWw7Ij48ZGl2PsKgW05vZGUgIzJdPC9kaXY+PGRpdj4xMC4wLjAuNTE8L2Rpdj48ZGl2PnN3YXJtMS5sYWIubG9jYWw8L2Rpdj48L2Rpdj48L2Rpdj48L2Rpdj48L2ZvcmVpZ25PYmplY3Q+PHRleHQgeD0iMjAwIiB5PSIxMTQiIGZpbGw9InJnYigwLCAwLCAwKSIgZm9udC1mYW1pbHk9IkhlbHZldGljYSIgZm9udC1zaXplPSIxMnB4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5bTm9kZSAjMl0uLi48L3RleHQ+PC9zd2l0Y2g+PC9nPjxyZWN0IHg9IjI4MCIgeT0iODAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNjAiIGZpbGw9InJnYigyNTUsIDI1NSwgMjU1KSIgc3Ryb2tlPSJyZ2IoMCwgMCwgMCkiIHBvaW50ZXItZXZlbnRzPSJhbGwiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC41IC0wLjUpIj48c3dpdGNoPjxmb3JlaWduT2JqZWN0IHBvaW50ZXItZXZlbnRzPSJub25lIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiByZXF1aXJlZEZlYXR1cmVzPSJodHRwOi8vd3d3LnczLm9yZy9UUi9TVkcxMS9mZWF0dXJlI0V4dGVuc2liaWxpdHkiIHN0eWxlPSJvdmVyZmxvdzogdmlzaWJsZTsgdGV4dC1hbGlnbjogbGVmdDsiPjxkaXYgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHN0eWxlPSJkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogdW5zYWZlIGNlbnRlcjsganVzdGlmeS1jb250ZW50OiB1bnNhZmUgY2VudGVyOyB3aWR0aDogMTE4cHg7IGhlaWdodDogMXB4OyBwYWRkaW5nLXRvcDogMTEwcHg7IG1hcmdpbi1sZWZ0OiAyODFweDsiPjxkaXYgZGF0YS1kcmF3aW8tY29sb3JzPSJjb2xvcjogcmdiKDAsIDAsIDApOyAiIHN0eWxlPSJib3gtc2l6aW5nOiBib3JkZXItYm94OyBmb250LXNpemU6IDBweDsgdGV4dC1hbGlnbjogY2VudGVyOyI+PGRpdiBzdHlsZT0iZGlzcGxheTogaW5saW5lLWJsb2NrOyBmb250LXNpemU6IDEycHg7IGZvbnQtZmFtaWx5OiBIZWx2ZXRpY2E7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGxpbmUtaGVpZ2h0OiAxLjI7IHBvaW50ZXItZXZlbnRzOiBhbGw7IHdoaXRlLXNwYWNlOiBub3JtYWw7IG92ZXJmbG93LXdyYXA6IG5vcm1hbDsiPjxkaXY+wqBbTm9kZSAjM108L2Rpdj48ZGl2PjEwLjAuMC41MTwvZGl2PjxkaXY+c3dhcm0xLmxhYi5sb2NhbDwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZm9yZWlnbk9iamVjdD48dGV4dCB4PSIzNDAiIHk9IjExNCIgZmlsbD0icmdiKDAsIDAsIDApIiBmb250LWZhbWlseT0iSGVsdmV0aWNhIiBmb250LXNpemU9IjEycHgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPltOb2RlICMzXS4uLjwvdGV4dD48L3N3aXRjaD48L2c+PHBhdGggZD0iTSA2MCA4MCBMIDIwMCAwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYigwLCAwLCAwKSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBwb2ludGVyLWV2ZW50cz0ic3Ryb2tlIi8+PHBhdGggZD0iTSAyMDAgODAgTCAyMDAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2IoMCwgMCwgMCkiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgcG9pbnRlci1ldmVudHM9InN0cm9rZSIvPjxwYXRoIGQ9Ik0gMzQwIDgwIEwgMjAwIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiKDAsIDAsIDApIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHBvaW50ZXItZXZlbnRzPSJzdHJva2UiLz48L2c+PHN3aXRjaD48ZyByZXF1aXJlZEZlYXR1cmVzPSJodHRwOi8vd3d3LnczLm9yZy9UUi9TVkcxMS9mZWF0dXJlI0V4dGVuc2liaWxpdHkiLz48YSB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLC01KSIgeGxpbms6aHJlZj0iaHR0cHM6Ly93d3cuZGlhZ3JhbXMubmV0L2RvYy9mYXEvc3ZnLWV4cG9ydC10ZXh0LXByb2JsZW1zIiB0YXJnZXQ9Il9ibGFuayI+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMHB4IiB4PSI1MCUiIHk9IjEwMCUiPlRleHQgaXMgbm90IFNWRyAtIGNhbm5vdCBkaXNwbGF5PC90ZXh0PjwvYT48L3N3aXRjaD48L3N2Zz4=
 </code></pre></div>
-<h2 id="adding-docker-repo">Adding docker repo<a class="headerlink" href="#adding-docker-repo" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># dnf install -y yum-utils</span>
-<span class="c1"># dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span>
-<span class="c1"># dnf install docker-ce docker-ce-cli containerd.io</span>
+<blockquote>
+<p>Why Swarm ?</p>
+</blockquote>
+<p>Swarm is an orchestration tool directly provided into docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
+<ul>
+<li>Highly-available (can tolerate the failure of a single component)</li>
+<li>Scalable (can add resource or capacity as required)</li>
+<li>Portable (run it on your home today, run it in everywhere tomorrow)</li>
+<li>Automated (requires minimal care and feeding)</li>
+</ul>
+<blockquote>
+<p>Why Ceph ?</p>
+</blockquote>
+<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts of services, you need to provide a shared storage to every docker nodes. This also means you shouldn't use docker volume declaration in you docker files.</p>
+<h1 id="installing-the-host-component">Installing the host component<a class="headerlink" href="#installing-the-host-component" title="Permanent link">#</a></h1>
+<blockquote>
+<p class="is-warning">Installation is based on a fresh Centos Stream minimal server.
+Therefore, it is only adapted for CentOS installation, it may or may not work on other distribution.</p>
+</blockquote>
+<h1 id="docker-swarm">Docker swarm<a class="headerlink" href="#docker-swarm" title="Permanent link">#</a></h1>
+<h2 id="prerequise">Prerequise<a class="headerlink" href="#prerequise" title="Permanent link">#</a></h2>
+<p>3 x nodes (bare-metal or VMs), each with:
+- A mainstream Linux OS (tested on either CentOS 8 Stream)
+- At least 2GB RAM
+- At least 50GB disk space (but it'll be tight)
+- Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</p>
+<h2 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h2>
+<h3 id="remove-runc">Remove runc<a class="headerlink" href="#remove-runc" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>dnf remove runc
 </code></pre></div>
-<h2 id="installing-docker-compose">Installing docker-compose<a class="headerlink" href="#installing-docker-compose" title="Permanent link">#</a></h2>
+<h3 id="adding-docker-repo">Adding docker repo<a class="headerlink" href="#adding-docker-repo" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>dnf install -y yum-utils
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce docker-ce-cli containerd.io
+</code></pre></div>
+<h3 id="installing-docker-compose">Installing docker-compose<a class="headerlink" href="#installing-docker-compose" title="Permanent link">#</a></h3>
 <div class="highlight"><pre><span></span><code>dnf install python3-pip
 pip3 install --upgrade pip
 pip3 install setuptools-rust
 pip3 install docker-compose
 </code></pre></div>
-<h2 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h2>
+<h3 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h3>
 <div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> docker --now
 </code></pre></div>
-<h2 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h2>
+<h3 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h3>
 <p>From swarm1:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># docker swarm init</span>
 Swarm initialized: current node <span class="o">(</span>ksdjlqsldjqsd2516685485<span class="o">)</span> is now a manager.
@@ -595,17 +566,325 @@ lam7mgs5wus40iaydvp8u3ss7     swarm3.lab.local   Ready     Active         Reacha
 </code></pre></div>
 <p>You are now ready to swarm.</p>
 <p>Official Documentation : https://docs.docker.com/engine/swarm/</p>
-<h2 id="little-network-tweak">Little Network tweak<a class="headerlink" href="#little-network-tweak" title="Permanent link">#</a></h2>
-<p>In some heavy network swarm, service can show some timeout connections.</p>
-<p>To fix this on CentOS this little trick will do:</p>
-<div class="highlight"><pre><span></span><code>ethtool -K ens192 tx-checksum-ip-generic off
+<h3 id="little-network-tweak">Little Network tweak<a class="headerlink" href="#little-network-tweak" title="Permanent link">#</a></h3>
+<p>When running Docker Swarm on RedHat or CentOS VMs under VMware you may run into issues with communication over the swarm node routing mesh. This issue is traced back to UDP packets being dropped by the source node. Disabling checksum offloading appears to resolve this issue.</p>
+<p>Run the following on your VMs:</p>
+<div class="highlight"><pre><span></span><code>ethtool -K <span class="o">[</span>interface<span class="o">]</span> tx-checksum-ip-generic off
 cat &gt; /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic <span class="s">&lt;&lt;&#39;EOF&#39;</span>
 <span class="s">ethtool -K ens192 tx-checksum-ip-generic off</span>
 <span class="s">EOF</span>
 
 chmod +x /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic
 </code></pre></div>
-<p>Note: ens192 is your network adaptater so change it accordingly. </p>
+<p>Note: [interface] is your network adaptater so change it accordingly. </p>
+<h2 id="firewalling">Firewalling<a class="headerlink" href="#firewalling" title="Permanent link">#</a></h2>
+<p><img src="data:image/png;base64,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" title="" alt="data:image/png;base64,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" data-align="center">{.align-center}</p>
+<h2 id="base-configuration">Base configuration<a class="headerlink" href="#base-configuration" title="Permanent link">#</a></h2>
+<p>Activate firewalld, you may want to check in <kbd>/etc/firewalld/zones/</kbd> to check what is going to happen ^^ . One issue happening quite often is when you changed the default ssh port. 
+As the ssh service declared in <kbd>/usr/lib/firewalld/services/ssh.xml</kbd> is referencing to port 22. 
+If it's the case, copy the <kbd>service.xml</kbd> into <kbd>/etc/firewalld/service</kbd> and change the port of it. </p>
+<p>(And yes, this happen to me a few times)</p>
+<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> firewalld --now
+</code></pre></div>
+<p>Unmask the service if needed :</p>
+<div class="highlight"><pre><span></span><code>systemctl unmask firewalld
+</code></pre></div>
+<p>By default, firewalld is having a public zone created. </p>
+<p>This public zone allow the use of ssh, cockpit, dhcpv6-client.</p>
+<p><div class="highlight"><pre><span></span><code>cat /etc/firewalld/zones/public.xml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+ <span class="nt">&lt;zone&gt;</span>
+  <span class="nt">&lt;short&gt;</span>Public<span class="nt">&lt;/short&gt;</span>
+  <span class="nt">&lt;description&gt;</span>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;ssh&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;dhcpv6-client&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;cockpit&quot;</span><span class="nt">/&gt;</span>  
+<span class="nt">&lt;/zone&gt;</span>
+</code></pre></div></p>
+<p>If you don't use cockpit or dhcpv6-client, you can remove them from the configuration. </p>
+<p>For example to delete cockpit service:</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permamnent --zone<span class="o">=</span>public --remove-service<span class="o">=</span>cockpit
+firewall-cmd --reload
+</code></pre></div>
+<p>Note here the parameters:</p>
+<ul>
+<li>
+<p>--permanent: means the rules gonna last after service restart</p>
+</li>
+<li>
+<p>--zone: is used to indicate what zone should be modified, by default it's the public one</p>
+</li>
+<li>
+<p>--remove-service : remove the service declared in /etc/firewalld/services/ without the .xml ending</p>
+</li>
+</ul>
+<p>firewall-cmd --reload is going to reload firewalld with latest configuration. </p>
+<p>Let's add some services </p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permanent --zone<span class="o">=</span>public --add-service<span class="o">=</span>http
+
+firewall-cmd --permanent --zone<span class="o">=</span>public --add-service<span class="o">=</span>https
+
+firewall-cmd --reload
+</code></pre></div>
+<p>We are going now to create a new zone representing the nodes of our cluster, and add  sources to it (understand incoming traffic).</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permanent --new-zone<span class="o">=</span>swarm
+
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.51
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.52
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.53
+
+firewall-cmd --reload
+</code></pre></div>
+<p>Let's check if sources where added</p>
+<p><div class="highlight"><pre><span></span><code>firewall-cmd --zone<span class="o">=</span>swarm --list-sources
+</code></pre></div>
+Ajouter les services nécessaires au cluster :
+<div class="highlight"><pre><span></span><code>cp -a /usr/lib/firewalld/services/docker-swarm.xml /etc/firewalld/services/
+
+firewall-cmd --zone<span class="o">=</span>swarm --add-service<span class="o">=</span>docker-swarm --permanent
+
+firewall-cmd --reload
+</code></pre></div></p>
+<h2 id="docker-swarm_1">Docker Swarm<a class="headerlink" href="#docker-swarm_1" title="Permanent link">#</a></h2>
+<p>Let's add the service to the swarm zone:</p>
+<p>By default firewalld come bundled with some services. You can find them in <kbd>/usr/lib/firewalld/services</kbd>.</p>
+<p>I like to copy them in <kbd>/etc/firewalld/services</kbd> when I use them as it prevent it to be changed after an update. Firewalld prioritize service in "/etc/firewalld/services/" then in <kbd>/usr/lib/firewalld/services</kbd> .</p>
+<p>So let's copy the docker-swarm service:</p>
+<p><div class="highlight"><pre><span></span><code>cp /usr/lib/firewalld/services/docker-swarm.xml /etc/firewalld/services/
+
+cat /etc/firewalld/services/docker-swarm.xml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;service&gt;</span>
+  <span class="nt">&lt;short&gt;</span>Docker integrated swarm mode<span class="nt">&lt;/short&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Natively managed cluster of Docker Engines (&gt;=1.12.0), where you deploy services.<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;2377&quot;</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;7946&quot;</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;7946&quot;</span> <span class="na">protocol=</span><span class="s">&quot;udp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;4789&quot;</span> <span class="na">protocol=</span><span class="s">&quot;udp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;protocol</span> <span class="na">value=</span><span class="s">&quot;esp&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre></div></p>
+<p>Then add it to the zone:</p>
+<p><div class="highlight"><pre><span></span><code>firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-service<span class="o">=</span>docker-swarm
+firewall-cmd --reload
+
+firewall-cmd --zone<span class="o">=</span>swarm --list-services
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker-swarm
+</code></pre></div></p>
+<p>Now we did allow the port and protocols for the nodes to be used our cluster, and off course all those action have to be done on each host of the cluster. </p>
+<h1 id="ceph">Ceph<a class="headerlink" href="#ceph" title="Permanent link">#</a></h1>
+<p>While Docker Swarm is great for keeping containers running (and restarting those that fail), it does nothing for persistent storage. This means if you actually want your containers to keep any data persistent across restarts (hint: you do!), you need to provide shared storage to every docker node.</p>
+<p><img alt="ceph-1.png" class="align-center" src="/dockerswarm/ceph-1.png" /></p>
+<p>Ceph is an open-source software (software-defined storage) storage platform, implements object storage on a single distributed computer cluster, and provides 3-in-1 interfaces for object-, block and file-level storage. Ceph aims primarily for completely distributed operation without a single point of failure, scalable to the exabyte level, and freely available.</p>
+<p>There are several different ways to install Ceph. Choose the method that best suits your needs. For recommendation on ceph documentation is used cephadm. Cephadm installs and manages a Ceph cluster using containers and systemd, with tight integration with the CLI and dashboard GUI. 
+Note on Cephadm:
+- Only supports Octopus and newer releases. 
+- Fully integrated with the new orchestration API and fully supports the new CLI and dashboard features to manage cluster deployment. 
+- Requires container support (podman or docker) and Python 3.</p>
+<h2 id="prerequise_1">Prerequise<a class="headerlink" href="#prerequise_1" title="Permanent link">#</a></h2>
+<p>3 x Virtual Machines (configured earlier), each with:</p>
+<ul>
+<li>Support for "modern" versions of Python and LVM</li>
+<li>At least 2GB RAM</li>
+<li>At least 50GB disk space (but it'll be tight)</li>
+<li>Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</li>
+<li>At least an additionnal disk dedicated to the Ceph OSD (add it to previous host if needed)</li>
+<li>Each node should have the IP of every other participating node hard-coded in /etc/hosts (including its own IP)</li>
+</ul>
+<h2 id="choose-your-first-manager-node">Choose your first manager node<a class="headerlink" href="#choose-your-first-manager-node" title="Permanent link">#</a></h2>
+<p>One of your nodes will become the cephadm "master" node. Although all nodes will participate in the Ceph cluster, the master node will be the node which we bootstrap ceph on. It's also the node which will run the Ceph dashboard, and on which future upgrades will be processed. It doesn't matter which node you pick, and the cluster itself will operate in the event of a loss of the master node (although you won't see the dashboard)</p>
+<h2 id="install-cephadm-on-master-node">Install cephadm on master node¶<a class="headerlink" href="#install-cephadm-on-master-node" title="Permanent link">#</a></h2>
+<p>Run the following on the master node:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">RELEASE</span><span class="o">=</span><span class="s2">&quot;quincy&quot;</span>
+
+<span class="c1"># Use curl to fetch the most recent version of the standalone script</span>
+curl --silent --remote-name --location https://raw.githubusercontent.com/ceph/ceph/<span class="nv">$RELEASE</span>/src/cephadm/cephadm
+
+<span class="c1">#Make the cephadm script executable:</span>
+chmod +x cephadm
+
+<span class="c1"># To install the packages that provide the cephadm command, run the following commands:</span>
+./cephadm add-repo --release <span class="nv">$RELEASE</span>
+./cephadm install
+
+<span class="c1">#Install ceph-common and Confirm that cephadm is now in your PATH by running which:</span>
+dnf install -y ceph-common
+which cephadm
+</code></pre></div>
+<h2 id="bootstrap-new-ceph-cluster">Bootstrap new Ceph cluster<a class="headerlink" href="#bootstrap-new-ceph-cluster" title="Permanent link">#</a></h2>
+<p>The first step in creating a new Ceph cluster is running the <kbd>cephadm bootstrap</kbd> command on the Ceph cluster’s first host. The act of running the <kbd>cephadm bootstrap</kbd> command on the Ceph cluster’s first host creates the Ceph cluster’s first “monitor daemon”, and that monitor daemon needs an IP address. You must pass the IP address of the Ceph cluster’s first host to the <kbd>ceph bootstrap</kbd> command, so you’ll need to know the IP address of that host.</p>
+<p><div class="highlight"><pre><span></span><code><span class="nv">MYIP</span><span class="o">=</span><span class="sb">`</span>ip route get <span class="m">1</span>.1.1.1 <span class="p">|</span> grep -oP <span class="s1">&#39;src \K\S+&#39;</span><span class="sb">`</span>
+mkdir -p /etc/ceph
+cephadm bootstrap --mon-ip <span class="nv">$MYIP</span>
+</code></pre></div>
+This command will:</p>
+<p>Create a monitor and manager daemon for the new cluster on the local host.</p>
+<p>Generate a new SSH key for the Ceph cluster and add it to the root user’s <kbd>/root/.ssh/authorized_keys</kbd> file.</p>
+<p>Write a copy of the public key to <kbd>/etc/ceph/ceph.pub</kbd>.</p>
+<p>Write a minimal configuration file to <kbd>/etc/ceph/ceph.conf</kbd>. This file is needed to communicate with the new cluster.</p>
+<p>Write a copy of the client.admin administrative (privileged!) secret key to <kbd>/etc/ceph/ceph.client.admin.keyring</kbd>.</p>
+<p>Add the _admin label to the bootstrap host. By default, any host with this label will (also) get a copy of /etc/ceph/ceph.conf and /etc/ceph/ceph.client.admin.keyring.</p>
+<p><img alt="ceph-bootstrap.png" class="align-center" src="/dockerswarm/ceph-bootstrap.png" /></p>
+<p>Check Ceph dashboard, access IP address of ceph-01 https://192.168.1.231:8443/ and use credentials from the cephadm bootstrap output then set a new password</p>
+<p><img alt="ceph-firstlogin.png" class="align-center" src="/dockerswarm/ceph-firstlogin.png" /></p>
+<p><img alt="ceph-firstimedashboard.png" class="align-center" src="/dockerswarm/ceph-firstimedashboard.png" /></p>
+<p>Confirm that the ceph command is accessible with:
+<div class="highlight"><pre><span></span><code>ceph -v
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code> ceph version <span class="m">17</span>.2.1 <span class="o">(</span>ec95624474b1871a821a912b8c3af68f8f8e7aa1<span class="o">)</span> quincy <span class="o">(</span>stable<span class="o">)</span>
+</code></pre></div></p>
+<p>Check status of ceph cluster, OK for [HEALTH_WARN] because OSDs are not added yet
+<div class="highlight"><pre><span></span><code>ceph -s
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code> cluster:
+     id:     588df728-316c-11ec-b956-005056aea762
+     health: HEALTH_WARN
+             OSD count <span class="m">0</span> &lt; osd_pool_default_size <span class="m">3</span>
+ services:
+     mon: <span class="m">1</span> daemons, quorum ceph-01 <span class="o">(</span>age 14m<span class="o">)</span>
+     mgr: ceph-01.wgdjcn<span class="o">(</span>active, since 12m<span class="o">)</span>
+     osd: <span class="m">0</span> osds: <span class="m">0</span> up, <span class="m">0</span> <span class="k">in</span>
+ data:
+     pools:   <span class="m">0</span> pools, <span class="m">0</span> pgs
+     objects: <span class="m">0</span> objects, <span class="m">0</span> B
+     usage:   <span class="m">0</span> B used, <span class="m">0</span> B / <span class="m">0</span> B avail
+     pgs:
+</code></pre></div>
+Verify containers are running for each service and check status for systemd service for each containers
+<div class="highlight"><pre><span></span><code>docker ps <span class="p">|</span>grep ceph
+systemctl status ceph-* --no-pager
+</code></pre></div></p>
+<h2 id="adding-hosts-to-the-cluster">Adding hosts to the cluster.<a class="headerlink" href="#adding-hosts-to-the-cluster" title="Permanent link">#</a></h2>
+<p>To add each new host to the cluster, perform two steps:
+<div class="highlight"><pre><span></span><code><span class="c1"># Install the cluster’s public SSH key in the new host’s root user’s</span>
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@swarm2.lab.local
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@swarm3.lab.local
+
+<span class="c1">#Tell Ceph that the new node is part of the cluster, make sure python3 installed and available on new node</span>
+ceph orch host add swarm2.lab.local
+ceph orch host add swarm3.lab.local
+
+<span class="c1">#Check the added host</span>
+ceph orch host ls
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>HOST     ADDR           LABELS  STATUS
+swarm1  <span class="m">192</span>.168.1.231  _admin
+swarm2  <span class="m">192</span>.168.1.232
+swarm3  <span class="m">192</span>.168.1.233
+</code></pre></div></p>
+<h2 id="deploy-osds-to-the-cluster">Deploy OSDs to the cluster<a class="headerlink" href="#deploy-osds-to-the-cluster" title="Permanent link">#</a></h2>
+<p>Run this command to display an inventory of storage devices on all cluster hosts:
+<div class="highlight"><pre><span></span><code>ceph orch device ls
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>Hostname  Path      Type  Serial  Size   Health   Ident  Fault  Available
+swarm1   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
+swarm2   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
+swarm3   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
+</code></pre></div></p>
+<p>Tell Ceph to consume any available and unused storage device execute <kbd>ceph orch apply osd --all-available-devices</kbd></p>
+<p><div class="highlight"><pre><span></span><code>ceph orch apply osd --all-available-devices
+ceph -s
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>cluster:
+    id:     588df728-316c-11ec-b956-005056aea762
+    health: HEALTH_OK
+services:
+    mon: <span class="m">3</span> daemons, quorum swarm1,swarm2,swarm3 <span class="o">(</span>age 5m<span class="o">)</span>
+    mgr: swarm1.wgdjcn<span class="o">(</span>active, since 41m<span class="o">)</span>, standbys: ceph-02.rmltzq
+    osd: <span class="m">9</span> osds: <span class="m">0</span> up, <span class="m">9</span> <span class="k">in</span> <span class="o">(</span>since 10s<span class="o">)</span>
+data:
+    pools:   <span class="m">0</span> pools, <span class="m">0</span> pgs
+    objects: <span class="m">0</span> objects, <span class="m">0</span> B
+    usage:   <span class="m">0</span> B used, <span class="m">0</span> B / <span class="m">0</span> B avail
+    pgs:
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code>ceph osd tree
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>ID  CLASS  WEIGHT   TYPE NAME         STATUS  REWEIGHT  PRI-AFF
+-1         <span class="m">0</span>.08817  root default
+-5         <span class="m">0</span>.02939      host swarm1
+ <span class="m">1</span>    ssd  <span class="m">0</span>.00980          osd.0         up   <span class="m">1</span>.00000  <span class="m">1</span>.00000
+-7         <span class="m">0</span>.02939      host swarm2
+ <span class="m">0</span>    ssd  <span class="m">0</span>.00980          osd.1         up   <span class="m">1</span>.00000  <span class="m">1</span>.00000
+-3         <span class="m">0</span>.02939      host swarm3
+ <span class="m">2</span>    ssd  <span class="m">0</span>.00980          osd.3        up   <span class="m">1</span>.00000  <span class="m">1</span>.00000
+</code></pre></div></p>
+<h2 id="deploy-ceph-mon-ceph-monitor-daemon">Deploy ceph-mon (ceph monitor daemon)<a class="headerlink" href="#deploy-ceph-mon-ceph-monitor-daemon" title="Permanent link">#</a></h2>
+<p>Ceph-mon is the cluster monitor daemon for the Ceph distributed file system. One or more instances of ceph-mon form a Paxos part-time parliament cluster that provides extremely reliable and durable storage of cluster membership, configuration, and state. Add ceph-mon to all node using placement option</p>
+<p><div class="highlight"><pre><span></span><code>ceph orch apply mon --placement<span class="o">=</span><span class="s2">&quot;swarm1.lab.local,swarm2.lab.local,swarm3.lab.local&quot;</span>
+ceph orch ps <span class="p">|</span> grep mon
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>mon.swarm1            swarm1               running <span class="o">(</span>63m<span class="o">)</span>     7m ago  63m     209M    2048M  <span class="m">16</span>.2.6   02a72919e474  952d7
+mon.swarm2            swarm2               running <span class="o">(</span>27m<span class="o">)</span>     7m ago  27m     104M    2048M  <span class="m">16</span>.2.6   02a72919e474  f2d22
+mon.swarm3            swarm3               running <span class="o">(</span>25m<span class="o">)</span>     7m ago  25m     104M    2048M  <span class="m">16</span>.2.6   02a72919e474  bcc00
+Result:
+</code></pre></div></p>
+<h2 id="deploy-ceph-mgr-ceph-manager-daemon">Deploy ceph-mgr (ceph manager daemon)<a class="headerlink" href="#deploy-ceph-mgr-ceph-manager-daemon" title="Permanent link">#</a></h2>
+<p>The Ceph Manager daemon (ceph-mgr) runs alongside monitor daemons, to provide additional monitoring and interfaces to external monitoring and management systems.</p>
+<p><div class="highlight"><pre><span></span><code>ceph orch apply mgr --placement<span class="o">=</span><span class="s2">&quot;swarm1.lab.local,swarm2.lab.local,swarm3.lab.local&quot;</span>
+ceph orch ps <span class="p">|</span> grep mgr
+</code></pre></div>
+Result:
+<div class="highlight"><pre><span></span><code>mgr.swarm1.wgdjcn     swarm1  *:9283       running <span class="o">(</span>64m<span class="o">)</span>     8m ago  64m     465M        -  <span class="m">16</span>.2.6     02a72919e474  c58a64249f9b
+mgr.swarm2.rmltzq     swarm2  *:8443,9283  running <span class="o">(</span>29m<span class="o">)</span>     8m ago  29m     385M        -  <span class="m">16</span>.2.6     02a72919e474  36f7f6a02896
+mgr.swarm3.lhwjwd     swarm3  *:8443,9283  running <span class="o">(</span>7s<span class="o">)</span>      2s ago   6s     205M        -  <span class="m">16</span>.2.6     02a72919e474  c740f964b2de
+</code></pre></div></p>
+<h2 id="set-_admin-label-on-all-nodes">Set _admin label on all nodes<a class="headerlink" href="#set-_admin-label-on-all-nodes" title="Permanent link">#</a></h2>
+<p>The orchestrator supports assigning labels to hosts. Labels are free form and have no particular meaning by itself and each host can have multiple labels. They can be used to specify placement of daemons. But the _admin force the replication of change on ceph.conf to all node with this tag.</p>
+<p>Official note:</p>
+<blockquote>
+<p>By default, a ceph.conf file and a copy of the client.admin keyring are maintained in /etc/ceph on all hosts with the _admin label, which is initially applied only to the bootstrap host. We usually recommend that one or more other hosts be given the _admin label so that the Ceph CLI (e.g., via cephadm shell) is easily accessible on multiple hosts. To add the _admin label to additional host(s)</p>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code>ceph orch host label add swarm3.lab.local _admin
+ceph orch host label add swarm3.lab.local _admin
+</code></pre></div>
+<img alt="ceph_dashboardfinal.png" class="align-center" src="/dockerswarm/ceph_dashboardfinal.png" /></p>
+<h2 id="prepare-for-cephfs-mount">Prepare for cephFS mount<a class="headerlink" href="#prepare-for-cephfs-mount" title="Permanent link">#</a></h2>
+<p>It's now necessary to tranfer the following files to your other nodes, so that cephadm can add them to your cluster, and so that they'll be able to mount the cephfs when we're done:</p>
+<table>
+<thead>
+<tr>
+<th>Path on master</th>
+<th>Path on non-master</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/ceph/ceph.conf</td>
+<td>/etc/ceph/ceph.conf</td>
+</tr>
+<tr>
+<td>/etc/ceph/ceph.client.admin.keyring</td>
+<td>/etc/ceph/ceph.client.admin.keyring</td>
+</tr>
+</tbody>
+</table>
+<h2 id="setup-cephfs">Setup CephFS<a class="headerlink" href="#setup-cephfs" title="Permanent link">#</a></h2>
+<p>On the master node, create a cephfs volume in your cluster, by running <kbd>ceph fs volume create data</kbd>. Ceph will handle the necessary orchestration itself, creating the necessary pool, mds daemon, etc.</p>
+<p>You can watch the progress by running <kbd>ceph fs ls</kbd> (to see the fs is configured), and <kbd>ceph -s</kbd> to wait for HEALTH_OK</p>
+<p>Reproduce the following on each node:
+<div class="highlight"><pre><span></span><code>mkdir /mnt/swarm
+<span class="nb">echo</span> -e <span class="s2">&quot;</span>
+<span class="s2"># Mount cephfs volume \n</span>
+<span class="s2">swarm1.lab.local,swarm2.lab.local,swarm3.lab.local:/ /mnt/swarm ceph name=admin,noatime,_netdev 0 0&quot;</span> &gt;&gt; /etc/fstab
+mount -a
+</code></pre></div></p>
+<p>You can now play around and copy delete data on /mnt/swarm and check the replication accross the nodes.</p>
+<hr />
+<h4 id="references">References<a class="headerlink" href="#references" title="Permanent link">#</a></h4>
+<ul>
+<li>https://docs.ceph.com/en/latest/cephadm/install/</li>
+</ul>
                 
               
               
@@ -639,13 +918,13 @@ chmod +x /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic
         </a>
       
       
-        <a href="../../Firewalling/Firewalling/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../Stacks/Portainer/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Firewalling
+              Portainer
             </div>
           </div>
           <div class="md-footer__button md-icon">

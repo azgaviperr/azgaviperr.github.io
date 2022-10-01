@@ -156,7 +156,11 @@
 
 
   <li class="md-tabs__item">
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
     <a href="../.." class="md-tabs__link">
+=======
+    <a href="../../../.." class="md-tabs__link">
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
       Home
     </a>
   </li>
@@ -171,6 +175,7 @@
   
   
     <li class="md-tabs__item">
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
       <a href="../../3-nodes-swarm/" class="md-tabs__link">
         3 nodes swarm
       </a>
@@ -191,6 +196,10 @@
     <li class="md-tabs__item">
       <a href="../Portainer/" class="md-tabs__link md-tabs__link--active">
         Stacks
+=======
+      <a href="../../../" class="md-tabs__link md-tabs__link--active">
+        3 nodes swarm
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
       </a>
     </li>
   
@@ -234,7 +243,11 @@
   
   
     <li class="md-nav__item">
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
       <a href="../.." class="md-nav__link">
+=======
+      <a href="../../../.." class="md-nav__link">
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
         Home
       </a>
     </li>
@@ -346,8 +359,13 @@
   
   
     <li class="md-nav__item">
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
       <a href="../../3-nodes-swarm/DockerSwarm/Installation/" class="md-nav__link">
         Docker swarm
+=======
+      <a href="../../Installation/" class="md-nav__link">
+        Installation
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
       </a>
     </li>
   
@@ -418,6 +436,7 @@
   
 
     
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
       
       
       
@@ -507,6 +526,8 @@
   
 
     
+=======
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
   </ul>
 </nav>
                   </div>
@@ -566,7 +587,11 @@ So there is not yet a stack ready compose file.</p>
 <div class="highlight"><pre><span></span><code>version: &#39;3.8&#39;
 services:
   backend:
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
     image: ghcr.io/frikky/shuffle-backend:nightly
+=======
+    image: ghcr.io/frikky/shuffle-backend:0.8.74
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
     environment:
       BACKEND_HOSTNAME: backend
       BACKEND_PORT: &#39;5001&#39;
@@ -624,12 +649,16 @@ services:
       update_config:
         order: start-first    
   frontend:
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
     image: ghcr.io/frikky/shuffle-frontend:nightly
     healthcheck:
       test: curl -fs http://localhost:80 || exit 1
       interval: 30s
       timeout: 5s
       retries: 3    
+=======
+    image: ghcr.io/frikky/shuffle-frontend:0.8.74
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
     environment:
       BACKEND_HOSTNAME: backend
     ports:
@@ -674,7 +703,11 @@ services:
       driver: json-file
 
   orborus:
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
     image: ghcr.io/frikky/shuffle-orborus:nightly
+=======
+    image: ghcr.io/frikky/shuffle-orborus:0.8.73
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
     environment:
       #SHUFFLE_APP_SDK_VERSION: 0.8.97
       SHUFFLE_WORKER_VERSION: nightly     
@@ -686,6 +719,7 @@ services:
       HTTPS_PROXY: &#39;&#39;
       HTTP_PROXY: &#39;&#39;
       ORG_ID: Shuffle
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
       SHUFFLE_BASE_IMAGE_NAME: frikky
       SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
       SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.80
@@ -696,6 +730,15 @@ services:
       SHUFFLE_SCALE_REPLICAS: 5
       SHUFFLE_SWARM_CONFIG: run
       SHUFFLE_SWARM_NETWORK_NAME: shuffle_prod
+=======
+      SHUFFLE_APP_SDK_VERSION: 0.8.77
+      SHUFFLE_BASE_IMAGE_NAME: frikky
+      SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
+      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.60
+      SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;600&#39;
+      SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
+      SHUFFLE_WORKER_VERSION: 0.8.73
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
     networks:
@@ -724,9 +767,16 @@ networks:
 <p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
 <p>Log into your new instance at any nodes on port https://node:3443.</p>
 <h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
+<<<<<<< Updated upstream:Stacks/Shuffler/index.html
 <div class="highlight"><pre><span></span><code>  SHUFFLE_SCALE_REPLICAS: 5 # Set the number of workers per swarm nodes
   SHUFFLE_SWARM_CONFIG: run # Set the swarm mode
 </code></pre></div>
+=======
+<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are intented from different shuffle-database container at the same time on the same value which will lead to databse corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
+<p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
+This all Replica and Clustering of Shuffle is not yet production ready as it is not yet properly implemented.</p>
+<p>I recommend using only one database and one Orborus for now.</p>
+>>>>>>> Stashed changes:3-nodes-swarm/DockerSwarm/Stacks/Shuffler/index.html
                 
               
               

@@ -12,7 +12,7 @@
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/GlusterFS/GlusterFS/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
@@ -180,22 +180,6 @@
   
 
       
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../Stacks/Portainer/" class="md-tabs__link">
-        Stacks
-      </a>
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -342,8 +326,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adding-gluster-and-other-repository" class="md-nav__link">
-    Adding Gluster and other repository
+  <a href="#adding-gluster-repository" class="md-nav__link">
+    Adding Gluster Repository
   </a>
   
 </li>
@@ -396,11 +380,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-glusterfs-with-tls" class="md-nav__link">
-    Configure GlusterFS with TLS
+  <a href="#configure-glusterfs" class="md-nav__link">
+    Configure GlusterFS
   </a>
   
-    <nav class="md-nav" aria-label="Configure GlusterFS with TLS">
+    <nav class="md-nav" aria-label="Configure GlusterFS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -413,13 +397,6 @@
           <li class="md-nav__item">
   <a href="#generate-a-signed-certificate-for-each-node" class="md-nav__link">
     generate a signed certificate for each node
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-glusterca" class="md-nav__link">
-    Create the gluster.ca
   </a>
   
 </li>
@@ -520,14 +497,8 @@
   
     <li class="md-nav__item">
       <a href="../../DockerSwarm/Installation/" class="md-nav__link">
-        Docker swarm
+        Installation
       </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -537,21 +508,19 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
       
-      <label class="md-nav__link" for="__nav_2_4">
-        Firewalling
+      <label class="md-nav__link" for="__nav_2_3_2">
+        Stacks
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Firewalling" data-md-level="2">
-        <label class="md-nav__title" for="__nav_2_4">
+      <nav class="md-nav" aria-label="Stacks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_3_2">
           <span class="md-nav__icon md-icon"></span>
-          Firewalling
+          Stacks
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -560,9 +529,27 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Firewalling/Firewalling/" class="md-nav__link">
-        Firewalling
+      <a href="../../DockerSwarm/Stacks/Portainer/" class="md-nav__link">
+        Portainer
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DockerSwarm/Stacks/Shuffler/" class="md-nav__link">
+        Shuffle
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -580,60 +567,6 @@
     <li class="md-nav__item">
       <a href="../../../resources" class="md-nav__link">
         Resources
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      <label class="md-nav__link" for="__nav_3">
-        Stacks
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Stacks" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Stacks
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Stacks/Portainer/" class="md-nav__link">
-        Portainer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../Stacks/Shuffler/" class="md-nav__link">
-        Shuffle
       </a>
     </li>
   
@@ -671,8 +604,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#adding-gluster-and-other-repository" class="md-nav__link">
-    Adding Gluster and other repository
+  <a href="#adding-gluster-repository" class="md-nav__link">
+    Adding Gluster Repository
   </a>
   
 </li>
@@ -725,11 +658,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-glusterfs-with-tls" class="md-nav__link">
-    Configure GlusterFS with TLS
+  <a href="#configure-glusterfs" class="md-nav__link">
+    Configure GlusterFS
   </a>
   
-    <nav class="md-nav" aria-label="Configure GlusterFS with TLS">
+    <nav class="md-nav" aria-label="Configure GlusterFS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -742,13 +675,6 @@
           <li class="md-nav__item">
   <a href="#generate-a-signed-certificate-for-each-node" class="md-nav__link">
     generate a signed certificate for each node
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-the-glusterca" class="md-nav__link">
-    Create the gluster.ca
   </a>
   
 </li>
@@ -820,137 +746,116 @@
                 
                 
                 <h1 id="installing-glusterfs-server">Installing GlusterFS Server<a class="headerlink" href="#installing-glusterfs-server" title="Permanent link">#</a></h1>
-<p><img src="../../images/Gluster.png" title="" alt="GlusterFS" data-align="center"></p>
-<h2 id="adding-gluster-and-other-repository">Adding Gluster and other repository<a class="headerlink" href="#adding-gluster-and-other-repository" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code>dnf install centos-release-gluster
-dnf install epel-release
-dnf install dnf-plugins-core
-dnf config-manager --set-enabled powertools
-<span class="c1"># checking repository list</span>
-dnf repolist
-repo id                                                                                                                repo name
-appstream                                                                                                              CentOS Stream <span class="m">8</span> - AppStream
-baseos                                                                                                                 CentOS Stream <span class="m">8</span> - BaseOS
-centos-gluster9                                                                                                        CentOS-8-stream - Gluster <span class="m">9</span>
-epel                                                                                                                   Extra Packages <span class="k">for</span> Enterprise Linux <span class="m">8</span> - x86_64
-epel-modular                                                                                                           Extra Packages <span class="k">for</span> Enterprise Linux Modular <span class="m">8</span> - x86_64
-epel-next                                                                                                              Extra Packages <span class="k">for</span> Enterprise Linux <span class="m">8</span> - Next - x86_64
-extras                                                                                                                 CentOS Stream <span class="m">8</span> - Extras
-powertools                                                                                                             CentOS Stream <span class="m">8</span> - PowerTools
+<p><img alt="GlusterFS" src="../../../images/Gluster.png" /></p>
+<h2 id="adding-gluster-repository">Adding Gluster Repository<a class="headerlink" href="#adding-gluster-repository" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code># dnf install centos-release-gluster`
 </code></pre></div>
 <h2 id="installing-glusterfs-server_1">Installing GlusterFS Server<a class="headerlink" href="#installing-glusterfs-server_1" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code>dnf install glusterfs-server
+<div class="highlight"><pre><span></span><code># dnf install glusterfs-server
 </code></pre></div>
 <h2 id="a-bit-of-simplification-for-management">A bit of simplification for management.<a class="headerlink" href="#a-bit-of-simplification-for-management" title="Permanent link">#</a></h2>
 <h3 id="generate-ssh-key">Generate ssh-key<a class="headerlink" href="#generate-ssh-key" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>ssh-keygen -t ed25519
+<div class="highlight"><pre><span></span><code># ssh-keygen -t ed25519
 </code></pre></div>
 <h2 id="push-ssh-key-to-all-nodes">Push ssh-key to all nodes<a class="headerlink" href="#push-ssh-key-to-all-nodes" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code>ssh-copy-id root@swarm2
-ssh-copy-id root@swarm3
+<p><div class="highlight"><pre><span></span><code># ssh-copy-id root@swarm2
+# ssh-copy-id root@swarm3
 </code></pre></div>
-<p>This should be done on all nodes.</p>
+This should be done on all nodes.</p>
 <h3 id="stop-firewall">Stop firewall<a class="headerlink" href="#stop-firewall" title="Permanent link">#</a></h3>
 <p>I highly doesn't recommend to stop the firewall but I don't want also that you will get frustrated because of it.
 So go look how to stop firewalld on CentOS using your favorite search engine.</p>
-<p>Or read the Firewalling documentation of this website. </p>
-<h2 id="configure-glusterfs-with-tls">Configure GlusterFS with TLS<a class="headerlink" href="#configure-glusterfs-with-tls" title="Permanent link">#</a></h2>
-<p>The fact that we gonna use certificate means you will have to take care to it and specially the expiration date. If certificate expire, GlusterFS service is not going to work. </p>
-<p>There is way to handle automatic renewall of certificate but this is not going to be part of this article. </p>
+<h2 id="configure-glusterfs">Configure GlusterFS<a class="headerlink" href="#configure-glusterfs" title="Permanent link">#</a></h2>
 <h3 id="generate-a-private-key-for-each-node">generate a private key for each node<a class="headerlink" href="#generate-a-private-key-for-each-node" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>openssl genrsa -out /etc/ssl/glusterfs.key <span class="m">4096</span>
+<div class="highlight"><pre><span></span><code># openssl genrsa -out /etc/ssl/glusterfs.key 4096`
 </code></pre></div>
 <h3 id="generate-a-signed-certificate-for-each-node">generate a signed certificate for each node<a class="headerlink" href="#generate-a-signed-certificate-for-each-node" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>openssl req -new -x509 -key /etc/ssl/glusterfs.key -subj <span class="s2">&quot;/CN=`hostname -f`&quot;</span> -out /etc/ssl/glusterfs.pem
+<div class="highlight"><pre><span></span><code># openssl req -new -x509 -key /etc/ssl/glusterfs.key -subj &quot;/CN=`hostname -f`&quot; -out /etc/ssl/glusterfs.pem
 </code></pre></div>
 <p>hostname -f : for full fqdn (swarm1.lab.local)
 hostname -s : for short version (swarm1)</p>
 <p>This is important to understand what are you going to use on all the nodes as it's going to be used  to identify the allowed host to mount Gluster's volume.</p>
-<p>Oh! Before I forget, it's good to check the expiration date of the certificate :) .  By default it expire after 30 days. </p>
-<h3 id="create-the-glusterca">Create the gluster.ca<a class="headerlink" href="#create-the-glusterca" title="Permanent link">#</a></h3>
-<p>To be able to use TLS with Gluster Server/Client you need to create /etc/ssl/glusterfs.ca concatenation of <em>others'</em> certificates .</p>
-<p>The easiest way it's to create a gluster.ca with all three .pem in it and set it up on each nodes. </p>
-<p>GlusterFS always performs <em>mutual authentication</em>, though clients do not currently do anything with the authenticated server identity. Thus, if client X wants to communicate with server Y, then X's certificate (or that of a signer) must be in Y's CA file, and vice versa.</p>
-<p>For all uses of TLS in GlusterFS, if one side of a connection is configured to use TLS then the other side must use it as well. There is no automatic fallback to non-TLS communication, or allowance for concurrent TLS and non-TLS access to the same resource, because either would be insecure. Instead, any such "mixed mode" connections will be rejected by the TLS-using side, sacrificing availability to maintain security.</p>
-<p><strong>NOTE</strong>: The TLS certificate verification will fail if the machines' date and time are not in sync with each other. Certificate verification depends on the time of the client as well as the server and if that is not found to be in sync then it is deemed to be an invalid certificate. To get the date and times in sync, tools such as ntpdate can be used.</p>
 <h2 id="enable-and-start-service">Enable and start service<a class="headerlink" href="#enable-and-start-service" title="Permanent link">#</a></h2>
-<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> glusterd --now
+<div class="highlight"><pre><span></span><code># systemctl enable glusterd --now
 </code></pre></div>
 <h3 id="peer-nodes">Peer nodes<a class="headerlink" href="#peer-nodes" title="Permanent link">#</a></h3>
 <p>From swarm1 run :</p>
-<div class="highlight"><pre><span></span><code>gluster peer probe swarm2
-gluster peer probe swarm3
+<div class="highlight"><pre><span></span><code># gluster peer probe swarm2
+# gluster peer probe swarm3
 </code></pre></div>
 <p>Verify peers:</p>
-<div class="highlight"><pre><span></span><code>gluster peer status
-
-Number of Peers: <span class="m">2</span>
+<div class="highlight"><pre><span></span><code># gluster peer status
+Number of Peers: 2
 Hostname: swarm2
 Uuid: 1085c1ff-6b79-4021-b6d4-93db50b8709a
-State: Peer <span class="k">in</span> Cluster <span class="o">(</span>Connected<span class="o">)</span>
+State: Peer in Cluster (Connected)
 
 Hostname: swarm3
 Uuid: 68525dfd-e91c-4563-9e16-76131025dc68
-State: Peer <span class="k">in</span> Cluster <span class="o">(</span>Connected<span class="o">)</span>
+State: Peer in Cluster (Connected)
 </code></pre></div>
-<p>If at this point nodes don't want to connect, there is a high chance that you messed up with the creation of the glusterfs.ca . </p>
 <h2 id="create-glusterfs-volumes">Create GlusterFS Volumes<a class="headerlink" href="#create-glusterfs-volumes" title="Permanent link">#</a></h2>
-<p>We are going to create two separated volumes.
-One for the different compose files and one for the env volumes.
+<p>We are going to create two separate volumes.
+One for the different compose files and on for the env volumes.
 We could have made only one GlusterFS volume for both but I like to separate elements.</p>
 <p>One thing you have to keep in mind, GlusterFS use bricks in between nodes that are folder. Do not write directly in it but on a mount of it.</p>
 <h2 id="compose-and-env-volumes">Compose and env Volumes<a class="headerlink" href="#compose-and-env-volumes" title="Permanent link">#</a></h2>
-<p>We gonna start by creating the brick</p>
-<div class="highlight"><pre><span></span><code>mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
-ssh root@swarm2 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
-ssh root@swarm3 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+<p>We gonna start by creating the brick
+<div class="highlight"><pre><span></span><code># mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+# ssh root@swarm2 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
+# ssh root@swarm3 mkdir -p /var/glusterfs/no-direct-write-here/vol_configuration/brick1
 </code></pre></div>
-<p>Create a volume from it.</p>
-<div class="highlight"><pre><span></span><code>gluster volume create vol_configuration replica <span class="m">3</span> transport tcp swarm<span class="o">{</span><span class="m">1</span>..3<span class="o">}</span>:/var/glusterfs/no-direct-write-here/vol_configuration/brick1 force
+Create a volume from it.</p>
+<p><div class="highlight"><pre><span></span><code># gluster volume create vol_configuration replica 3 transport tcp swarm{1..3}:/var/glusterfs/no-direct-write-here/vol_configuration/brick1 force
 
 volume create: vol_configuration: success: please start the volume to access data
 </code></pre></div>
-<p>Let's activate tcp encryption.</p>
-<div class="highlight"><pre><span></span><code>gluster volume <span class="nb">set</span> vol_configuration client.ssl on
+Let's activate tcp encryption.
+<div class="highlight"><pre><span></span><code># gluster volume set vol_configuration client.ssl on
 volume set: success
 
-gluster volume <span class="nb">set</span> vol_configuration server.ssl on
+# gluster volume set vol_configuration server.ssl on
 volume set: success
 </code></pre></div>
-<p>Time to allow our nodes to mount the volume as client and brick data as server.</p>
-<div class="highlight"><pre><span></span><code>gluster volume <span class="nb">set</span> vol_configuration auth.ssl-allow swarm1.lab.local,swarm2.lab.local,swarm3.lab.local
+Time to allow our nodes to mount the volume as client and brick data as server.
+<div class="highlight"><pre><span></span><code># gluster volume set vol_configuration auth.ssl-allow swarm1.lab.local,swarm2.lab.local,swarm3.lab.local
 volume set: success
 </code></pre></div>
-<p>And now we start it.</p>
-<div class="highlight"><pre><span></span><code>gluster volume start vol_configuration
+And now we start it.
+<div class="highlight"><pre><span></span><code># gluster volume start vol_configuration
 volume start: vol_configuration: success
 </code></pre></div>
-<p>Now we need to create a mount point for it.</p>
-<div class="highlight"><pre><span></span><code>mkdir  /mnt/configuration_data/
-ssh root@swarm2 mkdir  /mnt/configuration_data/
-ssh root@swarm3 mkdir  /mnt/configuration_data/
+Now we need to create a mount point for it.
+<div class="highlight"><pre><span></span><code># mkdir  /mnt/configuration_data/
+# ssh root@swarm2 mkdir  /mnt/configuration_data/
+# ssh root@swarm3 mkdir  /mnt/configuration_data/
 </code></pre></div>
-<p>And now we mount it.</p>
-<div class="highlight"><pre><span></span><code>mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
-ssh root@swarm2 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
-ssh root@swarm3 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+And now we mount it.
+<div class="highlight"><pre><span></span><code># mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+# ssh root@swarm2 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
+# ssh root@swarm3 mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data
 </code></pre></div>
-<p>We check this is working as it should:</p>
-<p>And that ssl is activated</p>
+We check this is working as it should:
+<div class="highlight"><pre><span></span><code># touch /mnt/configuration_data/youpi
+# ssh root@swarm2 ls /mnt/configuration_data
+# ssh root@swarm3 ls /mnt/configuration_data
+youpi
+</code></pre></div></p>
+<p>And that ssl is activated
 <div class="highlight"><pre><span></span><code>grep ssl /var/log/glusterfs/mnt-configuration_data.log
 </code></pre></div>
-<p>We want to have it mounted on startup so we add this to /etc/fstab of each node:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults       0 0&quot;</span> &gt;&gt; /etc/fstab
-</code></pre></div>
+We want to have it mounted on startup so we add this to /etc/fstab of each node:
+<div class="highlight"><pre><span></span><code>echo &quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults       0 0&quot; &gt;&gt; /etc/fstab
+</code></pre></div></p>
 <h2 id="docker-data-volumes">Docker Data Volumes<a class="headerlink" href="#docker-data-volumes" title="Permanent link">#</a></h2>
 <p>Same as above but with the brick made here : <code>/var/glusterfs/no-direct-write-here/vol_docker/brick1</code>
 And mountpoint: <code>/mnt/docker_data/</code></p>
 <h2 id="troubleshoot-no-glusterfs-mount-on-startup">Troubleshoot no GlusterFS mount on startup<a class="headerlink" href="#troubleshoot-no-glusterfs-mount-on-startup" title="Permanent link">#</a></h2>
-<p>I encoutered issue for the glusterFS volume to be mounted as startup as when the fstab is read by the system, glusterd is not yet running. The solution is to translate it in systemd-mount unit.</p>
-<div class="highlight"><pre><span></span><code>mkdir  /etc/systemd/system/glusterfs.mount.d/
-ssh root@swarm2 mkdir  /etc/systemd/system/configuration_data.mount.d/
-ssh root@swarm3 mkdir  /etc/systemd/system/configuration_data.mount.d/
-</code></pre></div>
+<p>I encoutered issue for the glusterFS volume to be mounted as startup as when the fstab is read by the system, glusterd is not yet running. The solution is to translate it in systemd-mount unit.
+<div class="highlight"><pre><span></span><code># mkdir  /etc/systemd/system/glusterfs.mount.d/
+# ssh root@swarm2 mkdir  /etc/systemd/system/configuration_data.mount.d/
+# ssh root@swarm3 mkdir  /etc/systemd/system/configuration_data.mount.d/
+</code></pre></div></p>
 <p>Official Documentation : https://docs.gluster.org/en/latest/</p>
                 
               
@@ -991,7 +896,7 @@ ssh root@swarm3 mkdir  /etc/systemd/system/configuration_data.mount.d/
               <span class="md-footer__direction">
                 Next
               </span>
-              Docker swarm
+              Installation
             </div>
           </div>
           <div class="md-footer__button md-icon">

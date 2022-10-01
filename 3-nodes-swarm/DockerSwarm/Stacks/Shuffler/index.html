@@ -9,21 +9,21 @@
       
       
       
-        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/">
+        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/Stacks/Shuffler/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
     
     
       
-        <title>Architecture - Azgaviperr Write-up</title>
+        <title>Shuffle - Azgaviperr Write-up</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6f955dcd.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.6f955dcd.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
         
           
           
@@ -42,9 +42,9 @@
     
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../custom.css">
+      <link rel="stylesheet" href="../../../../custom.css">
     
     
       
@@ -61,7 +61,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="yellow">
   
     
-    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#docker-the-zerg-way" class="md-skip">
+        <a href="#shuffle" class="md-skip">
           Skip to content
         </a>
       
@@ -80,9 +80,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Azgaviperr Write-up" class="md-header__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+    <a href="../../../.." title="Azgaviperr Write-up" class="md-header__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
       
-  <img src="../images/azgaviperr.png" alt="logo">
+  <img src="../../../../images/azgaviperr.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Shuffle
             
           </span>
         </div>
@@ -156,7 +156,7 @@
 
 
   <li class="md-tabs__item">
-    <a href=".." class="md-tabs__link">
+    <a href="../../../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -173,7 +173,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../../../" class="md-tabs__link md-tabs__link--active">
         3 nodes swarm
       </a>
     </li>
@@ -200,9 +200,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Azgaviperr Write-up" class="md-nav__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+    <a href="../../../.." title="Azgaviperr Write-up" class="md-nav__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
       
-  <img src="../images/azgaviperr.png" alt="logo">
+  <img src="../../../../images/azgaviperr.png" alt="logo">
 
     </a>
     Azgaviperr Write-up
@@ -218,7 +218,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -254,51 +254,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Architecture
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
         Architecture
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -331,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="GlusterFS/GlusterFS/" class="md-nav__link">
+      <a href="../../../GlusterFS/GlusterFS/" class="md-nav__link">
         Installing GlusterFS Server
       </a>
     </li>
@@ -347,14 +307,16 @@
             
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
       
       <label class="md-nav__link" for="__nav_2_3">
         Docker Swarm
@@ -372,7 +334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="DockerSwarm/Installation/" class="md-nav__link">
+      <a href="../../Installation/" class="md-nav__link">
         Installation
       </a>
     </li>
@@ -382,12 +344,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" checked>
       
       <label class="md-nav__link" for="__nav_2_3_2">
         Stacks
@@ -405,7 +369,7 @@
   
   
     <li class="md-nav__item">
-      <a href="DockerSwarm/Stacks/Portainer/" class="md-nav__link">
+      <a href="../Portainer/" class="md-nav__link">
         Portainer
       </a>
     </li>
@@ -415,11 +379,44 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="DockerSwarm/Stacks/Shuffler/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Shuffle
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Shuffle
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -441,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources" class="md-nav__link">
+      <a href="../../../../resources" class="md-nav__link">
         Resources
       </a>
     </li>
@@ -479,13 +476,6 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -499,36 +489,117 @@
               
                 
                 
-                <h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
-<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
-<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS.</p>
-<p>Nodes gonna be called: swarm1, swarm2, swarm3
-<div class="highlight"><pre><span></span><code>+----------------------+          |          +----------------------+
-| [Node #1] |10.0.0.51 |          |          | [Node #1] |10.0.0.52 |
-|   swarm1.lab.local   +----------+----------+   swarm2.lab.local   |
-|                      |          |          |                      |
-+----------------------+          |          +----------------------+
-                                  |                  
-                                  |               
-                                  |
-+----------------------+          |
-| [Node #3] |10.0.0.53 |          |
-|   swarm3.lab.local   +----------+
-|                      |
-+----------------------+
+                <h1 id="shuffle">Shuffle<a class="headerlink" href="#shuffle" title="Permanent link">#</a></h1>
+<p><img alt="Shuffle" src="https://shuffler.io/images/logo.png" />
+Shuffle is an Open Source SOAR I really appreciate as it does focus on CyberSecurity.
+To know more about it go there: <a href="https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12">https://medium.com/shuffle-automation</a>
+Or there : <a href="https://shuffler.io/">Official Website</a></p>
+<p>Hi Frikky !!! Hoipefully, you will appreciate what you are seing here ^^</p>
+<h1 id="preparaton">Preparaton<a class="headerlink" href="#preparaton" title="Permanent link">#</a></h1>
+<h2 id="setup-data-locations">Setup data locations<a class="headerlink" href="#setup-data-locations" title="Permanent link">#</a></h2>
+<h2 id="setup-docker-swarm">Setup Docker Swarm<a class="headerlink" href="#setup-docker-swarm" title="Permanent link">#</a></h2>
+<p>Deploying Portainer and the Portainer Agent to manage a Swarm cluster is easy! You can directly deploy Portainer as a service in your Docker cluster. Note that this method will automatically deploy a single instance of the Portainer Server, and deploy the Portainer Agent as a global service on every node in your cluster.</p>
+<div class="highlight"><pre><span></span><code># mkdir -p /mnt/configuration_data/compose_files/SOAR
+</code></pre></div>
+<h2 id="customisation">Customisation<a class="headerlink" href="#customisation" title="Permanent link">#</a></h2>
+<p>At the time of this writing I may be the only one shufflying around with swarm :p
+So there is not yet a stack ready compose file.</p>
+<p>Let's create one <code>/mnt/configuration_data/compose_files/SOAR/shuffle.stack.yml</code>
+<div class="highlight"><pre><span></span><code>version: &#39;3.3&#39;
+services:
+  backend:
+    image: ghcr.io/frikky/shuffle-backend:0.8.74
+    environment:
+      DATASTORE_EMULATOR_HOST: shuffle-database:8000
+      HTTPS_PROXY: &#39;&#39;
+      HTTP_PROXY: &#39;&#39;
+      ORG_ID: Shuffle
+      SHUFFLE_APP_DOWNLOAD_LOCATION: https://github.com/frikky/shuffle-apps
+      SHUFFLE_APP_FORCE_UPDATE: &#39;false&#39;
+      SHUFFLE_APP_HOTLOAD_FOLDER: /shuffle-apps
+      SHUFFLE_DEFAULT_APIKEY: zaCELgL.0imfnc8mVLWwsAawjYr4Rx-Af50DDqtlx
+      SHUFFLE_DEFAULT_PASSWORD: Fr1kky1sN0t@D0g
+      SHUFFLE_DEFAULT_USERNAME: admin
+      SHUFFLE_DOWNLOAD_AUTH_BRANCH: &#39;&#39;
+      SHUFFLE_FILE_LOCATION: /shuffle-files
+    ports:
+     - 5001:5001
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-apps:/shuffle-apps
+     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-files:/shuffle-files
+    networks:
+     - shuffle
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 3
+  database:
+    image: frikky/shuffle:database
+    ports:
+     - 30002:8000
+    volumes:
+     - /mnt/docker_data/SOAR/shuffle_data/shuffle-demo/shuffle-database:/etc/shuffle
+    networks:
+     - shuffle
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 1
+  frontend:
+    image: ghcr.io/frikky/shuffle-frontend:0.8.74
+    environment:
+      BACKEND_HOSTNAME: shuffle-backend
+    ports:
+     - 3001:80
+     - 3443:443
+    networks:
+     - shuffle
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 3
+  orborus:
+    image: ghcr.io/frikky/shuffle-orborus:0.8.73
+    environment:
+      BASE_URL: http://shuffle-backend:5001
+      CLEANUP: &#39;false&#39;
+      DOCKER_API_VERSION: &#39;1.40&#39;
+      ENVIRONMENT_NAME: Shuffle
+      HTTPS_PROXY: &#39;&#39;
+      HTTP_PROXY: &#39;&#39;
+      ORG_ID: Shuffle
+      SHUFFLE_APP_SDK_VERSION: 0.8.77
+      SHUFFLE_BASE_IMAGE_NAME: frikky
+      SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
+      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.60
+      SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;600&#39;
+      SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
+      SHUFFLE_WORKER_VERSION: 0.8.73
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+     - shuffle
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 3
+networks:
+  shuffle:
+    driver: overlay
 </code></pre></div></p>
-<p>Why Swarm ?</p>
-<p>Swarm is an orchestration tool directly provided into docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
-<ul>
-<li>Highly-available (can tolerate the failure of a single component)</li>
-<li>Scalable (can add resource or capacity as required)</li>
-<li>Portable (run it on your home today, run it in everywhere tomorrow)</li>
-<li>Automated (requires minimal care and feeding)</li>
-</ul>
-<p>Why GlusterFS ?</p>
-<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts , you need to provide shared storage to every docker node. This also means you shouldn't use docker volume declaration in you docker files.</p>
-<h2 id="installing-the-host-component">Installing the host component<a class="headerlink" href="#installing-the-host-component" title="Permanent link">#</a></h2>
-<p>Installation is based on a fresh Centos Stream minimal server and should be executed on all nodes.</p>
+<h2 id="setup-data-locations_1">Setup data locations<a class="headerlink" href="#setup-data-locations_1" title="Permanent link">#</a></h2>
+<p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
+<div class="highlight"><pre><span></span><code># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
+</code></pre></div>
+<h1 id="deploy-shuffle-stack">Deploy Shuffle stack<a class="headerlink" href="#deploy-shuffle-stack" title="Permanent link">#</a></h1>
+<p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
+<p>Log into your new instance at any nodes on port https://node:3443.</p>
+<h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
+<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are intented from different shuffle-database container at the same time on the same value which will lead to databse corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
+<p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
+This all Replica and Clustering of Shuffle is not yet production ready as it is not yet properly implemented.</p>
+<p>I recommend using only one database and one Orborus for now.</p>
                 
               
               
@@ -547,7 +618,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../Portainer/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -556,25 +627,11 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Portainer
             </div>
           </div>
         </a>
       
-      
-        <a href="GlusterFS/GlusterFS/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Installing GlusterFS Server
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
@@ -597,10 +654,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
       
     
   </body>
