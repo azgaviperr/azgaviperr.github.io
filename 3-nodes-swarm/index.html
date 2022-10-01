@@ -156,8 +156,8 @@
 
 
   <li class="md-tabs__item">
-    <a href=".." class="md-tabs__link">
-      Home
+    <a href="../index.html" class="md-tabs__link">
+      HOME
     </a>
   </li>
 
@@ -174,7 +174,23 @@
   
     <li class="md-tabs__item">
       <a href="./" class="md-tabs__link md-tabs__link--active">
-        3 nodes swarm
+        Swarming
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Thanks/Sponsors_and_Higlights/" class="md-tabs__link">
+        Thanks
       </a>
     </li>
   
@@ -218,8 +234,8 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        Home
+      <a href="../index.html" class="md-nav__link">
+        HOME
       </a>
     </li>
   
@@ -241,13 +257,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
-        3 nodes swarm
+        Swarming
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="3 nodes swarm" data-md-level="1">
+      <nav class="md-nav" aria-label="Swarming" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          3 nodes swarm
+          Swarming
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -454,6 +470,48 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Thanks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Thanks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Thanks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Thanks/Sponsors_and_Higlights/" class="md-nav__link">
+        Sponsors and Higlights
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -500,9 +558,11 @@
                 
                 
                 <h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
-<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
-<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS.</p>
-<p>Nodes gonna be called: swarm1, swarm2, swarm3
+<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role.</p>
+<p>(In swarm node can be master or worker - the one running containers - or both)</p>
+<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways.
+For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS but apply in many cluster concept.</p>
+<p>Nodes gonna be called: swarm1, swarm2, swarm3</p>
 <div class="highlight"><pre><span></span><code>+----------------------+          |          +----------------------+
 | [Node #1] |10.0.0.51 |          |          | [Node #1] |10.0.0.52 |
 |   swarm1.lab.local   +----------+----------+   swarm2.lab.local   |
@@ -516,9 +576,9 @@
 |   swarm3.lab.local   +----------+
 |                      |
 +----------------------+
-</code></pre></div></p>
+</code></pre></div>
 <p>Why Swarm ?</p>
-<p>Swarm is an orchestration tool directly provided into docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
+<p>Swarm is an orchestration tool directly provided by docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
 <ul>
 <li>Highly-available (can tolerate the failure of a single component)</li>
 <li>Scalable (can add resource or capacity as required)</li>
@@ -526,7 +586,7 @@
 <li>Automated (requires minimal care and feeding)</li>
 </ul>
 <p>Why GlusterFS ?</p>
-<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts , you need to provide shared storage to every docker node. This also means you shouldn't use docker volume declaration in you docker files.</p>
+<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage across nodes. This means if you actually want your containers to keep any data persistent after restarts , you need to provide shared storage to every docker node. This also means you shouldn't use docker volume declaration in you docker files but prefer bind declaration (the fact to directly declare local directory binding into a container).</p>
 <h2 id="installing-the-host-component">Installing the host component<a class="headerlink" href="#installing-the-host-component" title="Permanent link">#</a></h2>
 <p>Installation is based on a fresh Centos Stream minimal server and should be executed on all nodes.</p>
                 
@@ -546,20 +606,6 @@
 <footer class="md-footer">
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Home
-            </div>
-          </div>
-        </a>
       
       
         <a href="GlusterFS/GlusterFS/" class="md-footer__link md-footer__link--next" rel="next">

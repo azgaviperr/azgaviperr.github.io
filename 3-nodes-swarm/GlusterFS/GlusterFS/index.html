@@ -156,8 +156,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../.." class="md-tabs__link">
-      Home
+    <a href="../../../index.html" class="md-tabs__link">
+      HOME
     </a>
   </li>
 
@@ -174,7 +174,23 @@
   
     <li class="md-tabs__item">
       <a href="../../" class="md-tabs__link md-tabs__link--active">
-        3 nodes swarm
+        Swarming
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Thanks/Sponsors_and_Higlights/" class="md-tabs__link">
+        Thanks
       </a>
     </li>
   
@@ -218,8 +234,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
-        Home
+      <a href="../../../index.html" class="md-nav__link">
+        HOME
       </a>
     </li>
   
@@ -241,13 +257,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
-        3 nodes swarm
+        Swarming
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="3 nodes swarm" data-md-level="1">
+      <nav class="md-nav" aria-label="Swarming" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          3 nodes swarm
+          Swarming
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -448,6 +464,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#funny-stuff" class="md-nav__link">
+    Funny stuff
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshoot-no-glusterfs-mount-on-startup" class="md-nav__link">
     Troubleshoot no GlusterFS mount on startup
   </a>
@@ -567,6 +590,48 @@
     <li class="md-nav__item">
       <a href="../../../resources" class="md-nav__link">
         Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Thanks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Thanks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Thanks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Thanks/Sponsors_and_Higlights/" class="md-nav__link">
+        Sponsors and Higlights
       </a>
     </li>
   
@@ -726,6 +791,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#funny-stuff" class="md-nav__link">
+    Funny stuff
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#troubleshoot-no-glusterfs-mount-on-startup" class="md-nav__link">
     Troubleshoot no GlusterFS mount on startup
   </a>
@@ -763,8 +835,8 @@
 </code></pre></div>
 This should be done on all nodes.</p>
 <h3 id="stop-firewall">Stop firewall<a class="headerlink" href="#stop-firewall" title="Permanent link">#</a></h3>
-<p>I highly doesn't recommend to stop the firewall but I don't want also that you will get frustrated because of it.
-So go look how to stop firewalld on CentOS using your favorite search engine.</p>
+<p>For now we will stop the firewall so it's not going to interfere in this configuration. But I higly recommend to look on the documentation to know what port should be open.</p>
+<p>I will not give the command in here to do so, RTFM.</p>
 <h2 id="configure-glusterfs">Configure GlusterFS<a class="headerlink" href="#configure-glusterfs" title="Permanent link">#</a></h2>
 <h3 id="generate-a-private-key-for-each-node">generate a private key for each node<a class="headerlink" href="#generate-a-private-key-for-each-node" title="Permanent link">#</a></h3>
 <div class="highlight"><pre><span></span><code># openssl genrsa -out /etc/ssl/glusterfs.key 4096`
@@ -795,7 +867,7 @@ Uuid: 68525dfd-e91c-4563-9e16-76131025dc68
 State: Peer in Cluster (Connected)
 </code></pre></div>
 <h2 id="create-glusterfs-volumes">Create GlusterFS Volumes<a class="headerlink" href="#create-glusterfs-volumes" title="Permanent link">#</a></h2>
-<p>We are going to create two separate volumes.
+<p>We are going to create two separated volumes.
 One for the different compose files and on for the env volumes.
 We could have made only one GlusterFS volume for both but I like to separate elements.</p>
 <p>One thing you have to keep in mind, GlusterFS use bricks in between nodes that are folder. Do not write directly in it but on a mount of it.</p>
@@ -845,17 +917,18 @@ youpi
 <div class="highlight"><pre><span></span><code>grep ssl /var/log/glusterfs/mnt-configuration_data.log
 </code></pre></div>
 We want to have it mounted on startup so we add this to /etc/fstab of each node:
-<div class="highlight"><pre><span></span><code>echo &quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults       0 0&quot; &gt;&gt; /etc/fstab
-</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>echo &quot;localhost:/vol_configuration /mnt/configuration_data                glusterfs defaults,_netdev,noauto,x-systemd.automount,x-systemd.requires=gulsterd.service,x-systemd.after=gulsterd.service 0 0
+</code></pre></div>
+All the x-systemd option are here to make sure the volume is mounted after glusterFS service is running. For more information read it here https://www.freedesktop.org/software/systemd/man/systemd.mount.html .</p>
 <h2 id="docker-data-volumes">Docker Data Volumes<a class="headerlink" href="#docker-data-volumes" title="Permanent link">#</a></h2>
 <p>Same as above but with the brick made here : <code>/var/glusterfs/no-direct-write-here/vol_docker/brick1</code>
 And mountpoint: <code>/mnt/docker_data/</code></p>
+<h2 id="funny-stuff">Funny stuff<a class="headerlink" href="#funny-stuff" title="Permanent link">#</a></h2>
+<p>Imagine you got your brick (/var/glusterfs/no-direct-write-here/vol_configuration/brick1) and swarm1 on a dedicated hard drive and this hard drive died for some reason.
+You still could use the hosts to run containers, just mount the volume from an other node  <code>mount -t glusterfs localhost:/vol_configuration /mnt/configuration_data</code></p>
+<p>You could have also use two bricks or more instead of one to create the GlusterFS volume quite like you will have done it with Raid1. But this is to be read on the Official documentation of the project.</p>
 <h2 id="troubleshoot-no-glusterfs-mount-on-startup">Troubleshoot no GlusterFS mount on startup<a class="headerlink" href="#troubleshoot-no-glusterfs-mount-on-startup" title="Permanent link">#</a></h2>
-<p>I encoutered issue for the glusterFS volume to be mounted as startup as when the fstab is read by the system, glusterd is not yet running. The solution is to translate it in systemd-mount unit.
-<div class="highlight"><pre><span></span><code># mkdir  /etc/systemd/system/glusterfs.mount.d/
-# ssh root@swarm2 mkdir  /etc/systemd/system/configuration_data.mount.d/
-# ssh root@swarm3 mkdir  /etc/systemd/system/configuration_data.mount.d/
-</code></pre></div></p>
+<p>I encountered issue for the glusterFS saying a fresh peer couldn't be added because it had existing volumes. This was due to the fact I forgot to recreate the gluster.ca file to add it's public certificate.</p>
 <p>Official Documentation : https://docs.gluster.org/en/latest/</p>
                 
               

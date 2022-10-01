@@ -156,8 +156,8 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../../.." class="md-tabs__link">
-      Home
+    <a href="../../../../index.html" class="md-tabs__link">
+      HOME
     </a>
   </li>
 
@@ -174,7 +174,23 @@
   
     <li class="md-tabs__item">
       <a href="../../../" class="md-tabs__link md-tabs__link--active">
-        3 nodes swarm
+        Swarming
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../Thanks/Sponsors_and_Higlights/" class="md-tabs__link">
+        Thanks
       </a>
     </li>
   
@@ -218,8 +234,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
-        Home
+      <a href="../../../../index.html" class="md-nav__link">
+        HOME
       </a>
     </li>
   
@@ -241,13 +257,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       <label class="md-nav__link" for="__nav_2">
-        3 nodes swarm
+        Swarming
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="3 nodes swarm" data-md-level="1">
+      <nav class="md-nav" aria-label="Swarming" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
-          3 nodes swarm
+          Swarming
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -451,6 +467,48 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Thanks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Thanks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Thanks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Thanks/Sponsors_and_Higlights/" class="md-nav__link">
+        Sponsors and Higlights
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -508,7 +566,7 @@ So there is not yet a stack ready compose file.</p>
 <div class="highlight"><pre><span></span><code>version: &#39;3.3&#39;
 services:
   backend:
-    image: ghcr.io/frikky/shuffle-backend:0.8.74
+    image: ghcr.io/frikky/shuffle-backend:0.8.75
     environment:
       DATASTORE_EMULATOR_HOST: shuffle-database:8000
       HTTPS_PROXY: &#39;&#39;
@@ -547,7 +605,7 @@ services:
     deploy:
       replicas: 1
   frontend:
-    image: ghcr.io/frikky/shuffle-frontend:0.8.74
+    image: ghcr.io/frikky/shuffle-frontend:0.8.75
     environment:
       BACKEND_HOSTNAME: shuffle-backend
     ports:
@@ -560,7 +618,7 @@ services:
     deploy:
       replicas: 3
   orborus:
-    image: ghcr.io/frikky/shuffle-orborus:0.8.73
+    image: ghcr.io/frikky/shuffle-orborus:0.8.75
     environment:
       BASE_URL: http://shuffle-backend:5001
       CLEANUP: &#39;false&#39;
@@ -569,13 +627,13 @@ services:
       HTTPS_PROXY: &#39;&#39;
       HTTP_PROXY: &#39;&#39;
       ORG_ID: Shuffle
-      SHUFFLE_APP_SDK_VERSION: 0.8.77
+      SHUFFLE_APP_SDK_VERSION: 0.8.75
       SHUFFLE_BASE_IMAGE_NAME: frikky
       SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
-      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.60
+      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.75
       SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;600&#39;
       SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
-      SHUFFLE_WORKER_VERSION: 0.8.73
+      SHUFFLE_WORKER_VERSION: 0.8.75
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
     networks:
@@ -596,7 +654,7 @@ networks:
 <p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
 <p>Log into your new instance at any nodes on port https://node:3443.</p>
 <h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
-<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are intented from different shuffle-database container at the same time on the same value which will lead to databse corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
+<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are done from different shuffle-database container at the same time on the same value which will lead to database corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
 <p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
 This all Replica and Clustering of Shuffle is not yet production ready as it is not yet properly implemented.</p>
 <p>I recommend using only one database and one Orborus for now.</p>
@@ -632,6 +690,20 @@ This all Replica and Clustering of Shuffle is not yet production ready as it is 
           </div>
         </a>
       
+      
+        <a href="../../../../Thanks/Sponsors_and_Higlights/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Sponsors and Higlights
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
