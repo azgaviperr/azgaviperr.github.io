@@ -304,13 +304,6 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -332,13 +325,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
       
       <label class="md-nav__link" for="__nav_2_2">
-        Data Persistance
+        Docker Swarm
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Data Persistance" data-md-level="2">
+      <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
-          Data Persistance
+          Docker Swarm
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -347,8 +340,20 @@
   
   
     <li class="md-nav__item">
-      <a href="GlusterFS/GlusterFS/" class="md-nav__link">
-        Installing GlusterFS Server
+      <a href="DockerSwarm/01%20Installation/" class="md-nav__link">
+        Building the Zerg Nest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DockerSwarm/02%20Ceph/" class="md-nav__link">
+        Data Persistance and Sharing with Ceph
       </a>
     </li>
   
@@ -373,13 +378,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
       
       <label class="md-nav__link" for="__nav_2_3">
-        Docker Swarm
+        Archives
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
+      <nav class="md-nav" aria-label="Archives" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_3">
           <span class="md-nav__icon md-icon"></span>
-          Docker Swarm
+          Archives
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -388,60 +393,9 @@
   
   
     <li class="md-nav__item">
-      <a href="DockerSwarm/Installation/" class="md-nav__link">
-        Installation
+      <a href="GlusterFS/GlusterFS/" class="md-nav__link">
+        Installing GlusterFS Server
       </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3_2" type="checkbox" id="__nav_2_3_2" >
-      
-      <label class="md-nav__link" for="__nav_2_3_2">
-        Stacks
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="Stacks" data-md-level="3">
-        <label class="md-nav__title" for="__nav_2_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Stacks
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="DockerSwarm/Stacks/Portainer/" class="md-nav__link">
-        Portainer
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="DockerSwarm/Stacks/Shuffler/" class="md-nav__link">
-        Shuffle
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
     </li>
   
 
@@ -537,13 +491,6 @@
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#installing-the-host-component" class="md-nav__link">
-    Installing the host component
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -558,10 +505,8 @@
                 
                 
                 <h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
-<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role.</p>
-<p>(In swarm node can be master or worker - the one running containers - or both)</p>
-<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways.
-For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and GlusterFS but apply in many cluster concept.</p>
+<p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
+<p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and Ceph.</p>
 <p>Nodes gonna be called: swarm1, swarm2, swarm3</p>
 <div class="highlight"><pre><span></span><code>+----------------------+          |          +----------------------+
 | [Node #1] |10.0.0.51 |          |          | [Node #1] |10.0.0.52 |
@@ -577,18 +522,20 @@ For the quorum to be achieve you should have 2 master nodes up. This is true for
 |                      |
 +----------------------+
 </code></pre></div>
+<blockquote>
 <p>Why Swarm ?</p>
-<p>Swarm is an orchestration tool directly provided by docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
+</blockquote>
+<p>Swarm is an orchestration tool directly provided into docker from the version 1.12. It is easy to use compare to Kubernetes and easier to maintain for a small team.</p>
 <ul>
 <li>Highly-available (can tolerate the failure of a single component)</li>
 <li>Scalable (can add resource or capacity as required)</li>
 <li>Portable (run it on your home today, run it in everywhere tomorrow)</li>
 <li>Automated (requires minimal care and feeding)</li>
 </ul>
-<p>Why GlusterFS ?</p>
-<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage across nodes. This means if you actually want your containers to keep any data persistent after restarts , you need to provide shared storage to every docker node. This also means you shouldn't use docker volume declaration in you docker files but prefer bind declaration (the fact to directly declare local directory binding into a container).</p>
-<h2 id="installing-the-host-component">Installing the host component<a class="headerlink" href="#installing-the-host-component" title="Permanent link">#</a></h2>
-<p>Installation is based on a fresh Centos Stream minimal server and should be executed on all nodes.</p>
+<blockquote>
+<p>Why Ceph ?</p>
+</blockquote>
+<p>While Docker Swarm is great for keeping containers running and providing scaling capabilities, it does lack direct integration of persistent storage accross nodes. This means if you actually want your containers to keep any data persistent across restarts of services, you need to provide a shared storage to every docker nodes. This also means you shouldn't use docker volume declaration in you docker files.</p>
                 
               
               
@@ -608,13 +555,13 @@ For the quorum to be achieve you should have 2 master nodes up. This is true for
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
       
-        <a href="GlusterFS/GlusterFS/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="DockerSwarm/01%20Installation/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Installing GlusterFS Server
+              Building the Zerg Nest
             </div>
           </div>
           <div class="md-footer__button md-icon">

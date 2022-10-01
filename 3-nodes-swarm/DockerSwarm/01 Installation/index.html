@@ -1,0 +1,928 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/01%20Installation/">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+    
+    
+      
+        <title>Building the Zerg Nest - Azgaviperr Write-up</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f955dcd.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="yellow">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-the-zerg-nest" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Azgaviperr Write-up" class="md-header__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+      
+  <img src="../../../images/azgaviperr.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Azgaviperr Write-up
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building the Zerg Nest
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../index.html" class="md-tabs__link">
+      HOME
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Swarming
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Thanks/Sponsors_and_Higlights/" class="md-tabs__link">
+        Thanks
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Azgaviperr Write-up" class="md-nav__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
+      
+  <img src="../../../images/azgaviperr.png" alt="logo">
+
+    </a>
+    Azgaviperr Write-up
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../index.html" class="md-nav__link">
+        HOME
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Swarming
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Swarming" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Swarming
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Architecture
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2_2">
+        Docker Swarm
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Docker Swarm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Building the Zerg Nest
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Building the Zerg Nest
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequise" class="md-nav__link">
+    Prerequise
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-docker-and-docker-compose" class="md-nav__link">
+    Installing Docker and Docker compose
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Docker and Docker compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-runc" class="md-nav__link">
+    Remove runc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-docker-repo" class="md-nav__link">
+    Adding docker repo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-docker-compose" class="md-nav__link">
+    Installing docker-compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-start-the-whale" class="md-nav__link">
+    Let's start the whale
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-now-create-a-zerg-warm-from-it" class="md-nav__link">
+    And now create a zerg warm from it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#little-network-tweak" class="md-nav__link">
+    Little Network tweak
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewalling" class="md-nav__link">
+    Firewalling
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewalling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-configuration" class="md-nav__link">
+    Base configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-swarm" class="md-nav__link">
+    Docker Swarm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02%20Ceph/" class="md-nav__link">
+        Data Persistance and Sharing with Ceph
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      <label class="md-nav__link" for="__nav_2_3">
+        Archives
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Archives" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Archives
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GlusterFS/GlusterFS/" class="md-nav__link">
+        Installing GlusterFS Server
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources" class="md-nav__link">
+        Resources
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Thanks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Thanks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Thanks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Thanks/Sponsors_and_Higlights/" class="md-nav__link">
+        Sponsors and Higlights
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequise" class="md-nav__link">
+    Prerequise
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-docker-and-docker-compose" class="md-nav__link">
+    Installing Docker and Docker compose
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Docker and Docker compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-runc" class="md-nav__link">
+    Remove runc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-docker-repo" class="md-nav__link">
+    Adding docker repo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-docker-compose" class="md-nav__link">
+    Installing docker-compose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-start-the-whale" class="md-nav__link">
+    Let's start the whale
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#and-now-create-a-zerg-warm-from-it" class="md-nav__link">
+    And now create a zerg warm from it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#little-network-tweak" class="md-nav__link">
+    Little Network tweak
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewalling" class="md-nav__link">
+    Firewalling
+  </a>
+  
+    <nav class="md-nav" aria-label="Firewalling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-configuration" class="md-nav__link">
+    Base configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-swarm" class="md-nav__link">
+    Docker Swarm
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="building-the-zerg-nest">Building the Zerg Nest<a class="headerlink" href="#building-the-zerg-nest" title="Permanent link">#</a></h1>
+<blockquote>
+<p class="is-warning">Installation is based on a fresh Centos Stream minimal server.
+Therefore, it is only adapted for CentOS installation, it may or may not work on other distribution.</p>
+</blockquote>
+<h2 id="prerequise">Prerequise<a class="headerlink" href="#prerequise" title="Permanent link">#</a></h2>
+<p>3 x nodes (bare-metal or VMs), each with:
+- A mainstream Linux OS (tested on either CentOS 8 Stream)
+- At least 2GB RAM
+- At least 50GB disk space (but it'll be tight)
+- Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</p>
+<h2 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h2>
+<h3 id="remove-runc">Remove runc<a class="headerlink" href="#remove-runc" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>dnf remove runc
+</code></pre></div>
+<h3 id="adding-docker-repo">Adding docker repo<a class="headerlink" href="#adding-docker-repo" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>dnf install -y yum-utils
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce docker-ce-cli containerd.io
+</code></pre></div>
+<h3 id="installing-docker-compose">Installing docker-compose<a class="headerlink" href="#installing-docker-compose" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>dnf install python3-pip
+pip3 install --upgrade pip
+pip3 install setuptools-rust
+pip3 install docker-compose
+</code></pre></div>
+<h3 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h3>
+<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> docker --now
+</code></pre></div>
+<h3 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h3>
+<p>From swarm1:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># docker swarm init</span>
+Swarm initialized: current node <span class="o">(</span>ksdjlqsldjqsd2516685485<span class="o">)</span> is now a manager.
+To add a worker to this swarm, run the following command:
+
+    docker swarm <span class="se">\</span>
+     join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-814yer1z55vmyk2mwdhvjbob1 <span class="se">\</span>
+     <span class="m">10</span>.0.0.51:2377
+
+To add a manager to this swarm, run <span class="s1">&#39;docker swarm join-token manager&#39;</span> and follow the instructions.
+</code></pre></div>
+<p>We are going to add the two other nodes as manager:</p>
+<div class="highlight"><pre><span></span><code>docker swarm join-token manager
+To add a manager to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-5pykfhyfvtsij0tg4ewrtqk7hz2twuq21okeqv54p1gw2ufdde-2k0vay9aub5eheikw7qi9v82o <span class="m">10</span>.0.0.51:2377
+</code></pre></div>
+<p>Run the command provided on your other nodes to join them to the swarm as managers.
+After addition of a node, the output of docker node ls (on either host) should reflect all the nodes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># docker node ls</span>
+ID                            HOSTNAME           STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+p424u0yvmu0vvc8nsnspv83zw *   swarm1.lab.local   Ready     Active         Leader           <span class="m">20</span>.10.6
+kg6w6ucpb2jf8v8xqai23pv3a     swarm2.lab.local   Ready     Active         Reachable        <span class="m">20</span>.10.6
+lam7mgs5wus40iaydvp8u3ss7     swarm3.lab.local   Ready     Active         Reachable        <span class="m">20</span>.10.6
+</code></pre></div>
+<p>You are now ready to swarm.</p>
+<p>Official Documentation : https://docs.docker.com/engine/swarm/</p>
+<h3 id="little-network-tweak">Little Network tweak<a class="headerlink" href="#little-network-tweak" title="Permanent link">#</a></h3>
+<p>When running Docker Swarm on RedHat or CentOS VMs under VMware you may run into issues with communication over the swarm node routing mesh. This issue is traced back to UDP packets being dropped by the source node. Disabling checksum offloading appears to resolve this issue.</p>
+<p>Run the following on your VMs:</p>
+<div class="highlight"><pre><span></span><code>ethtool -K <span class="o">[</span>interface<span class="o">]</span> tx-checksum-ip-generic off
+cat &gt; /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic <span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">ethtool -K ens192 tx-checksum-ip-generic off</span>
+<span class="s">EOF</span>
+
+chmod +x /etc/NetworkManager/dispatcher.d/pre-up.d/10-tx-checksum-ip-generic
+</code></pre></div>
+<p>Note: [interface] is your network adaptater so change it accordingly. </p>
+<h2 id="firewalling">Firewalling<a class="headerlink" href="#firewalling" title="Permanent link">#</a></h2>
+<p><img src="data:image/png;base64,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" title="" alt="data:image/png;base64,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" data-align="center"></p>
+<h3 id="base-configuration">Base configuration<a class="headerlink" href="#base-configuration" title="Permanent link">#</a></h3>
+<p>Activate firewalld, you may want to check in <kbd>/etc/firewalld/zones/</kbd> to check what is going to happen ^^ . One issue happening quite often is when you changed the default ssh port. 
+As the ssh service declared in <kbd>/usr/lib/firewalld/services/ssh.xml</kbd> is referencing to port 22. 
+If it's the case, copy the <kbd>service.xml</kbd> into <kbd>/etc/firewalld/service</kbd> and change the port of it. </p>
+<p>(And yes, this happen to me a few times)</p>
+<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> firewalld --now
+</code></pre></div>
+<p>Unmask the service if needed :</p>
+<div class="highlight"><pre><span></span><code>systemctl unmask firewalld
+</code></pre></div>
+<p>By default, firewalld is having a public zone created. </p>
+<p>This public zone allow the use of ssh, cockpit, dhcpv6-client.</p>
+<p><div class="highlight"><pre><span></span><code>cat /etc/firewalld/zones/public.xml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+ <span class="nt">&lt;zone&gt;</span>
+  <span class="nt">&lt;short&gt;</span>Public<span class="nt">&lt;/short&gt;</span>
+  <span class="nt">&lt;description&gt;</span>For use in public areas. You do not trust the other computers on networks to not harm your computer. Only selected incoming connections are accepted.<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;ssh&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;dhcpv6-client&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;service</span> <span class="na">name=</span><span class="s">&quot;cockpit&quot;</span><span class="nt">/&gt;</span>  
+<span class="nt">&lt;/zone&gt;</span>
+</code></pre></div></p>
+<p>If you don't use cockpit or dhcpv6-client, you can remove them from the configuration. </p>
+<p>For example to delete cockpit service:</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permamnent --zone<span class="o">=</span>public --remove-service<span class="o">=</span>cockpit
+firewall-cmd --reload
+</code></pre></div>
+<p>Note here the parameters:</p>
+<ul>
+<li>
+<p>--permanent: means the rules gonna last after service restart</p>
+</li>
+<li>
+<p>--zone: is used to indicate what zone should be modified, by default it's the public one</p>
+</li>
+<li>
+<p>--remove-service : remove the service declared in /etc/firewalld/services/ without the .xml ending</p>
+</li>
+</ul>
+<p>firewall-cmd --reload is going to reload firewalld with latest configuration. </p>
+<p>Let's add some services </p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permanent --zone<span class="o">=</span>public --add-service<span class="o">=</span>http
+
+firewall-cmd --permanent --zone<span class="o">=</span>public --add-service<span class="o">=</span>https
+
+firewall-cmd --reload
+</code></pre></div>
+<p>We are going now to create a new zone representing the nodes of our cluster, and add  sources to it (understand incoming traffic).</p>
+<div class="highlight"><pre><span></span><code>firewall-cmd --permanent --new-zone<span class="o">=</span>swarm
+
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.51
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.52
+firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-source<span class="o">=</span><span class="m">10</span>.0.0.53
+
+firewall-cmd --reload
+</code></pre></div>
+<p>Let's check if sources where added</p>
+<p><div class="highlight"><pre><span></span><code>firewall-cmd --zone<span class="o">=</span>swarm --list-sources
+</code></pre></div>
+Ajouter les services nécessaires au cluster :
+<div class="highlight"><pre><span></span><code>cp -a /usr/lib/firewalld/services/docker-swarm.xml /etc/firewalld/services/
+
+firewall-cmd --zone<span class="o">=</span>swarm --add-service<span class="o">=</span>docker-swarm --permanent
+
+firewall-cmd --reload
+</code></pre></div></p>
+<h3 id="docker-swarm">Docker Swarm<a class="headerlink" href="#docker-swarm" title="Permanent link">#</a></h3>
+<p>Let's add the service to the swarm zone:</p>
+<p>By default firewalld come bundled with some services. You can find them in <kbd>/usr/lib/firewalld/services</kbd>.</p>
+<p>I like to copy them in <kbd>/etc/firewalld/services</kbd> when I use them as it prevent it to be changed after an update. Firewalld prioritize service in "/etc/firewalld/services/" then in <kbd>/usr/lib/firewalld/services</kbd> .</p>
+<p>So let's copy the docker-swarm service:</p>
+<p><div class="highlight"><pre><span></span><code>cp /usr/lib/firewalld/services/docker-swarm.xml /etc/firewalld/services/
+
+cat /etc/firewalld/services/docker-swarm.xml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;service&gt;</span>
+  <span class="nt">&lt;short&gt;</span>Docker integrated swarm mode<span class="nt">&lt;/short&gt;</span>
+  <span class="nt">&lt;description&gt;</span>Natively managed cluster of Docker Engines (&gt;=1.12.0), where you deploy services.<span class="nt">&lt;/description&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;2377&quot;</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;7946&quot;</span> <span class="na">protocol=</span><span class="s">&quot;tcp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;7946&quot;</span> <span class="na">protocol=</span><span class="s">&quot;udp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;port</span> <span class="na">port=</span><span class="s">&quot;4789&quot;</span> <span class="na">protocol=</span><span class="s">&quot;udp&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;protocol</span> <span class="na">value=</span><span class="s">&quot;esp&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre></div></p>
+<p>Then add it to the zone:</p>
+<p><div class="highlight"><pre><span></span><code>firewall-cmd --permanent --zone<span class="o">=</span>swarm --add-service<span class="o">=</span>docker-swarm
+firewall-cmd --reload
+
+firewall-cmd --zone<span class="o">=</span>swarm --list-services
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker-swarm
+</code></pre></div></p>
+<p>Now we did allow the port and protocols for the nodes to be used our cluster, and off course all those action have to be done on each host of the cluster.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Architecture
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../02%20Ceph/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Data Persistance and Sharing with Ceph
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      
+    
+  </body>
+</html>
