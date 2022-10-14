@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/Stacks/Shuffler/">
+        <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/03%20Basic%20Stacks/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
     
     
       
-        <title>Shuffle - Azgaviperr Write-up</title>
+        <title>Basic Stacks - Azgaviperr Write-up</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shuffle" class="md-skip">
+        <a href="#basic-stacks" class="md-skip">
           Skip to content
         </a>
       
@@ -106,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Shuffle
+              Basic Stacks
             
           </span>
         </div>
@@ -311,14 +311,16 @@
               
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       
       
@@ -349,7 +351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../DockerSwarm/01%20Installation/" class="md-nav__link">
+      <a href="../01%20Installation/" class="md-nav__link">
         Building the Zerg Nest
       </a>
     </li>
@@ -363,7 +365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../DockerSwarm/02%20Ceph/" class="md-nav__link">
+      <a href="../02%20Ceph/" class="md-nav__link">
         Data Persistance and Sharing with Ceph
       </a>
     </li>
@@ -375,11 +377,59 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../DockerSwarm/03%20Basic%20Stacks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Basic Stacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Basic Stacks
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traefik" class="md-nav__link">
+    Traefik
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portainer" class="md-nav__link">
+    Portainer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -396,16 +446,14 @@
               
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
       
       
       
@@ -434,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Portainer/" class="md-nav__link">
+      <a href="../../Stacks/Portainer/" class="md-nav__link">
         Portainer
       </a>
     </li>
@@ -446,21 +494,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../Stacks/Shuffler/" class="md-nav__link">
         Shuffle
       </a>
-      
     </li>
   
 
@@ -618,6 +656,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#traefik" class="md-nav__link">
+    Traefik
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#portainer" class="md-nav__link">
+    Portainer
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -631,258 +691,10 @@
                   
 
 
-<h1 id="shuffle">Shuffle<a class="headerlink" href="#shuffle" title="Permanent link">#</a></h1>
-<p><img alt="Shuffle" src="https://shuffler.io/images/logo.png" />
-Shuffle is an Open Source SOAR I really appreciate as it does focus on CyberSecurity.
-To know more about it go there: <a href="https://medium.com/shuffle-automation/introducing-shuffle-an-open-source-soar-platform-part-1-58a529de7d12">https://medium.com/shuffle-automation</a>
-Or there : <a href="https://shuffler.io/">Official Website</a></p>
-<p>Hi Frikky !!! Hoipefully, you will appreciate what you are seing here ^^</p>
-<h1 id="preparaton">Preparaton<a class="headerlink" href="#preparaton" title="Permanent link">#</a></h1>
-<h2 id="setup-data-locations">Setup data locations<a class="headerlink" href="#setup-data-locations" title="Permanent link">#</a></h2>
-<h2 id="setup-docker-swarm">Setup Docker Swarm<a class="headerlink" href="#setup-docker-swarm" title="Permanent link">#</a></h2>
-<p>Deploying Portainer and the Portainer Agent to manage a Swarm cluster is easy! You can directly deploy Portainer as a service in your Docker cluster. Note that this method will automatically deploy a single instance of the Portainer Server, and deploy the Portainer Agent as a global service on every node in your cluster.</p>
-<div class="highlight"><pre><span></span><code># mkdir -p /mnt/configuration_data/compose_files/SOAR
-</code></pre></div>
-<h2 id="customisation">Customisation<a class="headerlink" href="#customisation" title="Permanent link">#</a></h2>
-<p>At the time of this writing I may be the only one shufflying around with swarm :p
-So there is not yet a stack ready compose file.</p>
-<p>Let's create one <code>/mnt/configuration_data/compose_files/SOAR/shuffle.stack.yml</code>
-<div class="highlight"><pre><span></span><code>version: &#39;3.8&#39;
-services:
-  backend:
-    image: ghcr.io/frikky/shuffle-backend:latest
-    environment:
-      BACKEND_HOSTNAME: backend
-      BACKEND_PORT: &#39;5001&#39;
-      DATASTORE_EMULATOR_HOST: shuffle-database:8000
-      DB_LOCATION: ./shuffle-database
-      ENVIRONMENT_NAME: Shuffle
-      FRONTEND_PORT: &#39;3001&#39;
-      FRONTEND_PORT_HTTPS: &#39;3443&#39;
-      HTTPS_PROXY: &#39;&#39;
-      HTTP_PROXY: &#39;&#39;
-      ORG_ID: Shuffle
-      OUTER_HOSTNAME: backend
-      SHUFFLE_APP_DOWNLOAD_LOCATION: https://github.com/frikky/shuffle-apps
-      SHUFFLE_APP_FORCE_UPDATE: &#39;false&#39;
-      SHUFFLE_APP_HOTLOAD_FOLDER: /shuffle-apps
-      SHUFFLE_APP_HOTLOAD_LOCATION: ./shuffle-apps
-      SHUFFLE_BASE_IMAGE_NAME: frikky
-      SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
-      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: &#39;-0.9.30&#39;
-      SHUFFLE_CONTAINER_AUTO_CLEANUP: &#39;true&#39;
-      SHUFFLE_DEFAULT_APIKEY: &#39;&#39;
-      SHUFFLE_DOWNLOAD_AUTH_BRANCH: &#39;&#39;
-      SHUFFLE_DOWNLOAD_AUTH_PASSWORD: &#39;&#39;
-      SHUFFLE_DOWNLOAD_AUTH_USERNAME: &#39;&#39;
-      SHUFFLE_DOWNLOAD_WORKFLOW_BRANCH: &#39;&#39;
-      SHUFFLE_DOWNLOAD_WORKFLOW_LOCATION: &#39;&#39;
-      SHUFFLE_DOWNLOAD_WORKFLOW_PASSWORD: &#39;&#39;
-      SHUFFLE_DOWNLOAD_WORKFLOW_USERNAME: &#39;&#39;
-      SHUFFLE_ELASTIC: &#39;true&#39;
-      SHUFFLE_FILE_LOCATION: /shuffle-files
-      SHUFFLE_OPENSEARCH_APIKEY: &#39;&#39;
-      SHUFFLE_OPENSEARCH_CERTIFICATE_FILE: &#39;&#39;
-      SHUFFLE_OPENSEARCH_CLOUDID: &#39;&#39;
-      SHUFFLE_OPENSEARCH_PROXY: &#39;&#39;
-      SHUFFLE_OPENSEARCH_SKIPSSL_VERIFY: &#39;true&#39;
-      SHUFFLE_OPENSEARCH_URL: http://opensearch:9200
-      SHUFFLE_PASS_APP_PROXY: &#39;FALSE&#39;
-      SHUFFLE_PASS_WORKER_PROXY: &#39;TRUE&#39;
-      SHUFFLE_ENCRYPTION_MODIFIER: a7cee5f9-8e55-4e05-98d4-59aa9595339b
-      BASE_URL: https://shuffle.lab.local
-      SSO_REDIRECT_URL: https://shuffle.lab.local
-    #ports:
-    # - 5001:5001
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - /mnt/swarm/container_data/Shuffle/shuffle-apps:/shuffle-apps
-     - /mnt/swarm/container_data/Shuffle/shuffle-files:/shuffle-files
-    networks:
-     - shuffle
-    depends_on:
-     - opensearch 
-    logging:
-      driver: json-file
-    deploy:
-      placement:
-        constraints:
-          - node.labels.localisation==PROD  
-      resources:
-        limits:
-          #cpus: &#39;0.5&#39;
-          memory: 8G        
-  frontend:
-    image: ghcr.io/frikky/shuffle-frontend:latest
-    healthcheck:
-      test: curl -fs http://localhost:80 || exit 1
-      interval: 30s
-      timeout: 5s
-      retries: 3    
-    environment:
-      BACKEND_HOSTNAME: backend
-      BASE_URL: https://shuffle.lab.local
-      SSO_REDIRECT_URL: https://shuffle.lab.local
-    #ports:
-    # - 3001:80
-    # - 3443:443
-    networks:
-     - shuffle
-     - reverseproxy
-    logging:
-      driver: json-file
-    depends_on:
-      - backend
-    deploy: 
-      placement:
-        constraints:
-          - node.labels.localisation==PROD         
-      labels:
-        - &quot;traefik.enable=true&quot;
-        - &quot;traefik.http.routers.shuffle.rule=Host(`shuffle.lab.local`)&quot;
-        - &quot;traefik.http.routers.shuffle.entrypoints=web-secure,web&quot;
-        - &quot;traefik.http.routers.shuffle.tls=true&quot;
-        - &quot;traefik.http.services.shuffle.loadbalancer.server.port=80&quot;
-        - &quot;traefik.docker.network=reverseproxy&quot;
-
-  opensearch:
-    image: opensearchproject/opensearch:2
-    healthcheck:
-      test: curl -fs http://localhost:9200/_cat/health || exit 1
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 45s    
-    environment:
-      OPENSEARCH_JAVA_OPTS: -Xms4096m -Xmx4096m
-      bootstrap.memory_lock: &#39;true&#39;
-      cluster.initial_master_nodes: opensearch
-      node.store.allow_mmap: &#39;false&#39;
-      cluster.name: shuffle-cluster
-      cluster.routing.allocation.disk.threshold_enabled: &#39;false&#39;
-      discovery.seed_hosts: opensearch
-      node.name: opensearch
-      plugins.security.disabled: &#39;true&#39;
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536 
-        hard: 65536      
-    #ports:
-     #- 9200:9200
-    volumes:
-     - /mnt/swarm/container_data/Shuffle/shuffle-database:/usr/share/opensearch/data
-     #- /var/glusterfs/shuffle-database:/usr/share/opensearch/data
-     - /mnt/swarm/container_data/Shuffle/shuffle-backup/opensearch:/mnt/backup
-    networks:
-     - shuffle
-    logging:
-      driver: json-file
-    deploy:
-      #endpoint_mode: dnsrr     
-      placement:
-        constraints:
-          - node.labels.localisation==PROD 
-      resources:
-        limits:
-          #cpus: &#39;0.5&#39;
-          memory: 8G  
-
-  orborus:
-    #image: ghcr.io/frikky/shuffle-orborus:latest
-    image: ghcr.io/frikky/shuffle-orborus:nightly
-    environment:
-      #SHUFFLE_APP_SDK_VERSION: 0.8.97
-      SHUFFLE_WORKER_VERSION: latest     
-      BASE_URL: http://tasks.backend:5001
-      #BASE_URL: https://shuffle.lab.local
-      CLEANUP: &#39;true&#39;
-      DOCKER_API_VERSION: &#39;1.41&#39;
-      ENVIRONMENT_NAME: Shuffle
-      HTTPS_PROXY: &#39;&#39;
-      HTTP_PROXY: &#39;&#39;
-      ORG_ID: Shuffle
-      SHUFFLE_BASE_IMAGE_NAME: frikky
-      SHUFFLE_BASE_IMAGE_REGISTRY: ghcr.io
-      SHUFFLE_BASE_IMAGE_TAG_SUFFIX: -0.8.80
-      SHUFFLE_ORBORUS_EXECUTION_CONCURRENCY: &#39;50&#39;
-      SHUFFLE_ORBORUS_EXECUTION_TIMEOUT: &#39;800&#39;
-      SHUFFLE_PASS_APP_PROXY: &#39;FALSE&#39;
-      SHUFFLE_PASS_WORKER_PROXY: &#39;FALSE&#39;
-      SHUFFLE_SCALE_REPLICAS: 2
-      SHUFFLE_SWARM_CONFIG: run
-      SHUFFLE_LOGS_DISABLED: &quot;true&quot;
-      SHUFFLE_SWARM_NETWORK_NAME: shuffle
-      SSO_REDIRECT_URL: https://shuffle.lab.local
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-     - shuffle
-    depends_on:
-      - backend     
-    logging:
-      driver: json-file
-    deploy:
-      placement:
-        constraints:
-          - node.labels.localisation==PROD
-
-  oauth2-proxy:
-     container_name: oauth2-proxy
-     image: quay.io/oauth2-proxy/oauth2-proxy:latest
-     command:  --config /oauth2-proxy.cfg
-     hostname: oauth2-proxy
-     networks:
-     - shuffle
-     - reverseproxy
-     volumes:
-       - /mnt/swarm/container_data/Shuffle/oauth2-proxy/oauth2-proxy.cfg:/oauth2-proxy.cfg
-       - /mnt/swarm/container_data/Shuffle/oauth2-proxy/logs:/logs
-       - /etc/ssl/certs/:/etc/ssl/certs/:ro
-     restart: unless-stopped
-     deploy: 
-      placement:
-        constraints:
-          - node.labels.localisation==PROD         
-      labels:
-        - &quot;traefik.enable=true&quot;
-        - &quot;traefik.http.routers.opensearch-secure.rule=Host(`shuffle.lab.local`)&quot;
-        - &quot;traefik.http.routers.opensearch-secure.entrypoints=opensearch-secure&quot;
-        - &quot;traefik.http.routers.opensearch-secure.tls=true&quot;
-        - &quot;traefik.http.services.opensearch-secure.loadbalancer.server.port=4180&quot;
-        - &quot;traefik.docker.network=reverseproxy&quot;
-  dashboards:
-    image: opensearchproject/opensearch-dashboards:2
-    #ports:
-     #- 5601:5601
-    environment:
-     OPENSEARCH_HOSTS: &#39;[&quot;http://opensearch:9200&quot;]&#39; # must be a string with no spaces when specified as an environment variable
-     DISABLE_INSTALL_DEMO_CONFIG: &quot;true&quot;
-     DISABLE_SECURITY_DASHBOARDS_PLUGIN: &quot;true&quot;
-    networks:
-     - shuffle
-networks:
-  shuffle:
-    driver: overlay
-    external: true    
-  reverseproxy:
-    driver: overlay
-    external: true
-</code></pre></div></p>
-<h2 id="setup-data-locations_1">Setup data locations<a class="headerlink" href="#setup-data-locations_1" title="Permanent link">#</a></h2>
-<p>This could be made as a command but I like to run first and echo instead of the "mkdir -p" to be sure I didn't made a mistake.</p>
-<div class="highlight"><pre><span></span><code># grep &quot;/mnt/docker_data&quot; /mnt/configuration_data/compose_files/SOAR/shuffle-stack.yml | awk -F &quot;- &quot; &#39;{print $2&#39;} | awk -F &quot;:&quot; &#39;{ system(&quot;mkdir -p &quot;$1&quot;&quot;) }&#39;
-</code></pre></div>
-<h1 id="deploy-shuffle-stack">Deploy Shuffle stack<a class="headerlink" href="#deploy-shuffle-stack" title="Permanent link">#</a></h1>
-<p>Deploy the Shuffle stack by running <code>docker stack deploy -c &lt;path -to-docker-compose.yml&gt; shuffle</code></p>
-<p>Log into your new instance at any nodes on port https://node:3443.</p>
-<h1 id="note">Note<a class="headerlink" href="#note" title="Permanent link">#</a></h1>
-<p>Have you may have seen, all except database have a replica set to 3. This is done so we don't create a messy mess on DB if writing are done from different shuffle-database container at the same time on the same value which will lead to database corruption. Anyway, this container is up in 7 second in case of failure of the node ^^ .</p>
-<p>App gonna be slow to run on it's first usage on all new nodes where Orborus is going to use the base image for the first time. As swarm distribute request around all replicas, sometime request gonna be fast as the node already run the image and sometime not.
-This all Replica and Clustering of Shuffle is not yet production ready as it is not yet properly implemented.</p>
-<p>I recommend using only one database and one Orborus for now.</p>
+<h1 id="basic-stacks">Basic Stacks<a class="headerlink" href="#basic-stacks" title="Permanent link">#</a></h1>
+<p>This is no basic stack like for starter, but basics as needed in any deployement of my special stacks recipes !</p>
+<h2 id="traefik">Traefik<a class="headerlink" href="#traefik" title="Permanent link">#</a></h2>
+<h2 id="portainer">Portainer<a class="headerlink" href="#portainer" title="Permanent link">#</a></h2>
 
 
 
@@ -903,7 +715,7 @@ This all Replica and Clustering of Shuffle is not yet production ready as it is 
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../Portainer/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Portainer" rel="prev">
+        <a href="../02%20Ceph/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data Persistance and Sharing with Ceph" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -912,20 +724,20 @@ This all Replica and Clustering of Shuffle is not yet production ready as it is 
               <span class="md-footer__direction">
                 Previous
               </span>
-              Portainer
+              Data Persistance and Sharing with Ceph
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../GlusterFS/GlusterFS/" class="md-footer__link md-footer__link--next" aria-label="Next: Installing GlusterFS Server" rel="next">
+        <a href="../../Stacks/Portainer/" class="md-footer__link md-footer__link--next" aria-label="Next: Portainer" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Installing GlusterFS Server
+              Portainer
             </div>
           </div>
           <div class="md-footer__button md-icon">

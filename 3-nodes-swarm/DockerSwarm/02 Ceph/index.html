@@ -8,11 +8,10 @@
       
       
       
-      
         <link rel="canonical" href="https://azgaviperr.github.io/docs/3-nodes-swarm/DockerSwarm/02%20Ceph/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.2">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
     
     
       
@@ -20,34 +19,39 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f955dcd.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
           
           
           <meta name="theme-color" content="#000000">
         
       
+      
+
     
     
     
       
         
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
-    
     
     
       <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
       <link rel="stylesheet" href="../../../custom.css">
     
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+    
     
     
   </head>
@@ -61,7 +65,6 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="yellow">
   
     
-    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -78,7 +81,12 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Azgaviperr Write-up" class="md-header__button md-logo" aria-label="Azgaviperr Write-up" data-md-component="logo">
       
@@ -86,7 +94,7 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -108,21 +116,24 @@
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -139,13 +150,9 @@
     
     
   </nav>
-</header>
+  
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
@@ -199,6 +206,13 @@
     </ul>
   </div>
 </nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -256,10 +270,34 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
-      <label class="md-nav__link" for="__nav_2">
-        Swarming
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../">Swarming</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
       <nav class="md-nav" aria-label="Swarming" data-md-level="1">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
@@ -268,18 +306,9 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
-        Architecture
-      </a>
-    </li>
-  
-
           
             
+              
   
   
     
@@ -293,10 +322,22 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
-      <label class="md-nav__link" for="__nav_2_2">
-        Docker Swarm
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Docker Swarm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Docker Swarm" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
@@ -305,6 +346,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -315,8 +357,10 @@
     </li>
   
 
+            
           
             
+              
   
   
     
@@ -340,6 +384,7 @@
       </a>
       
         
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -358,6 +403,19 @@
     Prerequise
   </a>
   
+    <nav class="md-nav" aria-label="Prerequise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etchosts" class="md-nav__link">
+    /etc/hosts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -369,7 +427,7 @@
       
         <li class="md-nav__item">
   <a href="#install-cephadm-on-master-node" class="md-nav__link">
-    Install cephadm on master node¶
+    Install cephadm on master node
   </a>
   
 </li>
@@ -377,13 +435,6 @@
         <li class="md-nav__item">
   <a href="#bootstrap-new-ceph-cluster" class="md-nav__link">
     Bootstrap new Ceph cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-hosts-to-the-cluster" class="md-nav__link">
-    Adding hosts to the cluster.
   </a>
   
 </li>
@@ -397,14 +448,14 @@
       
         <li class="md-nav__item">
   <a href="#deploy-ceph-mon-ceph-monitor-daemon" class="md-nav__link">
-    Deploy ceph-mon (ceph monitor daemon)
+    Deploy Ceph-mon (ceph monitor daemon)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#deploy-ceph-mgr-ceph-manager-daemon" class="md-nav__link">
-    Deploy ceph-mgr (ceph manager daemon)
+    Deploy Ceph-mgr (ceph manager daemon)
   </a>
   
 </li>
@@ -450,14 +501,31 @@
     </li>
   
 
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03%20Basic%20Stacks/" class="md-nav__link">
+        Basic Stacks
+      </a>
+    </li>
+  
+
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -469,10 +537,20 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
       
-      <label class="md-nav__link" for="__nav_2_3">
-        Stacks
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Stacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Stacks" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_3">
           <span class="md-nav__icon md-icon"></span>
@@ -481,6 +559,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -491,8 +570,10 @@
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -503,14 +584,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -522,10 +606,18 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
       
-      <label class="md-nav__link" for="__nav_2_4">
-        Archives
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Archives
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Archives" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_4">
           <span class="md-nav__icon md-icon"></span>
@@ -534,6 +626,7 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
@@ -544,14 +637,17 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
     </li>
   
 
+            
           
             
+              
   
   
   
@@ -562,6 +658,7 @@
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -582,10 +679,18 @@
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="__nav_3">
-        Thanks
-        <span class="md-nav__icon md-icon"></span>
-      </label>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Thanks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <nav class="md-nav" aria-label="Thanks" data-md-level="1">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
@@ -594,16 +699,18 @@
         <ul class="md-nav__list" data-md-scrollfix>
           
             
+              
   
   
   
     <li class="md-nav__item">
       <a href="../../../Thanks/Sponsors_and_Higlights/" class="md-nav__link">
-        Sponsors and Higlights
+        Share and Rise Community
       </a>
     </li>
   
 
+            
           
         </ul>
       </nav>
@@ -623,6 +730,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -641,6 +749,19 @@
     Prerequise
   </a>
   
+    <nav class="md-nav" aria-label="Prerequise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etchosts" class="md-nav__link">
+    /etc/hosts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -652,7 +773,7 @@
       
         <li class="md-nav__item">
   <a href="#install-cephadm-on-master-node" class="md-nav__link">
-    Install cephadm on master node¶
+    Install cephadm on master node
   </a>
   
 </li>
@@ -660,13 +781,6 @@
         <li class="md-nav__item">
   <a href="#bootstrap-new-ceph-cluster" class="md-nav__link">
     Bootstrap new Ceph cluster
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-hosts-to-the-cluster" class="md-nav__link">
-    Adding hosts to the cluster.
   </a>
   
 </li>
@@ -680,14 +794,14 @@
       
         <li class="md-nav__item">
   <a href="#deploy-ceph-mon-ceph-monitor-daemon" class="md-nav__link">
-    Deploy ceph-mon (ceph monitor daemon)
+    Deploy Ceph-mon (ceph monitor daemon)
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#deploy-ceph-mgr-ceph-manager-daemon" class="md-nav__link">
-    Deploy ceph-mgr (ceph manager daemon)
+    Deploy Ceph-mgr (ceph manager daemon)
   </a>
   
 </li>
@@ -734,12 +848,14 @@
               </div>
             
           
-          <div class="md-content" data-md-component="content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="data-persistance-and-sharing-with-ceph">Data Persistance and Sharing with Ceph<a class="headerlink" href="#data-persistance-and-sharing-with-ceph" title="Permanent link">#</a></h1>
+                  
+
+
+<h1 id="data-persistance-and-sharing-with-ceph">Data Persistance and Sharing with Ceph<a class="headerlink" href="#data-persistance-and-sharing-with-ceph" title="Permanent link">#</a></h1>
 <blockquote>
 <p>While Docker Swarm is great for keeping containers running (and restarting those that fail), it does nothing for persistent storage. </p>
 <p>This means if you actually want your containers to keep any data persistent across restarts (hint: you do!), you need to provide shared storage to every docker node.</p>
@@ -761,9 +877,21 @@ Note on Cephadm:
 <li>At least an additionnal disk dedicated to the Ceph OSD (add it to previous host if needed)</li>
 <li>Each node should have the IP of every other participating node hard-coded in /etc/hosts (including its own IP)</li>
 </ul>
+<h3 id="etchosts">/etc/hosts<a class="headerlink" href="#etchosts" title="Permanent link">#</a></h3>
+<p>Add those record to /etc/hosts, edit IP if required.
+<div class="highlight"><pre><span></span><code><span class="c1"># Ceph Hosts</span>
+<span class="m">10</span>.0.0.41 ceph1
+<span class="m">10</span>.0.0.42 ceph3
+<span class="m">10</span>.0.0.43 ceph3
+<span class="c1"># Swarm Hosts</span>
+
+<span class="m">10</span>.0.0.51 swarm1
+<span class="m">10</span>.0.0.52 swarm2
+<span class="m">10</span>.0.0.53 swarm3
+</code></pre></div></p>
 <h2 id="choose-your-first-manager-node">Choose your first manager node<a class="headerlink" href="#choose-your-first-manager-node" title="Permanent link">#</a></h2>
 <p>One of your nodes will become the cephadm "master" node. Although all nodes will participate in the Ceph cluster, the master node will be the node which we bootstrap ceph on. It's also the node which will run the Ceph dashboard, and on which future upgrades will be processed. It doesn't matter which node you pick, and the cluster itself will operate in the event of a loss of the master node (although you won't see the dashboard)</p>
-<h2 id="install-cephadm-on-master-node">Install cephadm on master node¶<a class="headerlink" href="#install-cephadm-on-master-node" title="Permanent link">#</a></h2>
+<h2 id="install-cephadm-on-master-node">Install cephadm on master node<a class="headerlink" href="#install-cephadm-on-master-node" title="Permanent link">#</a></h2>
 <p>Run the following on the master node:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">RELEASE</span><span class="o">=</span><span class="s2">&quot;quincy&quot;</span>
 
@@ -777,8 +905,8 @@ chmod +x cephadm
 ./cephadm add-repo --release <span class="nv">$RELEASE</span>
 ./cephadm install
 
-<span class="c1">#Install ceph-common and Confirm that cephadm is now in your PATH by running which:</span>
-dnf install -y ceph-common
+<span class="c1">#Install Ceph-common and Confirm that cephadm is now in your PATH by running which:</span>
+dnf install -y Ceph-common
 which cephadm
 </code></pre></div>
 <h2 id="bootstrap-new-ceph-cluster">Bootstrap new Ceph cluster<a class="headerlink" href="#bootstrap-new-ceph-cluster" title="Permanent link">#</a></h2>
@@ -794,10 +922,10 @@ This command will:</p>
 <p>Write a minimal configuration file to <kbd>/etc/ceph/ceph.conf</kbd>. This file is needed to communicate with the new cluster.</p>
 <p>Write a copy of the client.admin administrative (privileged!) secret key to <kbd>/etc/ceph/ceph.client.admin.keyring</kbd>.</p>
 <p>Add the _admin label to the bootstrap host. By default, any host with this label will (also) get a copy of /etc/ceph/ceph.conf and /etc/ceph/ceph.client.admin.keyring.</p>
-<p><img alt="ceph-bootstrap.png" class="align-center" src="/dockerswarm/ceph-bootstrap.png" /></p>
-<p>Check Ceph dashboard, access IP address of ceph-01 https://192.168.1.231:8443/ and use credentials from the cephadm bootstrap output then set a new password</p>
-<p><img alt="ceph-firstlogin.png" class="align-center" src="/dockerswarm/ceph-firstlogin.png" /></p>
-<p><img alt="ceph-firstimedashboard.png" class="align-center" src="/dockerswarm/ceph-firstimedashboard.png" /></p>
+<p><img alt="Ceph-bootstrap.png" class="align-center" src="../../../images/Ceph-bootstrap.png" /></p>
+<p>Check Ceph dashboard, access IP address of ceph01 https://192.168.1.231:8443/ and use credentials from the cephadm bootstrap output then set a new password</p>
+<p><img alt="Ceph-firstlogin.png" class="align-center" src="../../../images/Ceph-firstlogin.png" /></p>
+<p><img alt="Ceph-firstimedashboard.png" class="align-center" src="../../../images/Ceph-firstimedashboard.png" /></p>
 <p>Confirm that the ceph command is accessible with:
 <div class="highlight"><pre><span></span><code>ceph -v
 </code></pre></div>
@@ -813,8 +941,8 @@ Result:
      health: HEALTH_WARN
              OSD count <span class="m">0</span> &lt; osd_pool_default_size <span class="m">3</span>
  services:
-     mon: <span class="m">1</span> daemons, quorum ceph-01 <span class="o">(</span>age 14m<span class="o">)</span>
-     mgr: ceph-01.wgdjcn<span class="o">(</span>active, since 12m<span class="o">)</span>
+     mon: <span class="m">1</span> daemons, quorum ceph01 <span class="o">(</span>age 14m<span class="o">)</span>
+     mgr: ceph01.wgdjcn<span class="o">(</span>active, since 12m<span class="o">)</span>
      osd: <span class="m">0</span> osds: <span class="m">0</span> up, <span class="m">0</span> <span class="k">in</span>
  data:
      pools:   <span class="m">0</span> pools, <span class="m">0</span> pgs
@@ -824,17 +952,18 @@ Result:
 </code></pre></div>
 Verify containers are running for each service and check status for systemd service for each containers
 <div class="highlight"><pre><span></span><code>docker ps <span class="p">|</span>grep ceph
-systemctl status ceph-* --no-pager
-</code></pre></div></p>
-<h2 id="adding-hosts-to-the-cluster">Adding hosts to the cluster.<a class="headerlink" href="#adding-hosts-to-the-cluster" title="Permanent link">#</a></h2>
-<p>To add each new host to the cluster, perform two steps:
-<div class="highlight"><pre><span></span><code><span class="c1"># Install the cluster’s public SSH key in the new host’s root user’s</span>
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph2.lab.local
-ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph3.lab.local
+systemctl status Ceph-* --no-pager
+<span class="sb">```</span>ssssss
+<span class="c1">## Adding hosts to the cluster.</span>
+To add each new host to the cluster, perform two steps:
+<span class="sb">```</span>bash
+<span class="c1"># Install the cluster’s public SSH key in the new host’s root user’s</span>
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph2
+ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph3
 
 <span class="c1">#Tell Ceph that the new node is part of the cluster, make sure python3 installed and available on new node</span>
-ceph orch host add ceph2.lab.local
-ceph orch host add ceph3.lab.local
+ceph orch host add ceph2
+ceph orch host add ceph3
 
 <span class="c1">#Check the added host</span>
 ceph orch host ls
@@ -851,21 +980,21 @@ ceph3  <span class="m">192</span>.168.1.233
 </code></pre></div>
 Result:
 <div class="highlight"><pre><span></span><code>Hostname  Path      Type  Serial  Size   Health   Ident  Fault  Available
-ceph1   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
-ceph2   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
-ceph3   /dev/sdb  ssd           25G  Unknown  N/A    N/A    Yes
+ceph1   /dev/sdb  ssd           150G  Unknown  N/A    N/A    Yes
+ceph2   /dev/sdb  ssd           150G  Unknown  N/A    N/A    Yes
+ceph3   /dev/sdb  ssd           150G  Unknown  N/A    N/A    Yes
 </code></pre></div></p>
 <p>Tell Ceph to consume any available and unused storage device execute <kbd>ceph orch apply osd --all-available-devices</kbd></p>
 <p><div class="highlight"><pre><span></span><code>ceph orch apply osd --all-available-devices
 ceph -s
 </code></pre></div>
-Result:
+Result:ssss
 <div class="highlight"><pre><span></span><code>cluster:
     id:     588df728-316c-11ec-b956-005056aea762
     health: HEALTH_OK
 services:
     mon: <span class="m">3</span> daemons, quorum ceph1,ceph2,ceph3 <span class="o">(</span>age 5m<span class="o">)</span>
-    mgr: ceph1.wgdjcn<span class="o">(</span>active, since 41m<span class="o">)</span>, standbys: ceph-02.rmltzq
+    mgr: ceph1.wgdjcn<span class="o">(</span>active, since 41m<span class="o">)</span>, standbys: ceph02.rmltzq
     osd: <span class="m">9</span> osds: <span class="m">0</span> up, <span class="m">9</span> <span class="k">in</span> <span class="o">(</span>since 10s<span class="o">)</span>
 data:
     pools:   <span class="m">0</span> pools, <span class="m">0</span> pgs
@@ -885,9 +1014,9 @@ Result:
 -3         <span class="m">0</span>.02939      host ceph3
  <span class="m">2</span>    ssd  <span class="m">0</span>.00980          osd.3        up   <span class="m">1</span>.00000  <span class="m">1</span>.00000
 </code></pre></div></p>
-<h2 id="deploy-ceph-mon-ceph-monitor-daemon">Deploy ceph-mon (ceph monitor daemon)<a class="headerlink" href="#deploy-ceph-mon-ceph-monitor-daemon" title="Permanent link">#</a></h2>
-<p>Ceph-mon is the cluster monitor daemon for the Ceph distributed file system. One or more instances of ceph-mon form a Paxos part-time parliament cluster that provides extremely reliable and durable storage of cluster membership, configuration, and state. Add ceph-mon to all node using placement option</p>
-<p><div class="highlight"><pre><span></span><code>ceph orch apply mon --placement<span class="o">=</span><span class="s2">&quot;ceph1.lab.local,ceph2.lab.local,ceph3.lab.local&quot;</span>
+<h2 id="deploy-ceph-mon-ceph-monitor-daemon">Deploy Ceph-mon (ceph monitor daemon)<a class="headerlink" href="#deploy-ceph-mon-ceph-monitor-daemon" title="Permanent link">#</a></h2>
+<p>Ceph-mon is the cluster monitor daemon for the Ceph distributed file system. One or more instances of Ceph-mon form a Paxos part-time parliament cluster that provides extremely reliable and durable storage of cluster membership, configuration, and state. Add Ceph-mon to all node using placement option</p>
+<p><div class="highlight"><pre><span></span><code>ceph orch apply mon --placement<span class="o">=</span><span class="s2">&quot;ceph1,ceph2,ceph3&quot;</span>
 ceph orch ps <span class="p">|</span> grep mon
 </code></pre></div>
 Result:
@@ -896,9 +1025,9 @@ mon.ceph2            ceph2               running <span class="o">(</span>27m<spa
 mon.ceph3            ceph3               running <span class="o">(</span>25m<span class="o">)</span>     7m ago  25m     104M    2048M  <span class="m">16</span>.2.6   02a72919e474  bcc00
 Result:
 </code></pre></div></p>
-<h2 id="deploy-ceph-mgr-ceph-manager-daemon">Deploy ceph-mgr (ceph manager daemon)<a class="headerlink" href="#deploy-ceph-mgr-ceph-manager-daemon" title="Permanent link">#</a></h2>
-<p>The Ceph Manager daemon (ceph-mgr) runs alongside monitor daemons, to provide additional monitoring and interfaces to external monitoring and management systems.</p>
-<p><div class="highlight"><pre><span></span><code>ceph orch apply mgr --placement<span class="o">=</span><span class="s2">&quot;ceph1.lab.local,ceph2.lab.local,ceph3.lab.local&quot;</span>
+<h2 id="deploy-ceph-mgr-ceph-manager-daemon">Deploy Ceph-mgr (ceph manager daemon)<a class="headerlink" href="#deploy-ceph-mgr-ceph-manager-daemon" title="Permanent link">#</a></h2>
+<p>The Ceph Manager daemon (Ceph-mgr) runs alongside monitor daemons, to provide additional monitoring and interfaces to external monitoring and management systems.</p>
+<p><div class="highlight"><pre><span></span><code>ceph orch apply mgr --placement<span class="o">=</span><span class="s2">&quot;ceph1,ceph2,ceph3&quot;</span>
 ceph orch ps <span class="p">|</span> grep mgr
 </code></pre></div>
 Result:
@@ -912,10 +1041,10 @@ mgr.ceph3.lhwjwd     ceph3  *:8443,9283  running <span class="o">(</span>7s<span
 <blockquote>
 <p>By default, a ceph.conf file and a copy of the client.admin keyring are maintained in /etc/ceph on all hosts with the _admin label, which is initially applied only to the bootstrap host. We usually recommend that one or more other hosts be given the _admin label so that the Ceph CLI (e.g., via cephadm shell) is easily accessible on multiple hosts. To add the _admin label to additional host(s)</p>
 </blockquote>
-<p><div class="highlight"><pre><span></span><code>ceph orch host label add ceph3.lab.local _admin
-ceph orch host label add ceph3.lab.local _admin
+<p><div class="highlight"><pre><span></span><code>ceph orch host label add ceph3 _admin
+ceph orch host label add ceph3 _admin
 </code></pre></div>
-<img alt="ceph_dashboardfinal.png" class="align-center" src="/dockerswarm/ceph_dashboardfinal.png" /></p>
+<img alt="ceph_dashboardfinal.png" class="align-center" src="../../../images/Ceph_Dashboardfinal.png" /></p>
 <h2 id="prepare-for-cephfs-mount">Prepare for cephFS mount<a class="headerlink" href="#prepare-for-cephfs-mount" title="Permanent link">#</a></h2>
 <p>It's now necessary to tranfer the following files to your other nodes, so that cephadm can add them to your cluster, and so that they'll be able to mount the cephfs when we're done:</p>
 <table>
@@ -943,7 +1072,7 @@ ceph orch host label add ceph3.lab.local _admin
 <div class="highlight"><pre><span></span><code>mkdir /mnt/swarm
 <span class="nb">echo</span> -e <span class="s2">&quot;</span>
 <span class="s2"># Mount cephfs volume \n</span>
-<span class="s2">ceph1.lab.local,ceph2.lab.local,ceph3.lab.local:/ /mnt/swarm ceph name=admin,noatime,_netdev 0 0&quot;</span> &gt;&gt; /etc/fstab
+<span class="s2">ceph1,ceph2,ceph3:/ /mnt/swarm ceph name=admin,noatime,_netdev 0 0&quot;</span> &gt;&gt; /etc/fstab
 mount -a
 </code></pre></div></p>
 <p>You can now play around and copy delete data on /mnt/swarm and check the replication accross the nodes.</p>
@@ -952,27 +1081,29 @@ mount -a
 <ul>
 <li>https://docs.ceph.com/en/latest/cephadm/install/</li>
 </ul>
-                
-              
-              
-                
 
 
-              
-            </article>
-          </div>
+
+
+
+                
+              </article>
+            </div>
+          
+          
         </div>
         
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
-        <a href="../01%20Installation/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../01%20Installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Building the Zerg Nest" rel="prev">
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
           <div class="md-footer__title">
             <div class="md-ellipsis">
@@ -985,17 +1116,18 @@ mount -a
         </a>
       
       
-        <a href="../../Stacks/Portainer/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="../03%20Basic%20Stacks/" class="md-footer__link md-footer__link--next" aria-label="Next: Basic Stacks" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Portainer
+              Basic Stacks
             </div>
           </div>
           <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
           </div>
         </a>
       
@@ -1003,14 +1135,15 @@ mount -a
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-        
-      </div>
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
@@ -1020,10 +1153,11 @@ mount -a
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.4ea5477f.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.078830c0.min.js"></script>
       
     
   </body>
