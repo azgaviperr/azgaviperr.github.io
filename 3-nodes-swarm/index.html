@@ -622,21 +622,8 @@
 <h1 id="docker-the-zerg-way">Docker the Zerg way<a class="headerlink" href="#docker-the-zerg-way" title="Permanent link">#</a></h1>
 <p>For a resilient installation we are going to build a docker swarm of 3 master nodes with also a worker role. (In swarm node can be master or worker - the one running containers - or both)</p>
 <p>It's important to understand the split brain concept. In the following cluster a quorum have to be kept to assure things don't go sideways. For the quorum to be achieve you should have 2 master nodes up. This is true for Swarm and Ceph.</p>
-<p>Nodes gonna be called: swarm1, swarm2, swarm3</p>
-<div class="highlight"><pre><span></span><code>+----------------------+          |          +----------------------+
-| [Node #1] |10.0.0.51 |          |          | [Node #1] |10.0.0.52 |
-|   swarm1.lab.local   +----------+----------+   swarm2.lab.local   |
-|                      |          |          |                      |
-+----------------------+          |          +----------------------+
-                                  |                  
-                                  |               
-                                  |
-+----------------------+          |
-| [Node #3] |10.0.0.53 |          |
-|   swarm3.lab.local   +----------+
-|                      |
-+----------------------+
-</code></pre></div>
+<p>Nodes gonna be called: swarm1, swarm2, swarm3, ceph1, ceph2, ceph3</p>
+<p><img alt="Infra" class="align-center" src="../images/Infra_Swarm.png" /></p>
 <blockquote>
 <p>Why Swarm ?</p>
 </blockquote>

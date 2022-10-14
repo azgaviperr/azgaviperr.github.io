@@ -396,40 +396,19 @@
     Installing Docker and Docker compose
   </a>
   
-    <nav class="md-nav" aria-label="Installing Docker and Docker compose">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remove-runc" class="md-nav__link">
-    Remove runc
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-docker-repo" class="md-nav__link">
-    Adding docker repo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installing-docker-compose" class="md-nav__link">
-    Installing docker-compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#lets-start-the-whale" class="md-nav__link">
     Let's start the whale
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Let's start the whale">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#and-now-create-a-zerg-warm-from-it" class="md-nav__link">
-    And now create a zerg warm from it
+  <a href="#and-now-create-a-zerg-swarm-from-it" class="md-nav__link">
+    And now create a zerg swarm from it
   </a>
   
 </li>
@@ -749,40 +728,19 @@
     Installing Docker and Docker compose
   </a>
   
-    <nav class="md-nav" aria-label="Installing Docker and Docker compose">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#remove-runc" class="md-nav__link">
-    Remove runc
-  </a>
-  
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-docker-repo" class="md-nav__link">
-    Adding docker repo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installing-docker-compose" class="md-nav__link">
-    Installing docker-compose
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#lets-start-the-whale" class="md-nav__link">
     Let's start the whale
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Let's start the whale">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#and-now-create-a-zerg-warm-from-it" class="md-nav__link">
-    And now create a zerg warm from it
+  <a href="#and-now-create-a-zerg-swarm-from-it" class="md-nav__link">
+    And now create a zerg swarm from it
   </a>
   
 </li>
@@ -853,24 +811,29 @@ Therefore, it is only adapted for CentOS installation, it may or may not work on
 - At least 50GB disk space (but it'll be tight)
 - Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</p>
 <h2 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h2>
-<h3 id="remove-runc">Remove runc<a class="headerlink" href="#remove-runc" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>dnf remove runc
-</code></pre></div>
-<h3 id="adding-docker-repo">Adding docker repo<a class="headerlink" href="#adding-docker-repo" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>dnf install -y yum-utils
+<div class="highlight"><pre><span></span><code><span class="c1">### Remove runc</span>
+dnf remove runc
+
+<span class="c1">### Adding docker repo</span>
+
+
+dnf install -y dnf-utils
 dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-dnf install docker-ce docker-ce-cli containerd.io
-</code></pre></div>
-<h3 id="installing-docker-compose">Installing docker-compose<a class="headerlink" href="#installing-docker-compose" title="Permanent link">#</a></h3>
-<div class="highlight"><pre><span></span><code>dnf install python3-pip
+dnf install -y docker-ce docker-ce-cli containerd.io
+
+
+<span class="c1">### Installing docker-compose</span>
+
+
+dnf install -y python3-pip
 pip3 install --upgrade pip
 pip3 install setuptools-rust
 pip3 install docker-compose
 </code></pre></div>
-<h3 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h3>
+<h2 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> docker --now
 </code></pre></div>
-<h3 id="and-now-create-a-zerg-warm-from-it">And now create a zerg warm from it<a class="headerlink" href="#and-now-create-a-zerg-warm-from-it" title="Permanent link">#</a></h3>
+<h3 id="and-now-create-a-zerg-swarm-from-it">And now create a zerg swarm from it<a class="headerlink" href="#and-now-create-a-zerg-swarm-from-it" title="Permanent link">#</a></h3>
 <p>From swarm1:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># docker swarm init</span>
 Swarm initialized: current node <span class="o">(</span>ksdjlqsldjqsd2516685485<span class="o">)</span> is now a manager.

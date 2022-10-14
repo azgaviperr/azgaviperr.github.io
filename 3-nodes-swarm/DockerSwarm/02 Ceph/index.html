@@ -419,6 +419,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-docker-and-docker-compose" class="md-nav__link">
+    Installing Docker and Docker compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-start-the-whale" class="md-nav__link">
+    Let's start the whale
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#choose-your-first-manager-node" class="md-nav__link">
     Choose your first manager node
   </a>
@@ -435,6 +449,13 @@
         <li class="md-nav__item">
   <a href="#bootstrap-new-ceph-cluster" class="md-nav__link">
     Bootstrap new Ceph cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-hosts-to-the-cluster" class="md-nav__link">
+    Adding hosts to the cluster.
   </a>
   
 </li>
@@ -765,6 +786,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#installing-docker-and-docker-compose" class="md-nav__link">
+    Installing Docker and Docker compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-start-the-whale" class="md-nav__link">
+    Let's start the whale
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#choose-your-first-manager-node" class="md-nav__link">
     Choose your first manager node
   </a>
@@ -781,6 +816,13 @@
         <li class="md-nav__item">
   <a href="#bootstrap-new-ceph-cluster" class="md-nav__link">
     Bootstrap new Ceph cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-hosts-to-the-cluster" class="md-nav__link">
+    Adding hosts to the cluster.
   </a>
   
 </li>
@@ -881,7 +923,7 @@ Note on Cephadm:
 <p>Add those record to /etc/hosts, edit IP if required.
 <div class="highlight"><pre><span></span><code><span class="c1"># Ceph Hosts</span>
 <span class="m">10</span>.0.0.41 ceph1
-<span class="m">10</span>.0.0.42 ceph3
+<span class="m">10</span>.0.0.42 ceph2
 <span class="m">10</span>.0.0.43 ceph3
 <span class="c1"># Swarm Hosts</span>
 
@@ -889,6 +931,29 @@ Note on Cephadm:
 <span class="m">10</span>.0.0.52 swarm2
 <span class="m">10</span>.0.0.53 swarm3
 </code></pre></div></p>
+<h2 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">### Remove runc</span>
+dnf remove runc
+
+<span class="c1">### Adding docker repo</span>
+
+
+dnf install -y dnf-utils
+dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+dnf install -y docker-ce docker-ce-cli containerd.io
+
+
+<span class="c1">### Installing docker-compose</span>
+
+
+dnf install -y python3-pip
+pip3 install --upgrade pip
+pip3 install setuptools-rust
+pip3 install docker-compose
+</code></pre></div>
+<h2 id="lets-start-the-whale">Let's start the whale<a class="headerlink" href="#lets-start-the-whale" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code>systemctl <span class="nb">enable</span> docker --now
+</code></pre></div>
 <h2 id="choose-your-first-manager-node">Choose your first manager node<a class="headerlink" href="#choose-your-first-manager-node" title="Permanent link">#</a></h2>
 <p>One of your nodes will become the cephadm "master" node. Although all nodes will participate in the Ceph cluster, the master node will be the node which we bootstrap ceph on. It's also the node which will run the Ceph dashboard, and on which future upgrades will be processed. It doesn't matter which node you pick, and the cluster itself will operate in the event of a loss of the master node (although you won't see the dashboard)</p>
 <h2 id="install-cephadm-on-master-node">Install cephadm on master node<a class="headerlink" href="#install-cephadm-on-master-node" title="Permanent link">#</a></h2>
@@ -906,7 +971,7 @@ chmod +x cephadm
 ./cephadm install
 
 <span class="c1">#Install Ceph-common and Confirm that cephadm is now in your PATH by running which:</span>
-dnf install -y Ceph-common
+dnf install -y ceph-common
 which cephadm
 </code></pre></div>
 <h2 id="bootstrap-new-ceph-cluster">Bootstrap new Ceph cluster<a class="headerlink" href="#bootstrap-new-ceph-cluster" title="Permanent link">#</a></h2>
@@ -923,7 +988,7 @@ This command will:</p>
 <p>Write a copy of the client.admin administrative (privileged!) secret key to <kbd>/etc/ceph/ceph.client.admin.keyring</kbd>.</p>
 <p>Add the _admin label to the bootstrap host. By default, any host with this label will (also) get a copy of /etc/ceph/ceph.conf and /etc/ceph/ceph.client.admin.keyring.</p>
 <p><img alt="Ceph-bootstrap.png" class="align-center" src="../../../images/Ceph-bootstrap.png" /></p>
-<p>Check Ceph dashboard, access IP address of ceph01 https://192.168.1.231:8443/ and use credentials from the cephadm bootstrap output then set a new password</p>
+<p>Check Ceph dashboard, access IP address of ceph01 https://ceph1:8443/ and use credentials from the cephadm bootstrap output then set a new password</p>
 <p><img alt="Ceph-firstlogin.png" class="align-center" src="../../../images/Ceph-firstlogin.png" /></p>
 <p><img alt="Ceph-firstimedashboard.png" class="align-center" src="../../../images/Ceph-firstimedashboard.png" /></p>
 <p>Confirm that the ceph command is accessible with:
@@ -952,12 +1017,11 @@ Result:
 </code></pre></div>
 Verify containers are running for each service and check status for systemd service for each containers
 <div class="highlight"><pre><span></span><code>docker ps <span class="p">|</span>grep ceph
-systemctl status Ceph-* --no-pager
-<span class="sb">```</span>ssssss
-<span class="c1">## Adding hosts to the cluster.</span>
-To add each new host to the cluster, perform two steps:
-<span class="sb">```</span>bash
-<span class="c1"># Install the cluster’s public SSH key in the new host’s root user’s</span>
+systemctl status ceph-* --no-pager
+</code></pre></div></p>
+<h2 id="adding-hosts-to-the-cluster">Adding hosts to the cluster.<a class="headerlink" href="#adding-hosts-to-the-cluster" title="Permanent link">#</a></h2>
+<p>To add each new host to the cluster, perform two steps:
+<div class="highlight"><pre><span></span><code><span class="c1"># Install the cluster’s public SSH key in the new host’s root user’s</span>
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph2
 ssh-copy-id -f -i /etc/ceph/ceph.pub root@ceph3
 
@@ -970,9 +1034,9 @@ ceph orch host ls
 </code></pre></div>
 Result:
 <div class="highlight"><pre><span></span><code>HOST     ADDR           LABELS  STATUS
-ceph1  <span class="m">192</span>.168.1.231  _admin
-ceph2  <span class="m">192</span>.168.1.232
-ceph3  <span class="m">192</span>.168.1.233
+ceph1  <span class="m">10</span>.0.0.41  _admin
+ceph2  <span class="m">10</span>.0.0.42
+ceph3  <span class="m">10</span>.0.0.43
 </code></pre></div></p>
 <h2 id="deploy-osds-to-the-cluster">Deploy OSDs to the cluster<a class="headerlink" href="#deploy-osds-to-the-cluster" title="Permanent link">#</a></h2>
 <p>Run this command to display an inventory of storage devices on all cluster hosts:
@@ -988,7 +1052,7 @@ ceph3   /dev/sdb  ssd           150G  Unknown  N/A    N/A    Yes
 <p><div class="highlight"><pre><span></span><code>ceph orch apply osd --all-available-devices
 ceph -s
 </code></pre></div>
-Result:ssss
+Result:
 <div class="highlight"><pre><span></span><code>cluster:
     id:     588df728-316c-11ec-b956-005056aea762
     health: HEALTH_OK
