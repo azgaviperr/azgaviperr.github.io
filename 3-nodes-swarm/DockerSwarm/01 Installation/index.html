@@ -805,11 +805,13 @@
 Therefore, it is only adapted for CentOS installation, it may or may not work on other distribution.</p>
 </blockquote>
 <h2 id="prerequise">Prerequise<a class="headerlink" href="#prerequise" title="Permanent link">#</a></h2>
-<p>3 x nodes (bare-metal or VMs), each with:
-- A mainstream Linux OS (tested on either CentOS 8 Stream)
-- At least 2GB RAM (You will need more Powaaaa, for the stack I will present futher allongs)
-- At least 50GB disk space (but it'll be tight)
-- Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</p>
+<p>3 x nodes (bare-metal or VMs), each with:</p>
+<ul>
+<li>A mainstream Linux OS (tested on CentOS 8/9 Stream)</li>
+<li>At least 2GB RAM (You will need more Powaaaa, for the stack I will present futher allongs)</li>
+<li>At least 50GB disk space (but it'll be tight)</li>
+<li>Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</li>
+</ul>
 <h2 id="installing-docker-and-docker-compose">Installing Docker and Docker compose<a class="headerlink" href="#installing-docker-and-docker-compose" title="Permanent link">#</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1">### Remove runc</span>
 dnf remove runc

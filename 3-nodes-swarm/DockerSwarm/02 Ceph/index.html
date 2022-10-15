@@ -912,12 +912,13 @@ Note on Cephadm:
 <h2 id="prerequise">Prerequise<a class="headerlink" href="#prerequise" title="Permanent link">#</a></h2>
 <p>3 x Virtual Machines (configured earlier for lab or dedicated for production), each with:</p>
 <ul>
+<li>A mainstream Linux OS (tested on CentOS 8/9 Stream)</li>
 <li>Support for "modern" versions of Python and LVM</li>
 <li>At least 2GB RAM</li>
 <li>At least 50GB disk space (but it'll be tight)</li>
 <li>Connectivity to each other within the same subnet, and on a low-latency link (i.e., no WAN links)</li>
 <li>At least an additionnal disk dedicated to the Ceph OSD (add it to previous host if needed)</li>
-<li>Each node should have the IP of every other participating node hard-coded in /etc/hosts (including its own IP)</li>
+<li>Each node should have the IP of every other participating node define in /etc/hosts (including its own IP)</li>
 </ul>
 <h3 id="etchosts">/etc/hosts<a class="headerlink" href="#etchosts" title="Permanent link">#</a></h3>
 <p>Add those record to /etc/hosts, edit IP if required.
